@@ -7,8 +7,9 @@ assignees: ''
 
 ---
 
-## 👨‍💻 Görevin tamamlanması için gerekenler:
+## 👨‍💻 Görevin tamamlanması için gerekenler
 - [ ] 📃 Madde şeklinde gösterin
 
-# 🔗 Faydalı bağlantılar
-- 🦋 Yardımcı olacak linkleri (varsa) listeleyin
+<!-- 🦋 Yardımcı olacak linkleri (varsa) listeleyin -->
+## 🔗 Faydalı bağlantılar
+- 
