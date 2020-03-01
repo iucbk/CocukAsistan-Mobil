@@ -1,7 +1,8 @@
-package com.iucbk.cocuk_asistan
+package com.iucbk.cocuk_asistan.ui.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.iucbk.cocuk_asistan.R
 
 class MainActivity : AppCompatActivity() {
 
