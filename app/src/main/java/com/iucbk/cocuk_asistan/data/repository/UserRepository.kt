@@ -1,4 +1,8 @@
-package com.iucbk.cocuk_asistan.db
+package com.iucbk.cocuk_asistan.data.repository
+
+import androidx.lifecycle.LiveData
+import com.iucbk.cocuk_asistan.data.model.UserRegisterDTO
+import com.iucbk.cocuk_asistan.util.Result
 
 
 // Code with ❤
@@ -7,6 +11,10 @@ package com.iucbk.cocuk_asistan.db
 //│ ─────────────────────────── │
 //│ mirac.ozkan123@gmail.com    │
 //│ ─────────────────────────── │
-//│ 02.03.2020 - 12:12          │
+//│ 16.03.2020 - 13:25          │
 //└─────────────────────────────┘
 
+interface UserRepository {
+
+    fun registerUser(userRegisterDTO: UserRegisterDTO): LiveData<Result<Nothing?>>
+}

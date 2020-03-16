@@ -1,9 +1,4 @@
-package com.iucbk.cocuk_asistan.di.module
-
-import com.iucbk.cocuk_asistan.data.repository.UserRepository
-import com.iucbk.cocuk_asistan.data.repository.UserRepositoryImpl
-import dagger.Binds
-import dagger.Module
+package com.iucbk.cocuk_asistan.enums
 
 
 // Code with ❤
@@ -12,15 +7,17 @@ import dagger.Module
 //│ ─────────────────────────── │
 //│ mirac.ozkan123@gmail.com    │
 //│ ─────────────────────────── │
-//│ 02.03.2020 - 12:12          │
+//│ 16.03.2020 - 14:43          │
 //└─────────────────────────────┘
 
-@Module
-abstract class RepositoryModule {
-
-    @Binds
-    internal abstract fun providePromotionRepository(
-        userRepositoryImpl: UserRepositoryImpl
-    ): UserRepository
-
+enum class RegisterInputs {
+    PASSWORD {
+        override fun toString(): String = "Şifreniz en az 6 karekterden olusmalıdır"
+    },
+    EMAIL {
+        override fun toString(): String = "Geçerli bir email giriniz"
+    },
+    USERNAME {
+        override fun toString(): String = "İsminiz en az 2 karekter olmalıdır"
+    }
 }

@@ -1,8 +1,7 @@
 package com.iucbk.cocuk_asistan.util.extension
 
-import android.view.View
-import androidx.fragment.app.Fragment
-import com.google.android.material.snackbar.Snackbar
+import android.util.Patterns
+import android.widget.TextView
 
 
 // Code with ❤
@@ -11,23 +10,18 @@ import com.google.android.material.snackbar.Snackbar
 //│ ─────────────────────────── │
 //│ mirac.ozkan123@gmail.com    │
 //│ ─────────────────────────── │
-//│ 02.03.2020 - 12:13          │
+//│ 16.03.2020 - 13:58          │
 //└─────────────────────────────┘
 
-fun Fragment.showSnackBar(text: String?) {
-    text?.let { message ->
-        Snackbar.make(view!!, message, Snackbar.LENGTH_SHORT).show()
+fun TextView.getString(): String {
+    return this.text.toString()
+}
+
+fun userFilledAllEntries(allFields: List<String?>): Boolean =
+    !allFields.any {
+        it.isNullOrEmpty()
     }
-}
 
-fun View.show() {
-    this.visibility = View.VISIBLE
-}
+fun isEmailValid(email: String): Boolean = Patterns.EMAIL_ADDRESS.matcher(email).matches()
 
-fun View.hide() {
-    this.visibility = View.INVISIBLE
-}
-
-fun View.gone() {
-    this.visibility = View.GONE
-}
+fun isLengthValid(text: String, length: Int) = text.length >= length

@@ -1,5 +1,8 @@
 package com.iucbk.cocuk_asistan.data.model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
 
 // Code with ❤
 //┌─────────────────────────────┐
@@ -7,6 +10,12 @@ package com.iucbk.cocuk_asistan.data.model
 //│ ─────────────────────────── │
 //│ mirac.ozkan123@gmail.com    │
 //│ ─────────────────────────── │
-//│ 02.03.2020 - 12:11          │
+//│ 16.03.2020 - 13:39          │
 //└─────────────────────────────┘
 
+@Parcelize
+data class UserRegisterDTO(
+    val email: String,
+    val fullName: String,
+    val password: String
+) : Parcelable

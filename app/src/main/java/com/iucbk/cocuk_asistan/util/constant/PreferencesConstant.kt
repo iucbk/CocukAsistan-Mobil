@@ -1,4 +1,4 @@
-package com.iucbk.cocuk_asistan.data.constant
+package com.iucbk.cocuk_asistan.util.constant
 
 
 // Code with ❤
@@ -9,3 +9,5 @@ package com.iucbk.cocuk_asistan.data.constant
 //│ ─────────────────────────── │
 //│ 02.03.2020 - 12:11          │
 //└─────────────────────────────┘
+
+const val SHARED_PREF_NAME = "cocuk_asistan_sp"
