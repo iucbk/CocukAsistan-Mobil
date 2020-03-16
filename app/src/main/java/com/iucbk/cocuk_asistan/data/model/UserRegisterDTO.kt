@@ -7,6 +7,11 @@ package com.iucbk.cocuk_asistan.data.model
 //│ ─────────────────────────── │
 //│ mirac.ozkan123@gmail.com    │
 //│ ─────────────────────────── │
-//│ 02.03.2020 - 12:11          │
+//│ 16.03.2020 - 13:39          │
 //└─────────────────────────────┘
 
+data class UserRegisterDTO(
+    val email: String,
+    val full_name: String,
+    val password: String
+)

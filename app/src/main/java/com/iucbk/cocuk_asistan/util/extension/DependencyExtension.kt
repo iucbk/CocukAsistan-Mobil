@@ -1,4 +1,8 @@
-package com.iucbk.cocuk_asistan.repository
+package com.iucbk.cocuk_asistan.util.extension
+
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 
 
 // Code with ❤
@@ -7,6 +11,9 @@ package com.iucbk.cocuk_asistan.repository
 //│ ─────────────────────────── │
 //│ mirac.ozkan123@gmail.com    │
 //│ ─────────────────────────── │
-//│ 02.03.2020 - 12:13          │
+//│ 16.03.2020 - 13:38          │
 //└─────────────────────────────┘
 
+inline fun <reified T : ViewModel> Fragment.injectViewModel(factory: ViewModelProvider.Factory): T {
+    return ViewModelProvider(this, factory)[T::class.java]
+}

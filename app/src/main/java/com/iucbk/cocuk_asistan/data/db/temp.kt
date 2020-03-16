@@ -1,4 +1,4 @@
-package com.iucbk.cocuk_asistan.net.response
+package com.iucbk.cocuk_asistan.data.db
 
 
 // Code with ❤
@@ -7,6 +7,6 @@ package com.iucbk.cocuk_asistan.net.response
 //│ ─────────────────────────── │
 //│ mirac.ozkan123@gmail.com    │
 //│ ─────────────────────────── │
-//│ 02.03.2020 - 12:13          │
+//│ 02.03.2020 - 12:12          │
 //└─────────────────────────────┘
 

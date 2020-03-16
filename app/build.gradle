@@ -25,6 +25,16 @@ android {
         }
     }
 
+    flavorDimensions 'dev'
+    productFlavors {
+        dev {
+            buildConfigField("String", "BASE_URL", '"https://cocukasistan.herokuapp.com/"')
+        }
+        prod {
+            buildConfigField("String", "BASE_URL", '"https://cocukasistan.herokuapp.com/"')
+        }
+    }
+
     viewBinding {
         enabled = true
     }
@@ -61,6 +71,7 @@ dependencies {
 
     // Lifecycle Dependency
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_lifecycle_extensions_version"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt "androidx.lifecycle:lifecycle-common-java8:$lifecycle_lifecycle_common_java8_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_lifecycle_viewmodel_ktx_version"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_lifecycle_livedata_ktx_version"

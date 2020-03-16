@@ -8,4 +8,16 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="RegisterInput" parent="Widget.AppCompat.EditText">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:layout_marginEnd">8dp</item>
+        <item name="android:lineSpacingExtra">8dp</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:textColor">#594a4e</item>
+        <item name="android:textCursorDrawable">@android:color/black</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
 </resources>

@@ -1,9 +1,9 @@
-package com.iucbk.cocuk_asistan.di.module
+package com.iucbk.cocuk_asistan.data.net
 
-import com.iucbk.cocuk_asistan.data.repository.UserRepository
-import com.iucbk.cocuk_asistan.data.repository.UserRepositoryImpl
-import dagger.Binds
-import dagger.Module
+import com.iucbk.cocuk_asistan.data.model.UserRegisterDTO
+import retrofit2.Response
+import retrofit2.http.Body
+import retrofit2.http.POST
 
 
 // Code with ❤
@@ -12,15 +12,13 @@ import dagger.Module
 //│ ─────────────────────────── │
 //│ mirac.ozkan123@gmail.com    │
 //│ ─────────────────────────── │
-//│ 02.03.2020 - 12:12          │
+//│ 16.03.2020 - 13:31          │
 //└─────────────────────────────┘
 
-@Module
-abstract class RepositoryModule {
-
-    @Binds
-    internal abstract fun providePromotionRepository(
-        userRepositoryImpl: UserRepositoryImpl
-    ): UserRepository
+interface ProjectService {
+    @POST("user/signup")
+    suspend fun registerUser(
+        @Body userRegisterDTO: UserRegisterDTO
+    ): Response<BaseResponse<Nothing?>>
 
 }

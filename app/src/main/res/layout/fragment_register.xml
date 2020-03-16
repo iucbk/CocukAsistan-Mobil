@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffc0ad"
+    tools:context=".ui.register.RegisterFragment">
+
+    <include
+        android:id="@+id/chicken_bubble"
+        layout="@layout/item_buble"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        app:layout_constraintEnd_toStartOf="@+id/chicken"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/chicken"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:contentDescription="@string/error_image"
+        android:src="@drawable/ic_chicken"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/txtUserName"
+        style="@style/RegisterInput"
+        android:background="@drawable/input_border"
+        android:hint="@string/name_surname"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        app:layout_constraintEnd_toStartOf="@+id/errorName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/errorName"
+        tools:text="John Doe" />
+
+    <ImageView
+        android:id="@+id/errorName"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:contentDescription="@string/error_image"
+        android:src="@drawable/ic_alert"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chicken"
+        tools:visibility="visible" />
+
+    <EditText
+        android:id="@+id/txtUserEmail"
+        style="@style/RegisterInput"
+        android:background="@drawable/input_border"
+        android:hint="@string/email_address"
+        android:importantForAutofill="no"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toStartOf="@+id/errorEmail"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/errorEmail"
+        tools:text="sample@exmaple.com" />
+
+    <ImageView
+        android:id="@+id/errorEmail"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:contentDescription="@string/error_image"
+        android:src="@drawable/ic_alert"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/errorName"
+        tools:visibility="visible" />
+
+    <EditText
+        android:id="@+id/txtUserPassword"
+        style="@style/RegisterInput"
+        android:background="@drawable/input_border"
+        android:hint="@string/password"
+        android:importantForAutofill="no"
+        android:inputType="textPassword"
+        android:padding="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/errorPassword"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/errorPassword" />
+
+    <ImageView
+        android:id="@+id/errorPassword"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:contentDescription="@string/error_image"
+        android:src="@drawable/ic_alert"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/errorEmail"
+        tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_login"
+        android:backgroundTint="#594a4e"
+        android:elevation="12dp"
+        android:fontFamily="@font/bubbleboddyneueboldtrial"
+        android:lineSpacingExtra="10sp"
+        android:text="@string/register"
+        android:textColor="#f8f8f8"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/chicken_bubble"
+        app:layout_constraintTop_toBottomOf="@+id/errorPassword" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

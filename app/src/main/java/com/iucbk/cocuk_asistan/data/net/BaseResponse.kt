@@ -1,9 +1,4 @@
-package com.iucbk.cocuk_asistan.di.module
-
-import com.iucbk.cocuk_asistan.data.repository.UserRepository
-import com.iucbk.cocuk_asistan.data.repository.UserRepositoryImpl
-import dagger.Binds
-import dagger.Module
+package com.iucbk.cocuk_asistan.data.net
 
 
 // Code with ❤
@@ -12,15 +7,11 @@ import dagger.Module
 //│ ─────────────────────────── │
 //│ mirac.ozkan123@gmail.com    │
 //│ ─────────────────────────── │
-//│ 02.03.2020 - 12:12          │
+//│ 16.03.2020 - 13:44          │
 //└─────────────────────────────┘
 
-@Module
-abstract class RepositoryModule {
-
-    @Binds
-    internal abstract fun providePromotionRepository(
-        userRepositoryImpl: UserRepositoryImpl
-    ): UserRepository
-
-}
+data class BaseResponse<T>(
+    val code: Int,
+    val message: String,
+    val data: T
+)
