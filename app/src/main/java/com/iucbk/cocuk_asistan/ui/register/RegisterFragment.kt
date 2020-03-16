@@ -52,10 +52,11 @@ class RegisterFragment : DaggerFragment() {
                     showSnackBar(getString(R.string.register_success))
                 }
                 ERROR -> {
-                    showSnackBar(result.message)
+                    showSnackBar(result.message ?: result.errorCode.toString())
                 }
                 LOADING -> {
-                    Log.e("Loading ", "Loading")
+                    //TODO Progress Bar
+                    Log.e("LOADING ", "LOADING")
                 }
             }
         })
@@ -65,9 +66,9 @@ class RegisterFragment : DaggerFragment() {
         if (isInputsValid()) {
             viewModel.setUserRegisterData(
                 UserRegisterDTO(
-                    binding.txtUserName.getString(),
-                    binding.txtUserEmail.getString(),
-                    binding.txtUserPassword.getString()
+                    full_name = binding.txtUserName.getString(),
+                    email = binding.txtUserEmail.getString(),
+                    password = binding.txtUserPassword.getString()
                 )
             )
         }

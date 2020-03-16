@@ -46,7 +46,8 @@ class UserRepositoryImpl @Inject constructor(
                 } else {
                     registerUserResponse.postValue(
                         Result.error(
-                            errorCode = convertErrorBody(response.errorBody()!!)?.code
+                            errorCode = convertErrorBody(response.errorBody()!!)?.code,
+                            message = convertErrorBody(response.errorBody()!!)?.message
                         )
                     )
                 }

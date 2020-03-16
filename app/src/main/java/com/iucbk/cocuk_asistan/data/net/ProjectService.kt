@@ -16,7 +16,6 @@ import retrofit2.http.POST
 //└─────────────────────────────┘
 
 interface ProjectService {
-
     @POST("user/signup")
     suspend fun registerUser(
         @Body userRegisterDTO: UserRegisterDTO
