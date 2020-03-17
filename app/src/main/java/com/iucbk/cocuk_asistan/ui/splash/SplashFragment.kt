@@ -38,7 +38,7 @@ class SplashFragment : Fragment(), CoroutineScope {
     }
 
     private suspend fun navigateScreenToSwipe() {
-        delay(1000)
+        delay(2000)
         val action =
             SplashFragmentDirections.actionSplashFragmentToSwipeUpScreen()
         findNavController().navigate(action)

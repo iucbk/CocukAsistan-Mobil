@@ -1,4 +1,7 @@
-package com.iucbk.cocuk_asistan.util.constant
+package com.iucbk.cocuk_asistan.util
+
+import android.content.SharedPreferences
+import com.iucbk.cocuk_asistan.util.constant.USER_TOKEN
 
 
 // Code with ❤
@@ -7,10 +10,9 @@ package com.iucbk.cocuk_asistan.util.constant
 //│ ─────────────────────────── │
 //│ mirac.ozkan123@gmail.com    │
 //│ ─────────────────────────── │
-//│ 02.03.2020 - 12:11          │
+//│ 17.03.2020 - 23:52          │
 //└─────────────────────────────┘
 
-const val SHARED_PREF_NAME = "cocuk_asistan_sp"
-
-const val USER_TOKEN = "token"
-const val USER_EMAIL = "email"
+fun getToken(sharedPref: SharedPreferences): String {
+    return sharedPref.getData(USER_TOKEN, "") as String
+}

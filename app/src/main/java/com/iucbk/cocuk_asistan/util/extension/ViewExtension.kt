@@ -1,6 +1,7 @@
 package com.iucbk.cocuk_asistan.util.extension
 
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 
@@ -17,6 +18,12 @@ import com.google.android.material.snackbar.Snackbar
 fun Fragment.showSnackBar(text: String?) {
     text?.let { message ->
         Snackbar.make(view!!, message, Snackbar.LENGTH_SHORT).show()
+    }
+}
+
+fun Fragment.showToast(text: String?) {
+    text?.let { message ->
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 }
 

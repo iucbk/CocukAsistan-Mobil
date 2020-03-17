@@ -1,5 +1,7 @@
 package com.iucbk.cocuk_asistan.di.module
 
+import com.iucbk.cocuk_asistan.ui.home.HomeFragment
+import com.iucbk.cocuk_asistan.ui.login.LoginFragment
 import com.iucbk.cocuk_asistan.ui.register.RegisterFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -19,5 +21,11 @@ abstract class FragmentModule {
 
     @ContributesAndroidInjector
     internal abstract fun contributeRegisterFragment(): RegisterFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun contributeLoginFragment(): LoginFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun contributeHomeFragment(): HomeFragment
 
 }

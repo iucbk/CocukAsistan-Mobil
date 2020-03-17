@@ -1,4 +1,4 @@
-package com.iucbk.cocuk_asistan.util.constant
+package com.iucbk.cocuk_asistan.data.model
 
 
 // Code with ❤
@@ -7,10 +7,10 @@ package com.iucbk.cocuk_asistan.util.constant
 //│ ─────────────────────────── │
 //│ mirac.ozkan123@gmail.com    │
 //│ ─────────────────────────── │
-//│ 02.03.2020 - 12:11          │
+//│ 17.03.2020 - 00:53          │
 //└─────────────────────────────┘
 
-const val SHARED_PREF_NAME = "cocuk_asistan_sp"
-
-const val USER_TOKEN = "token"
-const val USER_EMAIL = "email"
+data class UserLoginDTO(
+    val email: String,
+    val password: String
+)
