@@ -1,6 +1,7 @@
 package com.iucbk.cocuk_asistan.data.repository
 
 import androidx.lifecycle.LiveData
+import com.iucbk.cocuk_asistan.data.model.UserLoginDTO
 import com.iucbk.cocuk_asistan.data.model.UserRegisterDTO
 import com.iucbk.cocuk_asistan.util.Result
 
@@ -17,4 +18,6 @@ import com.iucbk.cocuk_asistan.util.Result
 interface UserRepository {
 
     fun registerUser(userRegisterDTO: UserRegisterDTO): LiveData<Result<Nothing?>>
+
+    fun loginUser(userLoginDTO: UserLoginDTO): LiveData<Result<Nothing?>>
 }

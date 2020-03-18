@@ -1,4 +1,4 @@
-package com.iucbk.cocuk_asistan.util.constant
+package com.iucbk.cocuk_asistan.data.net.response.login
 
 
 // Code with ❤
@@ -7,10 +7,9 @@ package com.iucbk.cocuk_asistan.util.constant
 //│ ─────────────────────────── │
 //│ mirac.ozkan123@gmail.com    │
 //│ ─────────────────────────── │
-//│ 02.03.2020 - 12:11          │
+//│ 17.03.2020 - 23:25          │
 //└─────────────────────────────┘
 
-const val SHARED_PREF_NAME = "cocuk_asistan_sp"
-
-const val USER_TOKEN = "token"
-const val USER_EMAIL = "email"
+data class LoginResponse(
+    val token: String
+)

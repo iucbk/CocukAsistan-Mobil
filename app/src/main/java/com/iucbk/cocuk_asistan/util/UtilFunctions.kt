@@ -1,5 +1,6 @@
 package com.iucbk.cocuk_asistan.util
 
+import androidx.fragment.app.Fragment
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.iucbk.cocuk_asistan.data.net.ErrorBody
@@ -27,11 +28,14 @@ fun convertErrorBody(responseBody: ResponseBody): ErrorBody? {
     }
 }
 
-fun getErrorStringFromCode(code: Int?) {
-    code?.let {
-        when (it) {
-            200 -> {
-                //TODO
+fun Fragment.getErrorStringFromCode(code: Int?): String {
+    code.let {
+        return when (it) {
+            422 -> {
+                "Şifre veya e-posta adresi yanlış"
+            }
+            else -> {
+                "Unknown Error"
             }
         }
     }

@@ -1,4 +1,4 @@
-package com.iucbk.cocuk_asistan.ui.register
+package com.iucbk.cocuk_asistan.ui.login
 
 import android.os.Bundle
 import android.util.Log
@@ -7,38 +7,40 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.iucbk.cocuk_asistan.R
-import com.iucbk.cocuk_asistan.data.model.UserRegisterDTO
-import com.iucbk.cocuk_asistan.databinding.FragmentRegisterBinding
+import com.iucbk.cocuk_asistan.data.model.UserLoginDTO
+import com.iucbk.cocuk_asistan.databinding.FragmentLoginBinding
 import com.iucbk.cocuk_asistan.di.ViewModelFactory
 import com.iucbk.cocuk_asistan.enums.RegisterInputs
 import com.iucbk.cocuk_asistan.util.Status.*
 import com.iucbk.cocuk_asistan.util.extension.*
+import com.iucbk.cocuk_asistan.util.getErrorStringFromCode
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
 /**
  * A simple [Fragment] subclass.
  */
-class RegisterFragment : DaggerFragment() {
+class LoginFragment : DaggerFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    private lateinit var viewModel: RegisterViewModel
+    private lateinit var viewModel: LoginViewModel
 
-    private lateinit var binding: FragmentRegisterBinding
+    private lateinit var binding: FragmentLoginBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         viewModel = injectViewModel(viewModelFactory)
-        binding = FragmentRegisterBinding.inflate(layoutInflater)
+        binding = FragmentLoginBinding.inflate(layoutInflater)
 
-        binding.btnRegister.setOnClickListener {
-            onUserRegister()
+        binding.btnLogin.setOnClickListener {
+            onUserLogin()
         }
 
         return binding.root
@@ -47,59 +49,62 @@ class RegisterFragment : DaggerFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.userRegisterResponse.observe(viewLifecycleOwner, Observer { result ->
+        viewModel.userLoginResponse.observe(viewLifecycleOwner, Observer { result ->
             when (result.status) {
                 SUCCESS -> {
-                    showSnackBar(getString(R.string.register_success))
-                    val action =
-                        RegisterFragmentDirections.actionRegisterFragmentToLoginFragment()
-                    findNavController().navigate(action)
+                    showSnackBar("Giriş Başarılı")
+                    findNavController().navigate(
+                        R.id.homeFragment,
+                        null,
+                        NavOptions.Builder()
+                            .setPopUpTo(R.id.swipeUpScreen, true)
+                            .setPopUpTo(R.id.registerFragment, true)
+                            .setPopUpTo(R.id.loginFragment, true)
+                            .build()
+                    )
                 }
                 ERROR -> {
-                    showSnackBar(result.message ?: result.errorCode.toString())
+                    showSnackBar(
+                        getErrorStringFromCode(result.errorCode)
+                    )
+                    showToast(
+                        result.message
+                    )
                 }
                 LOADING -> {
                     //TODO Progress Bar
-                    Log.e("LOADING ", "LOADING")
+                    Log.e("Loading : ", "Loading")
                 }
             }
         })
     }
 
-    private fun onUserRegister() {
-        if (isInputsValid()) {
-            viewModel.setUserRegisterData(
-                UserRegisterDTO(
-                    full_name = binding.txtUserName.getString(),
-                    email = binding.txtUserEmail.getString(),
-                    password = binding.txtUserPassword.getString()
+    private fun onUserLogin() {
+        if (isUserDataValid()) {
+            viewModel.setUserLoginData(
+                UserLoginDTO(
+                    email = binding.txtEmail.getString(),
+                    password = binding.txtPassword.getString()
                 )
             )
         }
     }
 
-    private fun isInputsValid(): Boolean {
-        val userName = binding.txtUserName.getString()
-        val userEmail = binding.txtUserEmail.getString()
-        val userPassword = binding.txtUserPassword.getString()
+    private fun isUserDataValid(): Boolean {
+        val email = binding.txtEmail.getString()
+        val password = binding.txtPassword.getString()
 
         val allFields = listOf(
-            userName,
-            userEmail,
-            userPassword
+            email,
+            password
         )
+
         return if (userFilledAllEntries(allFields)) {
-            if (isEmailValid(userEmail)) {
+            if (isEmailValid(email)) {
                 hideError(RegisterInputs.EMAIL)
-                if (isLengthValid(userPassword, 6)) {
+                if (isLengthValid(password, 6)) {
                     hideError(RegisterInputs.PASSWORD)
-                    if (isLengthValid(userName, 2)) {
-                        hideError(RegisterInputs.USERNAME)
-                        true
-                    } else {
-                        showError(RegisterInputs.USERNAME)
-                        false
-                    }
+                    true
                 } else {
                     showError(RegisterInputs.PASSWORD)
                     false
@@ -119,20 +124,15 @@ class RegisterFragment : DaggerFragment() {
             RegisterInputs.PASSWORD -> {
                 showSnackBar(RegisterInputs.PASSWORD.toString())
                 binding.errorPassword.show()
-                binding.errorName.hide()
                 binding.errorEmail.hide()
             }
             RegisterInputs.EMAIL -> {
                 showSnackBar(RegisterInputs.EMAIL.toString())
                 binding.errorPassword.hide()
-                binding.errorName.hide()
                 binding.errorEmail.show()
             }
-            RegisterInputs.USERNAME -> {
-                showSnackBar(RegisterInputs.USERNAME.toString())
-                binding.errorPassword.hide()
-                binding.errorName.show()
-                binding.errorEmail.hide()
+            else -> {
+
             }
         }
     }
@@ -145,10 +145,9 @@ class RegisterFragment : DaggerFragment() {
             RegisterInputs.EMAIL -> {
                 binding.errorEmail.hide()
             }
-            RegisterInputs.USERNAME -> {
-                binding.errorName.hide()
+            else -> {
+
             }
         }
     }
 }
-

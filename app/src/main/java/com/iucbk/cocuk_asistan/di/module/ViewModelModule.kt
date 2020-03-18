@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.iucbk.cocuk_asistan.di.ViewModelFactory
 import com.iucbk.cocuk_asistan.di.key.ViewModelKey
+import com.iucbk.cocuk_asistan.ui.login.LoginViewModel
 import com.iucbk.cocuk_asistan.ui.register.RegisterViewModel
 import dagger.Binds
 import dagger.Module
@@ -28,5 +29,10 @@ abstract class ViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(RegisterViewModel::class)
-    internal abstract fun bindPromotionSearchViewModel(registerViewModel: RegisterViewModel): ViewModel
+    internal abstract fun bindRegisterViewModel(registerViewModel: RegisterViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(LoginViewModel::class)
+    internal abstract fun bindLoginViewModel(loginViewModel: LoginViewModel): ViewModel
 }

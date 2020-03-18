@@ -28,6 +28,12 @@ class SwipeUpScreen : Fragment() {
             findNavController().navigate(action)
         }
 
+        binding.btnLogin.setOnClickListener {
+            val action =
+                SwipeUpScreenDirections.actionSwipeUpScreenToLoginFragment()
+            findNavController().navigate(action)
+        }
+
         return binding.root
     }
 

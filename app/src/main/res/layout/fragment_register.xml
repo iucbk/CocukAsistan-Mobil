@@ -9,7 +9,7 @@
 
     <include
         android:id="@+id/chicken_bubble"
-        layout="@layout/item_buble"
+        layout="@layout/item_bubble_right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
@@ -108,7 +108,7 @@
         android:background="@drawable/button_login"
         android:backgroundTint="#594a4e"
         android:elevation="12dp"
-        android:fontFamily="@font/bubbleboddyneueboldtrial"
+        android:fontFamily="@font/bubbleboddyneueregulartrial"
         android:lineSpacingExtra="10sp"
         android:text="@string/register"
         android:textColor="#f8f8f8"
