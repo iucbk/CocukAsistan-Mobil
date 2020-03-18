@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.iucbk.cocuk_asistan.di.ViewModelFactory
 import com.iucbk.cocuk_asistan.di.key.ViewModelKey
-import com.iucbk.cocuk_asistan.ui.login.LoginViewModel
-import com.iucbk.cocuk_asistan.ui.register.RegisterViewModel
+import com.iucbk.cocuk_asistan.ui.user.login.LoginViewModel
+import com.iucbk.cocuk_asistan.ui.user.register.RegisterViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap

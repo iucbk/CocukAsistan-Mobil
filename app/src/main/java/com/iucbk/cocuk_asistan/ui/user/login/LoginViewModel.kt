@@ -1,4 +1,4 @@
-package com.iucbk.cocuk_asistan.ui.login
+package com.iucbk.cocuk_asistan.ui.user.login
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

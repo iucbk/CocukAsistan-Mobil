@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/swipeUpScreen"
-        android:name="com.iucbk.cocuk_asistan.ui.swipeup.SwipeUpScreen"
+        android:name="com.iucbk.cocuk_asistan.ui.user.swipeup.SwipeUpScreen"
         android:label="fragment_swipe_up_screen"
         tools:layout="@layout/fragment_swipe_up_screen">
         <action
@@ -30,7 +30,7 @@
 
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.iucbk.cocuk_asistan.ui.register.RegisterFragment"
+        android:name="com.iucbk.cocuk_asistan.ui.user.register.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register">
         <action
@@ -39,7 +39,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.iucbk.cocuk_asistan.ui.login.LoginFragment"
+        android:name="com.iucbk.cocuk_asistan.ui.user.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login">
         <action
@@ -48,7 +48,16 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.iucbk.cocuk_asistan.ui.home.HomeFragment"
+        android:name="com.iucbk.cocuk_asistan.ui.user.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_quizHomeFragment"
+            app:destination="@id/quizHomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/quizHomeFragment"
+        android:name="com.iucbk.cocuk_asistan.ui.quiz.home.QuizHomeFragment"
+        android:label="fragment_quiz_home"
+        tools:layout="@layout/fragment_quiz_home" />
 </navigation>

@@ -1,4 +1,4 @@
-package com.iucbk.cocuk_asistan.ui.register
+package com.iucbk.cocuk_asistan.ui.user.register
 
 import android.os.Bundle
 import android.util.Log

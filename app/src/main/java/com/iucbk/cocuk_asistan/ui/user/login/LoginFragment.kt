@@ -1,4 +1,4 @@
-package com.iucbk.cocuk_asistan.ui.login
+package com.iucbk.cocuk_asistan.ui.user.login
 
 import android.os.Bundle
 import android.util.Log

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/swipeup_bg"
-    tools:context=".ui.swipeup.SwipeUpScreen">
+    tools:context=".ui.user.swipeup.SwipeUpScreen">
 
     <ImageView
         android:layout_width="244dp"
