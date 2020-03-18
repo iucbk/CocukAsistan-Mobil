@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffc0ad"
-    tools:context=".ui.login.LoginFragment">
+    tools:context=".ui.user.login.LoginFragment">
 
     <ImageView
         android:id="@+id/imageView4"
@@ -32,7 +32,6 @@
         android:layout_marginBottom="32dp"
         android:background="@drawable/input_border"
         android:hint="@string/email_address"
-        android:importantForAutofill="no"
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toTopOf="@+id/txtPassword"
         app:layout_constraintEnd_toStartOf="@+id/errorEmail"

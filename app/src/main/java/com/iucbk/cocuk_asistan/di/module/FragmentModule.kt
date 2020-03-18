@@ -1,8 +1,8 @@
 package com.iucbk.cocuk_asistan.di.module
 
-import com.iucbk.cocuk_asistan.ui.home.HomeFragment
-import com.iucbk.cocuk_asistan.ui.login.LoginFragment
-import com.iucbk.cocuk_asistan.ui.register.RegisterFragment
+import com.iucbk.cocuk_asistan.ui.user.home.HomeFragment
+import com.iucbk.cocuk_asistan.ui.user.login.LoginFragment
+import com.iucbk.cocuk_asistan.ui.user.register.RegisterFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
