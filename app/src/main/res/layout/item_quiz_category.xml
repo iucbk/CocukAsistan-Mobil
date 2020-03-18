@@ -19,6 +19,7 @@
         android:background="@drawable/rounded_category_item"
         android:drawableStart="@drawable/ic_books"
         android:drawablePadding="32dp"
+        android:elevation="4dp"
         android:lineSpacingExtra="4sp"
         android:paddingStart="32dp"
         android:paddingEnd="32dp"

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.iucbk.cocuk_asistan.databinding.FragmentQuizHomeBinding
 import com.iucbk.cocuk_asistan.di.ViewModelFactory
 import com.iucbk.cocuk_asistan.ui.adapter.QuizCategoriesAdapter
@@ -69,6 +70,10 @@ class QuizHomeFragment : DaggerFragment() {
             showSnackBar(it.name)
         }.also {
             binding.recycCategories.adapter = it
+        }
+
+        binding.btnBack.setOnClickListener {
+            findNavController().popBackStack()
         }
     }
 }
