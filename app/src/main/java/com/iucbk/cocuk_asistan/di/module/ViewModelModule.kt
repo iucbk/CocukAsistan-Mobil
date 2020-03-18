@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.iucbk.cocuk_asistan.di.ViewModelFactory
 import com.iucbk.cocuk_asistan.di.key.ViewModelKey
+import com.iucbk.cocuk_asistan.ui.quiz.home.QuizHomeViewModel
 import com.iucbk.cocuk_asistan.ui.user.login.LoginViewModel
 import com.iucbk.cocuk_asistan.ui.user.register.RegisterViewModel
 import dagger.Binds
@@ -35,4 +36,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(LoginViewModel::class)
     internal abstract fun bindLoginViewModel(loginViewModel: LoginViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(QuizHomeViewModel::class)
+    internal abstract fun bindQuizHomeViewModel(quizHomeViewModel: QuizHomeViewModel): ViewModel
 }
