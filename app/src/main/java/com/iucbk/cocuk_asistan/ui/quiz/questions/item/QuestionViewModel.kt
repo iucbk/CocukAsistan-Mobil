@@ -1,7 +1,8 @@
-package com.iucbk.cocuk_asistan.data.net.response.quiz_questions
+package com.iucbk.cocuk_asistan.ui.quiz.questions.item
 
-import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import androidx.lifecycle.ViewModel
+import com.iucbk.cocuk_asistan.data.repository.QuizRepository
+import javax.inject.Inject
 
 
 // Code with ❤
@@ -10,14 +11,9 @@ import kotlinx.android.parcel.Parcelize
 //│ ─────────────────────────── │
 //│ mirac.ozkan123@gmail.com    │
 //│ ─────────────────────────── │
-//│ 19.03.2020 - 13:41          │
+//│ 19.03.2020 - 18:25          │
 //└─────────────────────────────┘
 
-@Parcelize
-data class QuizQuestionsResponse(
-    val quiz_id: Int,
-    val quiz_title: String,
-    val question_content: String,
-    val options: String,
-    val true_option: Int
-) : Parcelable
+class QuestionViewModel @Inject constructor(
+    questRepository: QuizRepository
+) : ViewModel()

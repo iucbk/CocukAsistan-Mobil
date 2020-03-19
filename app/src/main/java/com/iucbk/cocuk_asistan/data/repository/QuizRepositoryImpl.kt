@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.iucbk.cocuk_asistan.data.net.ProjectService
 import com.iucbk.cocuk_asistan.data.net.response.quiz_categories.QuizCategoriesResponse
 import com.iucbk.cocuk_asistan.data.net.response.quiz_list.QuizListResponse
+import com.iucbk.cocuk_asistan.data.net.response.quiz_questions.QuizQuestionsResponse
 import com.iucbk.cocuk_asistan.util.Result
 import com.iucbk.cocuk_asistan.util.convertErrorBody
 import com.iucbk.cocuk_asistan.util.getToken
@@ -38,6 +39,8 @@ class QuizRepositoryImpl @Inject constructor(
     private val quizCategoriesResponse = MutableLiveData<Result<List<QuizCategoriesResponse?>>>()
 
     private val quizListResponse = MutableLiveData<Result<List<QuizListResponse?>>>()
+
+    private val quizQuestionsResponse = MutableLiveData<Result<List<QuizQuestionsResponse?>>>()
 
     override fun getQuizCategories(): LiveData<Result<List<QuizCategoriesResponse?>>> {
         launch {
@@ -91,6 +94,37 @@ class QuizRepositoryImpl @Inject constructor(
                 }
             } catch (e: java.lang.Exception) {
                 quizListResponse.postValue(
+                    Result.error(
+                        message = e.localizedMessage
+                    )
+                )
+            }
+        }
+    }
+
+    override fun getQuizQuestions(quizId: Int): LiveData<Result<List<QuizQuestionsResponse?>>> {
+        launch {
+            fetchQuestions(quizId)
+        }
+        return quizQuestionsResponse
+    }
+
+    private suspend fun fetchQuestions(quizId: Int) {
+        withContext(Dispatchers.IO) {
+            try {
+                quizQuestionsResponse.postValue(Result.loading())
+                val response = projectService.getQuizQuestions(quizId, getToken(sharedPreferences))
+                if (response.isSuccessful) {
+                    quizQuestionsResponse.postValue(Result.success(response.body()?.data.orEmpty()))
+                } else {
+                    quizQuestionsResponse.postValue(
+                        Result.error(
+                            errorCode = convertErrorBody(response.errorBody()!!)?.code
+                        )
+                    )
+                }
+            } catch (e: java.lang.Exception) {
+                quizQuestionsResponse.postValue(
                     Result.error(
                         message = e.localizedMessage
                     )

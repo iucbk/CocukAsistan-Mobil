@@ -1,4 +1,4 @@
-package com.iucbk.cocuk_asistan.ui.quiz.list
+package com.iucbk.cocuk_asistan.ui.quiz.questions
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,10 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
-import com.iucbk.cocuk_asistan.databinding.FragmentQuizListBinding
+import com.iucbk.cocuk_asistan.databinding.FragmentQuizQuestionsBinding
 import com.iucbk.cocuk_asistan.di.ViewModelFactory
-import com.iucbk.cocuk_asistan.ui.adapter.QuizListAdapter
+import com.iucbk.cocuk_asistan.ui.adapter.QuizQuestionsViewPager
 import com.iucbk.cocuk_asistan.util.Status.ERROR
 import com.iucbk.cocuk_asistan.util.Status.LOADING
 import com.iucbk.cocuk_asistan.util.Status.SUCCESS
@@ -25,61 +24,49 @@ import javax.inject.Inject
 /**
  * A simple [Fragment] subclass.
  */
-class QuizListFragment : DaggerFragment() {
+class QuizQuestionsFragment : DaggerFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
+    private lateinit var viewModel: QuizQuestionsViewModel
 
     private val binding by lazy {
-        FragmentQuizListBinding.inflate(layoutInflater)
+        FragmentQuizQuestionsBinding.inflate(layoutInflater)
     }
 
-    private lateinit var viewModel: QuizListViewModel
-
-    private val categoryId by lazy {
+    private val quizId by lazy {
         arguments?.let {
-            QuizListFragmentArgs.fromBundle(it).categoryId
-        }
-    }
-    private val categoryName by lazy {
-        arguments?.let {
-            QuizListFragmentArgs.fromBundle(it).quizCategory
+            QuizQuestionsFragmentArgs.fromBundle(it).quizId
         }
     }
 
-    private lateinit var adapter: QuizListAdapter
+    private val questionViewPagerAdapter by lazy {
+        QuizQuestionsViewPager(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         viewModel = injectViewModel(viewModelFactory)
-        viewModel.setQuizId(categoryId ?: 0)
+        viewModel.setQuizId(quizId ?: 0)
         initUI()
         return binding.root
     }
 
     private fun initUI() {
         binding.prgBar.gone()
-        binding.txtCategoryName.text = categoryName ?: "Error"
-
-        adapter = QuizListAdapter {
-            val action =
-                QuizListFragmentDirections.actionQuizListFragmentToQuizQuestionsFragment(it.quiz_id)
-            findNavController().navigate(action)
-        }.also {
-            binding.recycQuizList.adapter = it
-        }
+        binding.vpQuestions.adapter = questionViewPagerAdapter
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.quizList.observe(viewLifecycleOwner, Observer { result ->
+        viewModel.quizQuestions.observe(viewLifecycleOwner, Observer { result ->
             when (result.status) {
                 SUCCESS -> {
                     binding.prgBar.gone()
-                    adapter.submitList(result.data.orEmpty())
+                    questionViewPagerAdapter.setNewQuestionList(result.data.orEmpty())
                 }
                 ERROR -> {
                     binding.prgBar.gone()
@@ -96,5 +83,4 @@ class QuizListFragment : DaggerFragment() {
             }
         })
     }
-
 }

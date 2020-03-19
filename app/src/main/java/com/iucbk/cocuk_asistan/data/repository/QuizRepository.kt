@@ -3,6 +3,7 @@ package com.iucbk.cocuk_asistan.data.repository
 import androidx.lifecycle.LiveData
 import com.iucbk.cocuk_asistan.data.net.response.quiz_categories.QuizCategoriesResponse
 import com.iucbk.cocuk_asistan.data.net.response.quiz_list.QuizListResponse
+import com.iucbk.cocuk_asistan.data.net.response.quiz_questions.QuizQuestionsResponse
 import com.iucbk.cocuk_asistan.util.Result
 
 
@@ -20,4 +21,6 @@ interface QuizRepository {
     fun getQuizCategories(): LiveData<Result<List<QuizCategoriesResponse?>>>
 
     fun getQuizList(categoryId: Int): LiveData<Result<List<QuizListResponse?>>>
+
+    fun getQuizQuestions(quizId: Int): LiveData<Result<List<QuizQuestionsResponse?>>>
 }

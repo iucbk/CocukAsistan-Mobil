@@ -47,7 +47,7 @@ interface ProjectService {
     ): Response<BaseResponse<List<QuizListResponse>>>
 
     @GET("quiz/getById")
-    suspend fun getQuizList(
+    suspend fun getQuizQuestions(
         @Query("quiz_id") quizId: Int,
         @Header("token") authHeader: String
     ): Response<BaseResponse<List<QuizQuestionsResponse>>>
