@@ -3,7 +3,7 @@ package com.iucbk.cocuk_asistan.util
 import androidx.fragment.app.Fragment
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.iucbk.cocuk_asistan.data.net.ErrorBody
+import com.iucbk.cocuk_asistan.data.net.response.common.ErrorBody
 import okhttp3.ResponseBody
 
 

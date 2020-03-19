@@ -1,7 +1,6 @@
 package com.iucbk.cocuk_asistan.ui.user.login
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,8 +13,17 @@ import com.iucbk.cocuk_asistan.data.model.UserLoginDTO
 import com.iucbk.cocuk_asistan.databinding.FragmentLoginBinding
 import com.iucbk.cocuk_asistan.di.ViewModelFactory
 import com.iucbk.cocuk_asistan.enums.RegisterInputs
-import com.iucbk.cocuk_asistan.util.Status.*
-import com.iucbk.cocuk_asistan.util.extension.*
+import com.iucbk.cocuk_asistan.util.Status
+import com.iucbk.cocuk_asistan.util.extension.getString
+import com.iucbk.cocuk_asistan.util.extension.gone
+import com.iucbk.cocuk_asistan.util.extension.hide
+import com.iucbk.cocuk_asistan.util.extension.injectViewModel
+import com.iucbk.cocuk_asistan.util.extension.isEmailValid
+import com.iucbk.cocuk_asistan.util.extension.isLengthValid
+import com.iucbk.cocuk_asistan.util.extension.show
+import com.iucbk.cocuk_asistan.util.extension.showSnackBar
+import com.iucbk.cocuk_asistan.util.extension.showToast
+import com.iucbk.cocuk_asistan.util.extension.userFilledAllEntries
 import com.iucbk.cocuk_asistan.util.getErrorStringFromCode
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
@@ -30,15 +38,16 @@ class LoginFragment : DaggerFragment() {
 
     private lateinit var viewModel: LoginViewModel
 
-    private lateinit var binding: FragmentLoginBinding
+    private val binding by lazy {
+        FragmentLoginBinding.inflate(layoutInflater)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         viewModel = injectViewModel(viewModelFactory)
-        binding = FragmentLoginBinding.inflate(layoutInflater)
-
+        binding.prgBar.gone()
         binding.btnLogin.setOnClickListener {
             onUserLogin()
         }
@@ -51,19 +60,21 @@ class LoginFragment : DaggerFragment() {
 
         viewModel.userLoginResponse.observe(viewLifecycleOwner, Observer { result ->
             when (result.status) {
-                SUCCESS -> {
-                    showSnackBar("Giriş Başarılı")
+                Status.SUCCESS -> {
+                    binding.prgBar.gone()
+                    showSnackBar(getString(R.string.login_success))
                     findNavController().navigate(
                         R.id.homeFragment,
                         null,
                         NavOptions.Builder()
-                            .setPopUpTo(R.id.swipeUpScreen, true)
                             .setPopUpTo(R.id.registerFragment, true)
                             .setPopUpTo(R.id.loginFragment, true)
+                            .setPopUpTo(R.id.swipeUpScreen, true)
                             .build()
                     )
                 }
-                ERROR -> {
+                Status.ERROR -> {
+                    binding.prgBar.gone()
                     showSnackBar(
                         getErrorStringFromCode(result.errorCode)
                     )
@@ -71,9 +82,8 @@ class LoginFragment : DaggerFragment() {
                         result.message
                     )
                 }
-                LOADING -> {
-                    //TODO Progress Bar
-                    Log.e("Loading : ", "Loading")
+                Status.LOADING -> {
+                    binding.prgBar.show()
                 }
             }
         })

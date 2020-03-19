@@ -28,14 +28,15 @@ class RegisterFragment : DaggerFragment() {
 
     private lateinit var viewModel: RegisterViewModel
 
-    private lateinit var binding: FragmentRegisterBinding
+    private val binding by lazy {
+        FragmentRegisterBinding.inflate(layoutInflater)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         viewModel = injectViewModel(viewModelFactory)
-        binding = FragmentRegisterBinding.inflate(layoutInflater)
 
         binding.btnRegister.setOnClickListener {
             onUserRegister()

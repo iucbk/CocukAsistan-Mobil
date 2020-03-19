@@ -15,7 +15,10 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="kategoriler">Kategoriler</string>
+
     <string name="login">Giriş Yap</string>
+    <string name="login_success">Giriş Başarılı</string>
 
     <string name="name_surname">Ad Soyad</string>
 
@@ -27,5 +30,5 @@
     <string name="register_success">Kayıt Başarılı, Lütfen posta kutunuzu ziyaret edip üyeliğinizi onaylayınız.</string>
 
     <string name="welcome">Hoş \n Geldin!</string>
-    <string name="kategoriler">Kategoriler</string>
+    <string name="press_again_to_leave">Çıkmak için bir kere tıklayınız.</string>
 </resources>

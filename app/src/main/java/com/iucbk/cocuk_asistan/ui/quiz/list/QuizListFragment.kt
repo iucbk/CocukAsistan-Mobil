@@ -1,15 +1,15 @@
-package com.iucbk.cocuk_asistan.ui.quiz.home
+package com.iucbk.cocuk_asistan.ui.quiz.list
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
-import com.iucbk.cocuk_asistan.databinding.FragmentQuizHomeBinding
+import com.iucbk.cocuk_asistan.databinding.FragmentQuizListBinding
 import com.iucbk.cocuk_asistan.di.ViewModelFactory
-import com.iucbk.cocuk_asistan.ui.adapter.QuizCategoriesAdapter
+import com.iucbk.cocuk_asistan.ui.adapter.QuizListAdapter
 import com.iucbk.cocuk_asistan.util.Status.*
 import com.iucbk.cocuk_asistan.util.extension.*
 import com.iucbk.cocuk_asistan.util.getErrorStringFromCode
@@ -19,30 +19,51 @@ import javax.inject.Inject
 /**
  * A simple [Fragment] subclass.
  */
-class QuizHomeFragment : DaggerFragment() {
+class QuizListFragment : DaggerFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
     private val binding by lazy {
-        FragmentQuizHomeBinding.inflate(layoutInflater)
+        FragmentQuizListBinding.inflate(layoutInflater)
     }
-    private lateinit var viewModel: QuizHomeViewModel
-    private lateinit var adapter: QuizCategoriesAdapter
+
+    private lateinit var viewModel: QuizListViewModel
+
+    private val quizId by lazy {
+        arguments?.let {
+            QuizListFragmentArgs.fromBundle(it).quizId
+        }
+    }
+    private val categoryName by lazy {
+        arguments?.let {
+            QuizListFragmentArgs.fromBundle(it).quizCategory
+        }
+    }
+
+    private lateinit var adapter: QuizListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         viewModel = injectViewModel(viewModelFactory)
-        initUI()
+        viewModel.setQuizId(quizId ?: 0)
+        binding.txtCategoryName.text = categoryName ?: "Error"
+
+        adapter = QuizListAdapter {
+            showToast(it.quiz_title)
+        }.also {
+            binding.recycQuizList.adapter = it
+        }
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getQuizCategories().observe(viewLifecycleOwner, Observer { result ->
+        viewModel.quizList.observe(viewLifecycleOwner, Observer { result ->
             when (result.status) {
                 SUCCESS -> {
                     binding.prgBar.gone()
@@ -58,25 +79,11 @@ class QuizHomeFragment : DaggerFragment() {
                     )
                 }
                 LOADING -> {
+                    Log.e("Loading : ", "Loading")
                     binding.prgBar.show()
                 }
             }
         })
     }
 
-    private fun initUI() {
-        binding.prgBar.gone()
-
-        adapter = QuizCategoriesAdapter {
-            val action =
-                QuizHomeFragmentDirections.actionQuizHomeFragmentToQuizListFragment(it.id, it.name)
-            findNavController().navigate(action)
-        }.also {
-            binding.recycCategories.adapter = it
-        }
-
-        binding.btnBack.setOnClickListener {
-            findNavController().popBackStack()
-        }
-    }
 }

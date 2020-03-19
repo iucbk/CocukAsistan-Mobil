@@ -7,6 +7,15 @@
     android:background="#ffc0ad"
     tools:context=".ui.user.login.LoginFragment">
 
+    <ProgressBar
+        android:id="@+id/prgBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/btnLogin"
+        app:layout_constraintEnd_toStartOf="@+id/btnLogin"
+        app:layout_constraintStart_toStartOf="@+id/txtPassword"
+        app:layout_constraintTop_toTopOf="@+id/btnLogin" />
+
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="wrap_content"
