@@ -18,7 +18,7 @@ import com.iucbk.cocuk_asistan.util.GenericDiffUtil
 
 class QuestionAnswerAdapter(
     private val realAnswer: Int,
-    private val setOnClickLister: (Boolean, ItemQuestionAnswerBinding) -> Unit
+    private val setOnClickLister: (Int, Boolean, ItemQuestionAnswerBinding) -> Unit
 ) : ListAdapter<String, QuestionAnswerViewHolder>(GenericDiffUtil()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): QuestionAnswerViewHolder {

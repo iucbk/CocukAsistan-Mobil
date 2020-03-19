@@ -20,14 +20,14 @@ class QuestionAnswerViewHolder(
     fun bind(
         answer: String,
         position: Int,
-        onClickListener: (Boolean, ItemQuestionAnswerBinding) -> Unit,
+        onClickListener: (Int, Boolean, ItemQuestionAnswerBinding) -> Unit,
         realAnswer: Int
     ) {
         binding.txtAnswer.text = answer
         val result = position == realAnswer
 
         binding.cntAnswer.setOnClickListener {
-            onClickListener(result, binding)
+            onClickListener(position, result, binding)
         }
 
     }

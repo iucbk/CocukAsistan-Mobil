@@ -11,6 +11,7 @@ import com.iucbk.cocuk_asistan.data.net.response.quiz_questions.QuizQuestionsRes
 import com.iucbk.cocuk_asistan.databinding.FragmentQuestionBinding
 import com.iucbk.cocuk_asistan.di.ViewModelFactory
 import com.iucbk.cocuk_asistan.ui.adapter.QuestionAnswerAdapter
+import com.iucbk.cocuk_asistan.ui.quiz.questions.QuizQuestionsFragment
 import com.iucbk.cocuk_asistan.util.extension.injectViewModel
 import com.iucbk.cocuk_asistan.util.extension.showToast
 import dagger.android.support.DaggerFragment
@@ -53,7 +54,7 @@ class QuestionFragment : DaggerFragment() {
     private fun initUI() {
         binding.txtQuestion.text = questionData.quiz_title
 
-        adapter = QuestionAnswerAdapter(questionData.true_option) { result, itemBinding ->
+        adapter = QuestionAnswerAdapter(questionData.true_option) { position, result, itemBinding ->
             if (isItemSelectable) {
                 if (result) {
                     itemBinding.cntAnswer.setBackgroundColor(
@@ -70,6 +71,7 @@ class QuestionFragment : DaggerFragment() {
                         )
                     )
                 }
+                setAnswerWithQuestion(position)
                 isItemSelectable = false
             } else {
                 showToast(getString(R.string.you_already_select))
@@ -81,6 +83,11 @@ class QuestionFragment : DaggerFragment() {
         adapter.submitList(
             questionData.options.split("\\n")
         )
+    }
+
+    private fun setAnswerWithQuestion(givenAnswer: Int) {
+        (requireParentFragment() as QuizQuestionsFragment)
+            .mapQuestionsWithAnswer.add(givenAnswer to questionData.true_option)
     }
 
     companion object {

@@ -44,6 +44,8 @@ class QuizQuestionsFragment : DaggerFragment() {
         QuizQuestionsViewPager(this)
     }
 
+    internal val mapQuestionsWithAnswer = ArrayList<Pair<Int, Int>>()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -71,7 +73,16 @@ class QuizQuestionsFragment : DaggerFragment() {
         binding.btnNext.setOnClickListener {
             with(binding.vpQuestions) {
                 if (this.currentItem + 1 == questionViewPagerAdapter.itemCount) {
-                    showToast("Son Soruya Geldin")
+                    if (checkIsSolvedAllQuestion(
+                            mapQuestionsWithAnswer.size,
+                            questionViewPagerAdapter.itemCount
+                        )
+                    ) {
+                        //TODO will be added pop up for sending the result to the remote server
+                        showSnackBar("Hepsini Çözdün")
+                    } else {
+                        showSnackBar("Çözmedigin Sorular Var")
+                    }
                 } else {
                     this.setCurrentItem(this.currentItem + 1, true)
                 }
@@ -103,4 +114,7 @@ class QuizQuestionsFragment : DaggerFragment() {
             }
         })
     }
+
+    private fun checkIsSolvedAllQuestion(solvedQuestions: Int, questionCount: Int): Boolean =
+        solvedQuestions == questionCount
 }
