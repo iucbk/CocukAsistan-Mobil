@@ -6,8 +6,13 @@ import com.iucbk.cocuk_asistan.data.net.response.common.BaseResponse
 import com.iucbk.cocuk_asistan.data.net.response.login.LoginResponse
 import com.iucbk.cocuk_asistan.data.net.response.quiz_categories.QuizCategoriesResponse
 import com.iucbk.cocuk_asistan.data.net.response.quiz_list.QuizListResponse
+import com.iucbk.cocuk_asistan.data.net.response.quiz_questions.QuizQuestionsResponse
 import retrofit2.Response
-import retrofit2.http.*
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.Header
+import retrofit2.http.POST
+import retrofit2.http.Query
 
 
 // Code with ❤
@@ -35,9 +40,15 @@ interface ProjectService {
         @Header("token") authHeader: String
     ): Response<BaseResponse<List<QuizCategoriesResponse>>>
 
+    @GET("quiz/getByCategory")
+    suspend fun getQuizzesByCategories(
+        @Query("category_id") quizId: Int,
+        @Header("token") authHeader: String
+    ): Response<BaseResponse<List<QuizListResponse>>>
+
     @GET("quiz/getById")
     suspend fun getQuizList(
         @Query("quiz_id") quizId: Int,
         @Header("token") authHeader: String
-    ): Response<BaseResponse<List<QuizListResponse>>>
+    ): Response<BaseResponse<List<QuizQuestionsResponse>>>
 }

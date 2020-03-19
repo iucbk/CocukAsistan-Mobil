@@ -9,7 +9,11 @@ import com.iucbk.cocuk_asistan.data.net.response.quiz_list.QuizListResponse
 import com.iucbk.cocuk_asistan.util.Result
 import com.iucbk.cocuk_asistan.util.convertErrorBody
 import com.iucbk.cocuk_asistan.util.getToken
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
@@ -63,19 +67,19 @@ class QuizRepositoryImpl @Inject constructor(
         }
     }
 
-    override fun getQuizList(quizId: Int): LiveData<Result<List<QuizListResponse?>>> {
+    override fun getQuizList(categoryId: Int): LiveData<Result<List<QuizListResponse?>>> {
         launch {
-            fetchQuizList(quizId)
+            fetchQuizList(categoryId)
         }
         return quizListResponse
     }
 
-    private suspend fun fetchQuizList(quizId: Int) {
+    private suspend fun fetchQuizList(categoryId: Int) {
         withContext(Dispatchers.IO) {
             try {
                 quizListResponse.postValue(Result.loading())
                 val response =
-                    projectService.getQuizList(quizId, getToken(sharedPreferences))
+                    projectService.getQuizzesByCategories(categoryId, getToken(sharedPreferences))
                 if (response.isSuccessful) {
                     quizListResponse.postValue(Result.success(response.body()?.data.orEmpty()))
                 } else {

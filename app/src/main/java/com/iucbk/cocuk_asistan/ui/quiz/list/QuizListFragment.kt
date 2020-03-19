@@ -1,7 +1,6 @@
 package com.iucbk.cocuk_asistan.ui.quiz.list
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,8 +9,14 @@ import androidx.lifecycle.Observer
 import com.iucbk.cocuk_asistan.databinding.FragmentQuizListBinding
 import com.iucbk.cocuk_asistan.di.ViewModelFactory
 import com.iucbk.cocuk_asistan.ui.adapter.QuizListAdapter
-import com.iucbk.cocuk_asistan.util.Status.*
-import com.iucbk.cocuk_asistan.util.extension.*
+import com.iucbk.cocuk_asistan.util.Status.ERROR
+import com.iucbk.cocuk_asistan.util.Status.LOADING
+import com.iucbk.cocuk_asistan.util.Status.SUCCESS
+import com.iucbk.cocuk_asistan.util.extension.gone
+import com.iucbk.cocuk_asistan.util.extension.injectViewModel
+import com.iucbk.cocuk_asistan.util.extension.show
+import com.iucbk.cocuk_asistan.util.extension.showSnackBar
+import com.iucbk.cocuk_asistan.util.extension.showToast
 import com.iucbk.cocuk_asistan.util.getErrorStringFromCode
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
@@ -79,7 +84,6 @@ class QuizListFragment : DaggerFragment() {
                     )
                 }
                 LOADING -> {
-                    Log.e("Loading : ", "Loading")
                     binding.prgBar.show()
                 }
             }

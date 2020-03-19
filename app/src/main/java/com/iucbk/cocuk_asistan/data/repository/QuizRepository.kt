@@ -19,5 +19,5 @@ interface QuizRepository {
 
     fun getQuizCategories(): LiveData<Result<List<QuizCategoriesResponse?>>>
 
-    fun getQuizList(quizId: Int): LiveData<Result<List<QuizListResponse?>>>
+    fun getQuizList(categoryId: Int): LiveData<Result<List<QuizListResponse?>>>
 }
