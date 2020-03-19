@@ -1,48 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:background="@color/design_default_color_primary">
 
-
     <Button
         android:id="@+id/btnQuizCategory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginEnd="24dp"
         android:layout_marginBottom="8dp"
-        android:adjustViewBounds="true"
         android:background="@drawable/rounded_category_item"
         android:drawableStart="@drawable/ic_books"
-        android:drawablePadding="32dp"
-        android:elevation="4dp"
+        android:elevation="8dp"
         android:lineSpacingExtra="4sp"
         android:paddingStart="32dp"
         android:paddingEnd="32dp"
         android:textColor="#594a4e"
         android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         tools:text="Hayvanlar" />
 
-    <com.iucbk.cocuk_asistan.util.custom_view.CircleButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/viewQuizState"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:layout_alignEnd="@+id/btnQuizCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="top|end"
-        android:layout_toEndOf="@+id/btnQuizCategory"
-        android:padding="16dp"
-        android:src="@drawable/ic_check"
-        app:cb_color="#6fc1a5"
-        app:layout_constraintBottom_toTopOf="@+id/btnQuizCategory"
-        app:layout_constraintEnd_toEndOf="@+id/btnQuizCategory"
-        app:layout_constraintStart_toEndOf="@+id/btnQuizCategory"
-        app:layout_constraintTop_toTopOf="@+id/btnQuizCategory" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="#6fc1a5"
+        android:src="@drawable/ic_check" />
+
+</FrameLayout>
