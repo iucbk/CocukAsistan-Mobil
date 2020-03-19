@@ -67,9 +67,9 @@ class LoginFragment : DaggerFragment() {
                         R.id.homeFragment,
                         null,
                         NavOptions.Builder()
-                            .setPopUpTo(R.id.swipeUpScreen, true)
                             .setPopUpTo(R.id.registerFragment, true)
                             .setPopUpTo(R.id.loginFragment, true)
+                            .setPopUpTo(R.id.swipeUpScreen, true)
                             .build()
                     )
                 }
