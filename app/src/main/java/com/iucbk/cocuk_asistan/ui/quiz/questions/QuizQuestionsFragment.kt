@@ -57,6 +57,26 @@ class QuizQuestionsFragment : DaggerFragment() {
     private fun initUI() {
         binding.prgBar.gone()
         binding.vpQuestions.adapter = questionViewPagerAdapter
+
+        binding.btnBack.setOnClickListener {
+            with(binding.vpQuestions) {
+                if (this.currentItem == 0) {
+                    showToast("Zaten İlk Sorudasın")
+                } else {
+                    this.setCurrentItem(this.currentItem - 1, true)
+                }
+            }
+        }
+
+        binding.btnNext.setOnClickListener {
+            with(binding.vpQuestions) {
+                if (this.currentItem + 1 == questionViewPagerAdapter.itemCount) {
+                    showToast("Son Soruya Geldin")
+                } else {
+                    this.setCurrentItem(this.currentItem + 1, true)
+                }
+            }
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
