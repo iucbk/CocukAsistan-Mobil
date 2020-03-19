@@ -68,7 +68,9 @@ class QuizHomeFragment : DaggerFragment() {
         binding.prgBar.gone()
 
         adapter = QuizCategoriesAdapter {
-            showSnackBar(it.name)
+            val action =
+                QuizHomeFragmentDirections.actionQuizHomeFragmentToQuizListFragment(it.id, it.name)
+            findNavController().navigate(action)
         }.also {
             binding.recycCategories.adapter = it
         }
