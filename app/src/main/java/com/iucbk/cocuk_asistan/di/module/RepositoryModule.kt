@@ -1,5 +1,7 @@
 package com.iucbk.cocuk_asistan.di.module
 
+import com.iucbk.cocuk_asistan.data.repository.QuizRepository
+import com.iucbk.cocuk_asistan.data.repository.QuizRepositoryImpl
 import com.iucbk.cocuk_asistan.data.repository.UserRepository
 import com.iucbk.cocuk_asistan.data.repository.UserRepositoryImpl
 import dagger.Binds
@@ -19,8 +21,13 @@ import dagger.Module
 abstract class RepositoryModule {
 
     @Binds
-    internal abstract fun providePromotionRepository(
+    internal abstract fun bindUserRepository(
         userRepositoryImpl: UserRepositoryImpl
     ): UserRepository
+
+    @Binds
+    internal abstract fun bindQuizRepository(
+        quizRepositoryImpl: QuizRepositoryImpl
+    ): QuizRepository
 
 }
