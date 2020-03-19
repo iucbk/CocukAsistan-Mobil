@@ -99,6 +99,9 @@ dependencies {
     kapt "com.google.dagger:dagger-android-processor:$dagger_dagger_android_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_dagger_android_version"
 
+    //ViewPager 2
+    implementation "androidx.viewpager2:viewpager2:$viewpager2_viewpager2"
+
     //Test Dependency
     testImplementation "junit:junit:$junit_junit_version"
     androidTestImplementation "androidx.test.ext:junit:$ext_junit_version"
