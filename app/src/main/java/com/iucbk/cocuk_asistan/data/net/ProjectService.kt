@@ -2,6 +2,7 @@ package com.iucbk.cocuk_asistan.data.net
 
 import com.iucbk.cocuk_asistan.data.model.UserLoginDTO
 import com.iucbk.cocuk_asistan.data.model.UserRegisterDTO
+import com.iucbk.cocuk_asistan.data.net.response.common.BaseResponse
 import com.iucbk.cocuk_asistan.data.net.response.login.LoginResponse
 import com.iucbk.cocuk_asistan.data.net.response.quiz_categories.QuizCategoriesResponse
 import retrofit2.Response

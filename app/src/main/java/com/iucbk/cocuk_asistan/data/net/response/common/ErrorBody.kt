@@ -1,4 +1,4 @@
-package com.iucbk.cocuk_asistan.data.net
+package com.iucbk.cocuk_asistan.data.net.response.common
 
 
 // Code with ❤
