@@ -59,5 +59,14 @@
         android:id="@+id/quizHomeFragment"
         android:name="com.iucbk.cocuk_asistan.ui.quiz.home.QuizHomeFragment"
         android:label="fragment_quiz_home"
-        tools:layout="@layout/fragment_quiz_home" />
+        tools:layout="@layout/fragment_quiz_home">
+        <action
+            android:id="@+id/action_quizHomeFragment_to_quizListFragment"
+            app:destination="@id/quizListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/quizListFragment"
+        android:name="com.iucbk.cocuk_asistan.ui.quiz.list.QuizListFragment"
+        android:label="fragment_quiz_list"
+        tools:layout="@layout/fragment_quiz_list" />
 </navigation>

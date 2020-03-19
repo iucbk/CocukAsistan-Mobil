@@ -20,13 +20,14 @@ class SplashFragment : Fragment(), CoroutineScope {
         get() = Job() + Dispatchers.Main
 
 
-    private lateinit var binding: FragmentSplashBinding
+    private val binding by lazy {
+        FragmentSplashBinding.inflate(layoutInflater)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentSplashBinding.inflate(layoutInflater)
         return binding.root
     }
 

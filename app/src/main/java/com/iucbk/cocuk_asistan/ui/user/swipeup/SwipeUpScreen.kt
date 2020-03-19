@@ -13,14 +13,14 @@ import com.iucbk.cocuk_asistan.databinding.FragmentSwipeUpScreenBinding
  */
 class SwipeUpScreen : Fragment() {
 
-    private lateinit var binding: FragmentSwipeUpScreenBinding
+    private val binding by lazy {
+        FragmentSwipeUpScreenBinding.inflate(layoutInflater)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        binding = FragmentSwipeUpScreenBinding.inflate(layoutInflater)
 
         binding.btnRegister.setOnClickListener {
             val action =

@@ -30,15 +30,15 @@ class LoginFragment : DaggerFragment() {
 
     private lateinit var viewModel: LoginViewModel
 
-    private lateinit var binding: FragmentLoginBinding
+    private val binding by lazy {
+        FragmentLoginBinding.inflate(layoutInflater)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         viewModel = injectViewModel(viewModelFactory)
-        binding = FragmentLoginBinding.inflate(layoutInflater)
-
         binding.btnLogin.setOnClickListener {
             onUserLogin()
         }

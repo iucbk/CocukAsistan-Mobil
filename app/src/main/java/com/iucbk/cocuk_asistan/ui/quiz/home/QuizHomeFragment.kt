@@ -24,7 +24,9 @@ class QuizHomeFragment : DaggerFragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    private lateinit var binding: FragmentQuizHomeBinding
+    private val binding by lazy {
+        FragmentQuizHomeBinding.inflate(layoutInflater)
+    }
     private lateinit var viewModel: QuizHomeViewModel
     private lateinit var adapter: QuizCategoriesAdapter
 
@@ -32,7 +34,6 @@ class QuizHomeFragment : DaggerFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentQuizHomeBinding.inflate(layoutInflater)
         viewModel = injectViewModel(viewModelFactory)
         initUI()
         return binding.root
