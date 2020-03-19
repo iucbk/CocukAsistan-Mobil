@@ -81,8 +81,6 @@ class QuestionFragment : DaggerFragment() {
         adapter.submitList(
             questionData.options.split("\\n")
         )
-
-        binding.recycAnswers.isEnabled = false
     }
 
     companion object {
