@@ -102,6 +102,9 @@ dependencies {
     //ViewPager 2
     implementation "androidx.viewpager2:viewpager2:$viewpager2_viewpager2"
 
+    // Custom View
+    implementation "cn.pedant.sweetalert:library:$sweetalert_library"
+
     //Test Dependency
     testImplementation "junit:junit:$junit_junit_version"
     androidTestImplementation "androidx.test.ext:junit:$ext_junit_version"
