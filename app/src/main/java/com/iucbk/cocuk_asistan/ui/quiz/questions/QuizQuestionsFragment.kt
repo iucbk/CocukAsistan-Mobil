@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
+import cn.pedant.SweetAlert.SweetAlertDialog
 import com.iucbk.cocuk_asistan.databinding.FragmentQuizQuestionsBinding
 import com.iucbk.cocuk_asistan.di.ViewModelFactory
 import com.iucbk.cocuk_asistan.ui.adapter.QuizQuestionsViewPager
@@ -78,10 +80,19 @@ class QuizQuestionsFragment : DaggerFragment() {
                             questionViewPagerAdapter.itemCount
                         )
                     ) {
-                        //TODO will be added pop up for sending the result to the remote server
-                        showSnackBar("Hepsini Çözdün")
+                        SweetAlertDialog(requireContext(), SweetAlertDialog.SUCCESS_TYPE)
+                            .setTitleText("Tebrikler")
+                            .setContentText("Bütün testleri bitirdin")
+                            .setConfirmClickListener {
+                                it.dismissWithAnimation()
+                                findNavController().popBackStack()
+                            }.show()
+
                     } else {
-                        showSnackBar("Çözmedigin Sorular Var")
+                        SweetAlertDialog(requireContext(), SweetAlertDialog.WARNING_TYPE)
+                            .setTitleText("Çözmedigin Sorular Var")
+                            .setContentText("Lütfen bütün soruları çözmeyi dene")
+                            .show()
                     }
                 } else {
                     this.setCurrentItem(this.currentItem + 1, true)

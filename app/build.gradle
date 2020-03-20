@@ -103,7 +103,7 @@ dependencies {
     implementation "androidx.viewpager2:viewpager2:$viewpager2_viewpager2"
 
     // Custom View
-    implementation "cn.pedant.sweetalert:library:$sweetalert_library"
+    implementation "com.github.f0ris.sweetalert:library:$sweetalert_library"
 
     //Test Dependency
     testImplementation "junit:junit:$junit_junit_version"
