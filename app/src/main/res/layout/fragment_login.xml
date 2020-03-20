@@ -11,8 +11,8 @@
         android:id="@+id/prgBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/btnLogin"
-        app:layout_constraintEnd_toStartOf="@+id/btnLogin"
         app:layout_constraintStart_toStartOf="@+id/txtPassword"
         app:layout_constraintTop_toTopOf="@+id/btnLogin" />
 
@@ -20,10 +20,10 @@
         android:id="@+id/imageView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="64dp"
         android:src="@drawable/ic_rooster"
         app:layout_constraintBottom_toTopOf="@+id/txtEmail"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <include
         android:id="@+id/include"
@@ -49,12 +49,14 @@
 
     <ImageView
         android:id="@+id/errorEmail"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
         android:contentDescription="@string/error_image"
+        android:padding="16dp"
         android:src="@drawable/ic_alert"
         android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/txtEmail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/txtEmail"
         tools:visibility="visible" />
@@ -76,20 +78,23 @@
 
     <ImageView
         android:id="@+id/errorPassword"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
         android:contentDescription="@string/error_image"
+        android:padding="16dp"
         android:src="@drawable/ic_alert"
         android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/txtPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/txtPassword"
         tools:visibility="visible" />
 
     <Button
         android:id="@+id/btnLogin"
-        android:layout_width="256dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
         android:layout_marginBottom="96dp"
         android:background="@drawable/button_login"
         android:backgroundTint="#e78fb3"
@@ -100,6 +105,7 @@
         android:textColor="#f8f8f8"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/prgBar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

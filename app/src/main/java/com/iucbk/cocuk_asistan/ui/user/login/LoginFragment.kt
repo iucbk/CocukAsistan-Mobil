@@ -47,7 +47,7 @@ class LoginFragment : DaggerFragment() {
         savedInstanceState: Bundle?
     ): View? {
         viewModel = injectViewModel(viewModelFactory)
-        binding.prgBar.gone()
+        binding.prgBar.hide()
         binding.btnLogin.setOnClickListener {
             onUserLogin()
         }
