@@ -1,40 +1,35 @@
 package com.iucbk.cocuk_asistan.ui.quiz.questions
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import cn.pedant.SweetAlert.SweetAlertDialog
+import com.iucbk.cocuk_asistan.R
+import com.iucbk.cocuk_asistan.common.BaseFragment
 import com.iucbk.cocuk_asistan.databinding.FragmentQuizQuestionsBinding
-import com.iucbk.cocuk_asistan.di.ViewModelFactory
 import com.iucbk.cocuk_asistan.ui.adapter.QuizQuestionsViewPager
 import com.iucbk.cocuk_asistan.util.Status.ERROR
 import com.iucbk.cocuk_asistan.util.Status.LOADING
 import com.iucbk.cocuk_asistan.util.Status.SUCCESS
+import com.iucbk.cocuk_asistan.util.delegate.AutoClearedValue
 import com.iucbk.cocuk_asistan.util.extension.gone
-import com.iucbk.cocuk_asistan.util.extension.injectViewModel
 import com.iucbk.cocuk_asistan.util.extension.show
 import com.iucbk.cocuk_asistan.util.extension.showSnackBar
 import com.iucbk.cocuk_asistan.util.extension.showToast
+import com.iucbk.cocuk_asistan.util.extension.viewBinding
 import com.iucbk.cocuk_asistan.util.getErrorStringFromCode
-import dagger.android.support.DaggerFragment
-import javax.inject.Inject
 
 /**
  * A simple [Fragment] subclass.
  */
-class QuizQuestionsFragment : DaggerFragment() {
+class QuizQuestionsFragment :
+    BaseFragment<QuizQuestionsViewModel>(R.layout.fragment_quiz_questions) {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
-    private lateinit var viewModel: QuizQuestionsViewModel
+    override fun model(): Any = QuizQuestionsViewModel::class.java
 
-    private val binding by lazy {
-        FragmentQuizQuestionsBinding.inflate(layoutInflater)
-    }
+    private val binding by viewBinding(FragmentQuizQuestionsBinding::bind)
 
     private val quizId by lazy {
         arguments?.let {
@@ -42,24 +37,21 @@ class QuizQuestionsFragment : DaggerFragment() {
         }
     }
 
-    private val questionViewPagerAdapter by lazy {
-        QuizQuestionsViewPager(this)
-    }
+    private var questionViewPagerAdapter by AutoClearedValue<QuizQuestionsViewPager>()
 
     internal val mapQuestionsWithAnswer = ArrayList<Pair<Int, Int>>()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        viewModel = injectViewModel(viewModelFactory)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         viewModel.setQuizId(quizId ?: 0)
         initUI()
-        return binding.root
+        initObservers()
     }
 
     private fun initUI() {
         binding.prgBar.gone()
+        questionViewPagerAdapter = QuizQuestionsViewPager(this)
+
         binding.vpQuestions.adapter = questionViewPagerAdapter
 
         binding.btnBack.setOnClickListener {
@@ -101,9 +93,7 @@ class QuizQuestionsFragment : DaggerFragment() {
         }
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+    private fun initObservers() {
         viewModel.quizQuestions.observe(viewLifecycleOwner, Observer { result ->
             when (result.status) {
                 SUCCESS -> {

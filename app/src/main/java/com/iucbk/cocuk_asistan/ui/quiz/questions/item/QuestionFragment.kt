@@ -1,39 +1,32 @@
 package com.iucbk.cocuk_asistan.ui.quiz.questions.item
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.iucbk.cocuk_asistan.R
+import com.iucbk.cocuk_asistan.common.BaseFragment
 import com.iucbk.cocuk_asistan.data.net.response.quiz_questions.QuizQuestionsResponse
 import com.iucbk.cocuk_asistan.databinding.FragmentQuestionBinding
-import com.iucbk.cocuk_asistan.di.ViewModelFactory
 import com.iucbk.cocuk_asistan.ui.adapter.QuestionAnswerAdapter
 import com.iucbk.cocuk_asistan.ui.quiz.questions.QuizQuestionsFragment
-import com.iucbk.cocuk_asistan.util.extension.injectViewModel
+import com.iucbk.cocuk_asistan.util.delegate.AutoClearedValue
 import com.iucbk.cocuk_asistan.util.extension.showToast
-import dagger.android.support.DaggerFragment
-import javax.inject.Inject
+import com.iucbk.cocuk_asistan.util.extension.viewBinding
 
 /**
  * A simple [Fragment] subclass.
  */
-class QuestionFragment : DaggerFragment() {
+class QuestionFragment : BaseFragment<QuestionViewModel>(R.layout.fragment_question) {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
-    private lateinit var viewModel: QuestionViewModel
+    override fun model(): Any = QuestionViewModel::class.java
 
-    private lateinit var adapter: QuestionAnswerAdapter
+    private var adapter by AutoClearedValue<QuestionAnswerAdapter>()
     private lateinit var questionData: QuizQuestionsResponse
 
     private var isItemSelectable = true
 
-    private val binding by lazy {
-        FragmentQuestionBinding.inflate(layoutInflater)
-    }
+    private val binding by viewBinding(FragmentQuestionBinding::bind)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,13 +35,9 @@ class QuestionFragment : DaggerFragment() {
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        viewModel = injectViewModel(viewModelFactory)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         initUI()
-        return binding.root
     }
 
     private fun initUI() {
