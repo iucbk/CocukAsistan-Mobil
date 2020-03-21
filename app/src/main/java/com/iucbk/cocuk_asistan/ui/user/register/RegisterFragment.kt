@@ -2,52 +2,47 @@ package com.iucbk.cocuk_asistan.ui.user.register
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.iucbk.cocuk_asistan.R
+import com.iucbk.cocuk_asistan.common.BaseFragment
 import com.iucbk.cocuk_asistan.data.model.UserRegisterDTO
 import com.iucbk.cocuk_asistan.databinding.FragmentRegisterBinding
-import com.iucbk.cocuk_asistan.di.ViewModelFactory
 import com.iucbk.cocuk_asistan.enums.RegisterInputs
-import com.iucbk.cocuk_asistan.util.Status.*
-import com.iucbk.cocuk_asistan.util.extension.*
-import dagger.android.support.DaggerFragment
-import javax.inject.Inject
+import com.iucbk.cocuk_asistan.util.Status.ERROR
+import com.iucbk.cocuk_asistan.util.Status.LOADING
+import com.iucbk.cocuk_asistan.util.Status.SUCCESS
+import com.iucbk.cocuk_asistan.util.extension.getString
+import com.iucbk.cocuk_asistan.util.extension.hide
+import com.iucbk.cocuk_asistan.util.extension.isEmailValid
+import com.iucbk.cocuk_asistan.util.extension.isLengthValid
+import com.iucbk.cocuk_asistan.util.extension.show
+import com.iucbk.cocuk_asistan.util.extension.showSnackBar
+import com.iucbk.cocuk_asistan.util.extension.userFilledAllEntries
+import com.iucbk.cocuk_asistan.util.extension.viewBinding
 
 /**
  * A simple [Fragment] subclass.
  */
-class RegisterFragment : DaggerFragment() {
+class RegisterFragment : BaseFragment<RegisterViewModel>(R.layout.fragment_register) {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
+    override fun model(): Any = RegisterViewModel::class.java
 
-    private lateinit var viewModel: RegisterViewModel
+    private val binding by viewBinding(FragmentRegisterBinding::bind)
 
-    private val binding by lazy {
-        FragmentRegisterBinding.inflate(layoutInflater)
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        viewModel = injectViewModel(viewModelFactory)
-
-        binding.btnRegister.setOnClickListener {
-            onUserRegister()
-        }
-
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.btnRegister.setOnClickListener {
+            onUserRegister()
+        }
+        initObservers()
+    }
+
+    private fun initObservers() {
         viewModel.userRegisterResponse.observe(viewLifecycleOwner, Observer { result ->
             when (result.status) {
                 SUCCESS -> {
