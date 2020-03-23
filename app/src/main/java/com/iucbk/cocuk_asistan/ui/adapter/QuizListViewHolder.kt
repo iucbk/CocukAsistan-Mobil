@@ -15,7 +15,7 @@ import com.iucbk.cocuk_asistan.databinding.ItemQuizListBinding
 //│ 19.03.2020 - 14:32          │
 //└─────────────────────────────┘
 
-class QuizListViewHolder(
+open class QuizListViewHolder(
     private val binding: ItemQuizListBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 

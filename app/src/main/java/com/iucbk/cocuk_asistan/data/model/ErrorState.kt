@@ -1,4 +1,4 @@
-package com.iucbk.cocuk_asistan.data.net.response.quiz_list
+package com.iucbk.cocuk_asistan.data.model
 
 import com.iucbk.cocuk_asistan.data.model.base.QuizListBase
 
@@ -9,11 +9,9 @@ import com.iucbk.cocuk_asistan.data.model.base.QuizListBase
 //│ ─────────────────────────── │
 //│ mirac.ozkan123@gmail.com    │
 //│ ─────────────────────────── │
-//│ 19.03.2020 - 17:47          │
+//│ 23.03.2020 - 17:32          │
 //└─────────────────────────────┘
 
-data class QuizListResponse(
-    val quiz_id: Int,
-    val quiz_title: String,
-    val isSolved: Int
+data class ErrorState(
+    val errorMessage: String? = "Something went wrong"
 ) : QuizListBase()

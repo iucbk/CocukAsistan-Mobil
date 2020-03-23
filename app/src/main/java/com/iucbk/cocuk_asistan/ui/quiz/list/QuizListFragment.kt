@@ -7,6 +7,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.iucbk.cocuk_asistan.R
 import com.iucbk.cocuk_asistan.common.BaseFragment
+import com.iucbk.cocuk_asistan.data.model.ErrorState
 import com.iucbk.cocuk_asistan.databinding.FragmentQuizListBinding
 import com.iucbk.cocuk_asistan.ui.adapter.QuizListAdapter
 import com.iucbk.cocuk_asistan.util.Status.ERROR
@@ -67,7 +68,11 @@ class QuizListFragment : BaseFragment<QuizListViewModel>(R.layout.fragment_quiz_
             when (result.status) {
                 SUCCESS -> {
                     binding.prgBar.gone()
-                    adapter.submitList(result.data.orEmpty())
+                    if (result.data.isNullOrEmpty().not()) {
+                        adapter.submitList(result.data.orEmpty())
+                    } else {
+                        adapter.submitList(listOf(ErrorState(result.message)))
+                    }
                 }
                 ERROR -> {
                     binding.prgBar.gone()
@@ -84,5 +89,4 @@ class QuizListFragment : BaseFragment<QuizListViewModel>(R.layout.fragment_quiz_
             }
         })
     }
-
 }
