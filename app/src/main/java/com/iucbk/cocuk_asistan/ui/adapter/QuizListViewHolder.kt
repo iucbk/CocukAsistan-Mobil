@@ -1,6 +1,7 @@
 package com.iucbk.cocuk_asistan.ui.adapter
 
 import androidx.recyclerview.widget.RecyclerView
+import com.iucbk.cocuk_asistan.R
 import com.iucbk.cocuk_asistan.data.net.response.quiz_list.QuizListResponse
 import com.iucbk.cocuk_asistan.databinding.ItemQuizListBinding
 
@@ -20,6 +21,14 @@ class QuizListViewHolder(
 
     fun bind(quizListResponse: QuizListResponse, onClickListener: (QuizListResponse) -> Unit) {
         binding.btnQuizQuestion.text = quizListResponse.quiz_title
+
+        val solvedStateImage = if (quizListResponse.isSolved != 0) {
+            R.drawable.ic_check
+        } else {
+            R.drawable.ic_cross
+        }
+
+        binding.viewQuizState.setImageResource(solvedStateImage)
 
         binding.btnQuizQuestion.setOnClickListener {
             onClickListener(quizListResponse)
