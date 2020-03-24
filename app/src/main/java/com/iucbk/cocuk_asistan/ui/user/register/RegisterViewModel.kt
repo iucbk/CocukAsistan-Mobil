@@ -2,9 +2,13 @@ package com.iucbk.cocuk_asistan.ui.user.register
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.switchMap
+import androidx.lifecycle.viewModelScope
 import com.iucbk.cocuk_asistan.data.model.UserRegisterDTO
+import com.iucbk.cocuk_asistan.data.net.response.common.BaseResponse
 import com.iucbk.cocuk_asistan.data.repository.UserRepository
+import com.iucbk.cocuk_asistan.util.Result
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -18,15 +22,27 @@ import javax.inject.Inject
 //└─────────────────────────────┘
 
 class RegisterViewModel @Inject constructor(
-    userRepository: UserRepository
+    private val userRepository: UserRepository
 ) : ViewModel() {
 
-    private val _userRegisterData = MutableLiveData<UserRegisterDTO>()
-    val userRegisterResponse = _userRegisterData.switchMap {
-        userRepository.registerUser(it)
+    private var registerJob: Job? = null
+
+    val registerResult by lazy {
+        MutableLiveData<Result<BaseResponse<Nothing?>>>()
     }
 
-    fun setUserRegisterData(userRegisterDTO: UserRegisterDTO) {
-        _userRegisterData.postValue(userRegisterDTO)
+    fun setRegisterData(registerDTO: UserRegisterDTO) {
+        if (registerJob?.isActive == true) {
+            return
+        }
+        registerJob = launchRegisterJob(registerDTO)
     }
+
+    private fun launchRegisterJob(registerDTO: UserRegisterDTO): Job? {
+        return viewModelScope.launch {
+            registerResult.postValue(Result.loading())
+            registerResult.postValue(userRepository.registerUser(registerDTO))
+        }
+    }
+
 }

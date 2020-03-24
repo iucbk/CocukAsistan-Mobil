@@ -2,10 +2,14 @@ package com.iucbk.cocuk_asistan.ui.quiz.questions
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.switchMap
+import androidx.lifecycle.viewModelScope
+import com.iucbk.cocuk_asistan.data.net.response.common.BaseResponse
+import com.iucbk.cocuk_asistan.data.net.response.quiz_questions.QuizQuestionsResponse
 import com.iucbk.cocuk_asistan.data.repository.QuizRepository
+import com.iucbk.cocuk_asistan.util.Result
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import javax.inject.Inject
-
 
 // Code with ❤
 //┌─────────────────────────────┐
@@ -17,15 +21,26 @@ import javax.inject.Inject
 //└─────────────────────────────┘
 
 class QuizQuestionsViewModel @Inject constructor(
-    quizRepository: QuizRepository
+    private val quizRepository: QuizRepository
 ) : ViewModel() {
 
-    private val _quizId = MutableLiveData<Int>()
-    val quizQuestions = _quizId.switchMap {
-        quizRepository.getQuizQuestions(it)
+    private var quizIdJob: Job? = null
+
+    val quizResult by lazy {
+        MutableLiveData<Result<BaseResponse<List<QuizQuestionsResponse>>>>()
     }
 
     fun setQuizId(quizId: Int) {
-        _quizId.postValue(quizId)
+        if (quizIdJob?.isActive == true) {
+            return
+        }
+        quizIdJob = launchQuizJob(quizId)
+    }
+
+    private fun launchQuizJob(quizId: Int): Job? {
+        return viewModelScope.launch {
+            quizResult.postValue(Result.loading())
+            quizResult.postValue(quizRepository.getQuizQuestions(quizId))
+        }
     }
 }

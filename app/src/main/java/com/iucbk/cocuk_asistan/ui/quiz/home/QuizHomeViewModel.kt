@@ -1,7 +1,14 @@
 package com.iucbk.cocuk_asistan.ui.quiz.home
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.iucbk.cocuk_asistan.data.net.response.common.BaseResponse
+import com.iucbk.cocuk_asistan.data.net.response.quiz_categories.QuizCategoriesResponse
 import com.iucbk.cocuk_asistan.data.repository.QuizRepository
+import com.iucbk.cocuk_asistan.util.Result
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -18,7 +25,28 @@ class QuizHomeViewModel @Inject constructor(
     private val quizRepository: QuizRepository
 ) : ViewModel() {
 
-    private val _quizCategories = quizRepository.getQuizCategories()
+    private var quizCategoryJob: Job? = null
 
-    fun getQuizCategories() = _quizCategories
+    val quizCategories by lazy {
+        MutableLiveData<Result<BaseResponse<List<QuizCategoriesResponse>>>>()
+    }
+
+    init {
+        getQuizCategories()
+    }
+
+    private fun getQuizCategories() {
+        if (quizCategoryJob?.isActive == true) {
+            return
+        }
+        quizCategoryJob = launchQuizCategoryJob()
+    }
+
+    private fun launchQuizCategoryJob(): Job? {
+        return viewModelScope.launch {
+            quizCategories.postValue(Result.loading())
+            quizCategories.postValue(quizRepository.getQuizCategories())
+        }
+    }
+
 }

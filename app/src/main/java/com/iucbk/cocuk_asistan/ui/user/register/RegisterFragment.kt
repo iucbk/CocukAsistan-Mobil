@@ -1,7 +1,6 @@
 package com.iucbk.cocuk_asistan.ui.user.register
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -20,8 +19,10 @@ import com.iucbk.cocuk_asistan.util.extension.isEmailValid
 import com.iucbk.cocuk_asistan.util.extension.isLengthValid
 import com.iucbk.cocuk_asistan.util.extension.show
 import com.iucbk.cocuk_asistan.util.extension.showSnackBar
+import com.iucbk.cocuk_asistan.util.extension.showToast
 import com.iucbk.cocuk_asistan.util.extension.userFilledAllEntries
 import com.iucbk.cocuk_asistan.util.extension.viewBinding
+import com.iucbk.cocuk_asistan.util.getErrorStringFromCode
 
 /**
  * A simple [Fragment] subclass.
@@ -43,20 +44,26 @@ class RegisterFragment : BaseFragment<RegisterViewModel>(R.layout.fragment_regis
     }
 
     private fun initObservers() {
-        viewModel.userRegisterResponse.observe(viewLifecycleOwner, Observer { result ->
+        viewModel.registerResult.observe(viewLifecycleOwner, Observer { result ->
             when (result.status) {
                 SUCCESS -> {
+                    binding.prgBar.hide()
                     showSnackBar(getString(R.string.register_success))
                     val action =
                         RegisterFragmentDirections.actionRegisterFragmentToLoginFragment()
                     findNavController().navigate(action)
                 }
                 ERROR -> {
-                    showSnackBar(result.message ?: result.errorCode.toString())
+                    binding.prgBar.hide()
+                    showSnackBar(
+                        getErrorStringFromCode(result.errorCode)
+                    )
+                    showToast(
+                        result.message
+                    )
                 }
                 LOADING -> {
-                    //TODO Progress Bar
-                    Log.e("LOADING ", "LOADING")
+                    binding.prgBar.show()
                 }
             }
         })
@@ -64,7 +71,7 @@ class RegisterFragment : BaseFragment<RegisterViewModel>(R.layout.fragment_regis
 
     private fun onUserRegister() {
         if (isInputsValid()) {
-            viewModel.setUserRegisterData(
+            viewModel.setRegisterData(
                 UserRegisterDTO(
                     full_name = binding.txtUserName.getString(),
                     email = binding.txtUserEmail.getString(),

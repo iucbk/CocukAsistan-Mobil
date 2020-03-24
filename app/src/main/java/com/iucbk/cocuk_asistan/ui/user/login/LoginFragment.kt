@@ -1,5 +1,6 @@
 package com.iucbk.cocuk_asistan.ui.user.login
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -13,7 +14,6 @@ import com.iucbk.cocuk_asistan.databinding.FragmentLoginBinding
 import com.iucbk.cocuk_asistan.enums.RegisterInputs
 import com.iucbk.cocuk_asistan.util.Status
 import com.iucbk.cocuk_asistan.util.extension.getString
-import com.iucbk.cocuk_asistan.util.extension.gone
 import com.iucbk.cocuk_asistan.util.extension.hide
 import com.iucbk.cocuk_asistan.util.extension.isEmailValid
 import com.iucbk.cocuk_asistan.util.extension.isLengthValid
@@ -23,11 +23,16 @@ import com.iucbk.cocuk_asistan.util.extension.showToast
 import com.iucbk.cocuk_asistan.util.extension.userFilledAllEntries
 import com.iucbk.cocuk_asistan.util.extension.viewBinding
 import com.iucbk.cocuk_asistan.util.getErrorStringFromCode
+import com.iucbk.cocuk_asistan.util.saveSession
+import javax.inject.Inject
 
 /**
  * A simple [Fragment] subclass.
  */
 class LoginFragment : BaseFragment<LoginViewModel>(R.layout.fragment_login) {
+
+    @Inject
+    lateinit var sharedPreferences: SharedPreferences
 
     override fun model(): Any = LoginViewModel::class.java
 
@@ -45,23 +50,27 @@ class LoginFragment : BaseFragment<LoginViewModel>(R.layout.fragment_login) {
     }
 
     private fun initObserver() {
-        viewModel.userLoginResponse.observe(viewLifecycleOwner, Observer { result ->
+        viewModel.loginResult.observe(viewLifecycleOwner, Observer { result ->
             when (result.status) {
                 Status.SUCCESS -> {
-                    binding.prgBar.gone()
-                    showSnackBar(getString(R.string.login_success))
-                    findNavController().navigate(
-                        R.id.homeFragment,
-                        null,
-                        NavOptions.Builder()
-                            .setPopUpTo(R.id.registerFragment, true)
-                            .setPopUpTo(R.id.loginFragment, true)
-                            .setPopUpTo(R.id.swipeUpScreen, true)
-                            .build()
-                    )
+                    if (saveSession(sharedPreferences, result.data?.data)) {
+                        binding.prgBar.hide()
+                        showSnackBar(getString(R.string.login_success))
+                        findNavController().navigate(
+                            R.id.homeFragment,
+                            null,
+                            NavOptions.Builder()
+                                .setPopUpTo(R.id.registerFragment, true)
+                                .setPopUpTo(R.id.loginFragment, true)
+                                .setPopUpTo(R.id.swipeUpScreen, true)
+                                .build()
+                        )
+                    } else {
+                        showSnackBar(getString(R.string.went_wrong))
+                    }
                 }
                 Status.ERROR -> {
-                    binding.prgBar.gone()
+                    binding.prgBar.hide()
                     showSnackBar(
                         getErrorStringFromCode(result.errorCode)
                     )
@@ -78,7 +87,7 @@ class LoginFragment : BaseFragment<LoginViewModel>(R.layout.fragment_login) {
 
     private fun onUserLogin() {
         if (isUserDataValid()) {
-            viewModel.setUserLoginData(
+            viewModel.setLoginData(
                 UserLoginDTO(
                     email = binding.txtEmail.getString(),
                     password = binding.txtPassword.getString()

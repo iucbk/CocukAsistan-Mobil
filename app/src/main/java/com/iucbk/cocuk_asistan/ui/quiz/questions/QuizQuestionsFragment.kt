@@ -94,11 +94,11 @@ class QuizQuestionsFragment :
     }
 
     private fun initObservers() {
-        viewModel.quizQuestions.observe(viewLifecycleOwner, Observer { result ->
+        viewModel.quizResult.observe(viewLifecycleOwner, Observer { result ->
             when (result.status) {
                 SUCCESS -> {
                     binding.prgBar.gone()
-                    questionViewPagerAdapter.setNewQuestionList(result.data.orEmpty())
+                    questionViewPagerAdapter.setNewQuestionList(result.data?.data.orEmpty())
                 }
                 ERROR -> {
                     binding.prgBar.gone()
