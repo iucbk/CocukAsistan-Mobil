@@ -6,6 +6,8 @@ import com.iucbk.cocuk_asistan.di.ViewModelFactory
 import com.iucbk.cocuk_asistan.di.key.ViewModelKey
 import com.iucbk.cocuk_asistan.ui.quiz.home.QuizHomeViewModel
 import com.iucbk.cocuk_asistan.ui.quiz.list.QuizListViewModel
+import com.iucbk.cocuk_asistan.ui.quiz.questions.QuizQuestionsViewModel
+import com.iucbk.cocuk_asistan.ui.quiz.questions.item.QuestionViewModel
 import com.iucbk.cocuk_asistan.ui.user.login.LoginViewModel
 import com.iucbk.cocuk_asistan.ui.user.register.RegisterViewModel
 import dagger.Binds
@@ -47,4 +49,14 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(QuizListViewModel::class)
     internal abstract fun bindQuizListViewModel(quizListViewModel: QuizListViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(QuizQuestionsViewModel::class)
+    internal abstract fun bindQuizQuestionsViewModel(quizQuestionsViewModel: QuizQuestionsViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(QuestionViewModel::class)
+    internal abstract fun bindQuestionViewModel(questionViewModel: QuestionViewModel): ViewModel
 }

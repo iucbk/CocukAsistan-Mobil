@@ -1,26 +1,22 @@
 package com.iucbk.cocuk_asistan.ui.user.swipeup
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.iucbk.cocuk_asistan.R
 import com.iucbk.cocuk_asistan.databinding.FragmentSwipeUpScreenBinding
+import com.iucbk.cocuk_asistan.util.extension.viewBinding
 
 /**
  * A simple [Fragment] subclass.
  */
-class SwipeUpScreen : Fragment() {
+class SwipeUpScreen : Fragment(R.layout.fragment_swipe_up_screen) {
 
-    private val binding by lazy {
-        FragmentSwipeUpScreenBinding.inflate(layoutInflater)
-    }
+    private val binding by viewBinding(FragmentSwipeUpScreenBinding::bind)
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         binding.btnRegister.setOnClickListener {
             val action =
@@ -33,8 +29,6 @@ class SwipeUpScreen : Fragment() {
                 SwipeUpScreenDirections.actionSwipeUpScreenToLoginFragment()
             findNavController().navigate(action)
         }
-
-        return binding.root
     }
 
 }

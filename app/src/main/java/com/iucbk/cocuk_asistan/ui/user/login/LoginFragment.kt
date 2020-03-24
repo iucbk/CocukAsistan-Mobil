@@ -1,63 +1,50 @@
 package com.iucbk.cocuk_asistan.ui.user.login
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.iucbk.cocuk_asistan.R
+import com.iucbk.cocuk_asistan.common.BaseFragment
 import com.iucbk.cocuk_asistan.data.model.UserLoginDTO
 import com.iucbk.cocuk_asistan.databinding.FragmentLoginBinding
-import com.iucbk.cocuk_asistan.di.ViewModelFactory
 import com.iucbk.cocuk_asistan.enums.RegisterInputs
 import com.iucbk.cocuk_asistan.util.Status
 import com.iucbk.cocuk_asistan.util.extension.getString
 import com.iucbk.cocuk_asistan.util.extension.gone
 import com.iucbk.cocuk_asistan.util.extension.hide
-import com.iucbk.cocuk_asistan.util.extension.injectViewModel
 import com.iucbk.cocuk_asistan.util.extension.isEmailValid
 import com.iucbk.cocuk_asistan.util.extension.isLengthValid
 import com.iucbk.cocuk_asistan.util.extension.show
 import com.iucbk.cocuk_asistan.util.extension.showSnackBar
 import com.iucbk.cocuk_asistan.util.extension.showToast
 import com.iucbk.cocuk_asistan.util.extension.userFilledAllEntries
+import com.iucbk.cocuk_asistan.util.extension.viewBinding
 import com.iucbk.cocuk_asistan.util.getErrorStringFromCode
-import dagger.android.support.DaggerFragment
-import javax.inject.Inject
 
 /**
  * A simple [Fragment] subclass.
  */
-class LoginFragment : DaggerFragment() {
+class LoginFragment : BaseFragment<LoginViewModel>(R.layout.fragment_login) {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
+    override fun model(): Any = LoginViewModel::class.java
 
-    private lateinit var viewModel: LoginViewModel
-
-    private val binding by lazy {
-        FragmentLoginBinding.inflate(layoutInflater)
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        viewModel = injectViewModel(viewModelFactory)
-        binding.prgBar.gone()
-        binding.btnLogin.setOnClickListener {
-            onUserLogin()
-        }
-
-        return binding.root
-    }
+    private val binding by viewBinding(FragmentLoginBinding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initObserver()
+
+        binding.prgBar.hide()
+        binding.btnLogin.setOnClickListener {
+            onUserLogin()
+        }
+    }
+
+    private fun initObserver() {
         viewModel.userLoginResponse.observe(viewLifecycleOwner, Observer { result ->
             when (result.status) {
                 Status.SUCCESS -> {

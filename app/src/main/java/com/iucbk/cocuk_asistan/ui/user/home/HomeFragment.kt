@@ -1,29 +1,23 @@
 package com.iucbk.cocuk_asistan.ui.user.home
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.iucbk.cocuk_asistan.R
 import com.iucbk.cocuk_asistan.databinding.FragmentHomeBinding
-import dagger.android.support.DaggerFragment
+import com.iucbk.cocuk_asistan.util.extension.viewBinding
 
 /**
  * A simple [Fragment] subclass.
  */
-class HomeFragment : DaggerFragment() {
+class HomeFragment : Fragment(R.layout.fragment_home) {
 
-    private val binding by lazy {
-        FragmentHomeBinding.inflate(layoutInflater)
-    }
+    private val binding by viewBinding(FragmentHomeBinding::bind)
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         initUserActions()
-        return binding.root
     }
 
     private fun initUserActions() {

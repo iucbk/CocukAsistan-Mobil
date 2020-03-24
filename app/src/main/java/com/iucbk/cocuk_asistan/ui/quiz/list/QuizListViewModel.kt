@@ -20,12 +20,12 @@ class QuizListViewModel @Inject constructor(
     private val quizRepository: QuizRepository
 ) : ViewModel() {
 
-    private val _quizId = MutableLiveData<Int>()
-    val quizList = _quizId.switchMap {
+    private val _categoryId = MutableLiveData<Int>()
+    val quizList = _categoryId.switchMap {
         quizRepository.getQuizList(it)
     }
 
-    fun setQuizId(quizId: Int) {
-        _quizId.postValue(quizId)
+    fun setQuizId(categoryId: Int) {
+        _categoryId.postValue(categoryId)
     }
 }

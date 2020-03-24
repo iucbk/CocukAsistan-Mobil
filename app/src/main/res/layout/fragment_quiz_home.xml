@@ -44,11 +44,15 @@
     <ImageButton
         android:id="@+id/btnBack"
         android:layout_width="0dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         android:layout_marginBottom="32dp"
         android:background="@drawable/button_back_quiz_categories"
+        android:paddingStart="32dp"
+        android:paddingTop="12dp"
+        android:paddingEnd="32dp"
+        android:paddingBottom="12dp"
         android:src="@drawable/ic_back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/imageView7"
@@ -58,7 +62,7 @@
         android:id="@+id/imageView7"
         android:layout_width="216dp"
         android:layout_height="256dp"
-        android:src="@drawable/penguen"
+        android:src="@drawable/penguen1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

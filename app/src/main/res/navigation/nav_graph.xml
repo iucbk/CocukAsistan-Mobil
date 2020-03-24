@@ -73,7 +73,7 @@
         android:label="fragment_quiz_list"
         tools:layout="@layout/fragment_quiz_list">
         <argument
-            android:name="quizId"
+            android:name="categoryId"
             app:argType="integer" />
         <argument
             android:name="quizCategory"
@@ -83,5 +83,23 @@
             app:destination="@id/quizHomeFragment"
             app:popUpTo="@id/quizListFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_quizListFragment_to_quizQuestionsFragment"
+            app:destination="@id/quizQuestionsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/quizQuestionsFragment"
+        android:name="com.iucbk.cocuk_asistan.ui.quiz.questions.QuizQuestionsFragment"
+        android:label="fragment_quiz_questions"
+        tools:layout="@layout/fragment_quiz_questions">
+        <action
+            android:id="@+id/action_quizQuestionsFragment_to_quizListFragment"
+            app:destination="@id/quizListFragment" />
+        <action
+            android:id="@+id/action_quizQuestionsFragment_to_quizHomeFragment"
+            app:destination="@id/quizHomeFragment" />
+        <argument
+            android:name="quizId"
+            app:argType="integer" />
     </fragment>
 </navigation>
