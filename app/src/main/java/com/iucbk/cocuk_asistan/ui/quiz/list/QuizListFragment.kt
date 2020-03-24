@@ -45,7 +45,7 @@ class QuizListFragment : BaseFragment<QuizListViewModel>(R.layout.fragment_quiz_
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.setQuizId(categoryId ?: 0)
+        viewModel.setQuizCategoryId(categoryId ?: 0)
         initUI()
         initObservers()
     }
@@ -64,12 +64,12 @@ class QuizListFragment : BaseFragment<QuizListViewModel>(R.layout.fragment_quiz_
     }
 
     private fun initObservers() {
-        viewModel.quizList.observe(viewLifecycleOwner, Observer { result ->
+        viewModel.quizListById.observe(viewLifecycleOwner, Observer { result ->
             when (result.status) {
                 SUCCESS -> {
                     binding.prgBar.gone()
-                    if (result.data.isNullOrEmpty().not()) {
-                        adapter.submitList(result.data.orEmpty())
+                    if (result.data?.data.isNullOrEmpty().not()) {
+                        adapter.submitList(result.data?.data.orEmpty())
                     } else {
                         adapter.submitList(listOf(ErrorState(result.message)))
                     }

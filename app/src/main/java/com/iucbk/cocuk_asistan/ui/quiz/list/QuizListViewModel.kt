@@ -2,8 +2,13 @@ package com.iucbk.cocuk_asistan.ui.quiz.list
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.switchMap
+import androidx.lifecycle.viewModelScope
+import com.iucbk.cocuk_asistan.data.net.response.common.BaseResponse
+import com.iucbk.cocuk_asistan.data.net.response.quiz_list.QuizListResponse
 import com.iucbk.cocuk_asistan.data.repository.QuizRepository
+import com.iucbk.cocuk_asistan.util.Result
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -20,12 +25,23 @@ class QuizListViewModel @Inject constructor(
     private val quizRepository: QuizRepository
 ) : ViewModel() {
 
-    private val _categoryId = MutableLiveData<Int>()
-    val quizList = _categoryId.switchMap {
-        quizRepository.getQuizList(it)
+    private var categoryIdJob: Job? = null
+
+    val quizListById by lazy {
+        MutableLiveData<Result<BaseResponse<List<QuizListResponse>>>>()
     }
 
-    fun setQuizId(categoryId: Int) {
-        _categoryId.postValue(categoryId)
+    fun setQuizCategoryId(categoryId: Int) {
+        if (categoryIdJob?.isActive == true) {
+            return
+        }
+        categoryIdJob = launchQuizListJob(categoryId)
+    }
+
+    private fun launchQuizListJob(categoryId: Int): Job? {
+        return viewModelScope.launch {
+            quizListById.postValue(Result.loading())
+            quizListById.postValue(quizRepository.getQuizList(categoryId))
+        }
     }
 }

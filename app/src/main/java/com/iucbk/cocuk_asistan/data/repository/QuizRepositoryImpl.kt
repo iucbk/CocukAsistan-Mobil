@@ -1,22 +1,15 @@
 package com.iucbk.cocuk_asistan.data.repository
 
 import android.content.SharedPreferences
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import com.iucbk.cocuk_asistan.common.BaseRepository
 import com.iucbk.cocuk_asistan.data.net.ProjectService
+import com.iucbk.cocuk_asistan.data.net.response.common.BaseResponse
 import com.iucbk.cocuk_asistan.data.net.response.quiz_categories.QuizCategoriesResponse
 import com.iucbk.cocuk_asistan.data.net.response.quiz_list.QuizListResponse
 import com.iucbk.cocuk_asistan.data.net.response.quiz_questions.QuizQuestionsResponse
 import com.iucbk.cocuk_asistan.util.Result
-import com.iucbk.cocuk_asistan.util.convertErrorBody
 import com.iucbk.cocuk_asistan.util.getToken
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
-import kotlin.coroutines.CoroutineContext
 
 
 // Code with ❤
@@ -31,105 +24,23 @@ import kotlin.coroutines.CoroutineContext
 class QuizRepositoryImpl @Inject constructor(
     private val projectService: ProjectService,
     private val sharedPreferences: SharedPreferences
-) : QuizRepository, CoroutineScope {
+) : BaseRepository(), QuizRepository {
 
-    override val coroutineContext: CoroutineContext
-        get() = Job() + Dispatchers.Main
-
-    private val quizCategoriesResponse = MutableLiveData<Result<List<QuizCategoriesResponse?>>>()
-
-    private val quizListResponse = MutableLiveData<Result<List<QuizListResponse?>>>()
-
-    private val quizQuestionsResponse = MutableLiveData<Result<List<QuizQuestionsResponse?>>>()
-
-    override fun getQuizCategories(): LiveData<Result<List<QuizCategoriesResponse?>>> {
-        launch {
-            fetchQuizCategories()
-        }
-        return quizCategoriesResponse
-    }
-
-    private suspend fun fetchQuizCategories() {
-        withContext(Dispatchers.IO) {
-            try {
-                quizCategoriesResponse.postValue(Result.loading())
-                val response =
-                    projectService.getQuizCategories(getToken(sharedPreferences))
-                if (response.isSuccessful) {
-                    quizCategoriesResponse.postValue(Result.success(response.body()?.data.orEmpty()))
-                } else {
-                    quizCategoriesResponse.postValue(
-                        Result.error(
-                            errorCode = convertErrorBody(response.errorBody()!!)?.code
-                        )
-                    )
-                }
-            } catch (e: Exception) {
-                quizCategoriesResponse.postValue(Result.error(e.localizedMessage))
-            }
+    override suspend fun getQuizCategories(): Result<BaseResponse<List<QuizCategoriesResponse>>> {
+        return getResult {
+            projectService.getQuizCategories(getToken(sharedPreferences))
         }
     }
 
-    override fun getQuizList(categoryId: Int): LiveData<Result<List<QuizListResponse?>>> {
-        launch {
-            fetchQuizList(categoryId)
-        }
-        return quizListResponse
-    }
-
-    private suspend fun fetchQuizList(categoryId: Int) {
-        withContext(Dispatchers.IO) {
-            try {
-                quizListResponse.postValue(Result.loading())
-                val response =
-                    projectService.getQuizzesByCategories(categoryId, getToken(sharedPreferences))
-                if (response.isSuccessful) {
-                    quizListResponse.postValue(Result.success(response.body()?.data.orEmpty()))
-                } else {
-                    quizListResponse.postValue(
-                        Result.error(
-                            errorCode = convertErrorBody(response.errorBody()!!)?.code
-                        )
-                    )
-                }
-            } catch (e: java.lang.Exception) {
-                quizListResponse.postValue(
-                    Result.error(
-                        message = e.localizedMessage
-                    )
-                )
-            }
+    override suspend fun getQuizList(categoryId: Int): Result<BaseResponse<List<QuizListResponse>>> {
+        return getResult {
+            projectService.getQuizzesByCategories(categoryId, getToken(sharedPreferences))
         }
     }
 
-    override fun getQuizQuestions(quizId: Int): LiveData<Result<List<QuizQuestionsResponse?>>> {
-        launch {
-            fetchQuestions(quizId)
-        }
-        return quizQuestionsResponse
-    }
-
-    private suspend fun fetchQuestions(quizId: Int) {
-        withContext(Dispatchers.IO) {
-            try {
-                quizQuestionsResponse.postValue(Result.loading())
-                val response = projectService.getQuizQuestions(quizId, getToken(sharedPreferences))
-                if (response.isSuccessful) {
-                    quizQuestionsResponse.postValue(Result.success(response.body()?.data.orEmpty()))
-                } else {
-                    quizQuestionsResponse.postValue(
-                        Result.error(
-                            errorCode = convertErrorBody(response.errorBody()!!)?.code
-                        )
-                    )
-                }
-            } catch (e: java.lang.Exception) {
-                quizQuestionsResponse.postValue(
-                    Result.error(
-                        message = e.localizedMessage
-                    )
-                )
-            }
+    override suspend fun getQuizQuestions(quizId: Int): Result<BaseResponse<List<QuizQuestionsResponse>>> {
+        return getResult {
+            projectService.getQuizQuestions(quizId, getToken(sharedPreferences))
         }
     }
 

@@ -1,6 +1,7 @@
 package com.iucbk.cocuk_asistan.util
 
 import android.content.SharedPreferences
+import com.iucbk.cocuk_asistan.data.net.response.login.LoginResponse
 import com.iucbk.cocuk_asistan.util.constant.USER_TOKEN
 
 
@@ -15,4 +16,8 @@ import com.iucbk.cocuk_asistan.util.constant.USER_TOKEN
 
 fun getToken(sharedPref: SharedPreferences): String {
     return sharedPref.getData(USER_TOKEN, "") as String
+}
+
+fun saveSession(sharedPref: SharedPreferences, loginResponse: LoginResponse?): Boolean {
+    return sharedPref.putData(USER_TOKEN, loginResponse?.token)
 }

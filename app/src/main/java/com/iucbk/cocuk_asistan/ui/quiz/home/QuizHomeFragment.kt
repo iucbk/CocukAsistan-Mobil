@@ -38,11 +38,11 @@ class QuizHomeFragment : BaseFragment<QuizHomeViewModel>(R.layout.fragment_quiz_
     }
 
     private fun initObservers() {
-        viewModel.getQuizCategories().observe(viewLifecycleOwner, Observer { result ->
+        viewModel.quizCategories.observe(viewLifecycleOwner, Observer { result ->
             when (result.status) {
                 SUCCESS -> {
                     binding.prgBar.gone()
-                    adapter.submitList(result.data.orEmpty())
+                    adapter.submitList(result.data?.data.orEmpty())
                 }
                 ERROR -> {
                     binding.prgBar.gone()

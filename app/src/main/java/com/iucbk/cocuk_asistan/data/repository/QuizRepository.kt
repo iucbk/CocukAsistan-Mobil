@@ -1,6 +1,6 @@
 package com.iucbk.cocuk_asistan.data.repository
 
-import androidx.lifecycle.LiveData
+import com.iucbk.cocuk_asistan.data.net.response.common.BaseResponse
 import com.iucbk.cocuk_asistan.data.net.response.quiz_categories.QuizCategoriesResponse
 import com.iucbk.cocuk_asistan.data.net.response.quiz_list.QuizListResponse
 import com.iucbk.cocuk_asistan.data.net.response.quiz_questions.QuizQuestionsResponse
@@ -18,9 +18,9 @@ import com.iucbk.cocuk_asistan.util.Result
 
 interface QuizRepository {
 
-    fun getQuizCategories(): LiveData<Result<List<QuizCategoriesResponse?>>>
+    suspend fun getQuizCategories(): Result<BaseResponse<List<QuizCategoriesResponse>>>
 
-    fun getQuizList(categoryId: Int): LiveData<Result<List<QuizListResponse?>>>
+    suspend fun getQuizList(categoryId: Int): Result<BaseResponse<List<QuizListResponse>>>
 
-    fun getQuizQuestions(quizId: Int): LiveData<Result<List<QuizQuestionsResponse?>>>
+    suspend fun getQuizQuestions(quizId: Int): Result<BaseResponse<List<QuizQuestionsResponse>>>
 }
