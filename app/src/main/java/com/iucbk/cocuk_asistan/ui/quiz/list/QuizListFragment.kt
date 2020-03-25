@@ -46,11 +46,10 @@ class QuizListFragment : BaseFragment<QuizListViewModel>(R.layout.fragment_quiz_
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.setQuizCategoryId(categoryId ?: 0)
-        initUI()
-        initObservers()
     }
 
-    private fun initUI() {
+    override fun initUI() {
+        super.initUI()
         binding.prgBar.gone()
         binding.txtCategoryName.text = categoryName ?: "Error"
 
@@ -63,7 +62,8 @@ class QuizListFragment : BaseFragment<QuizListViewModel>(R.layout.fragment_quiz_
         }
     }
 
-    private fun initObservers() {
+    override fun initObservers() {
+        super.initObservers()
         viewModel.quizListById.observe(viewLifecycleOwner, Observer { result ->
             when (result.status) {
                 SUCCESS -> {

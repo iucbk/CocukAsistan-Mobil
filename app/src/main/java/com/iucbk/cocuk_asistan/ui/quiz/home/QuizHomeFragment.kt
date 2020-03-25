@@ -1,7 +1,5 @@
 package com.iucbk.cocuk_asistan.ui.quiz.home
 
-import android.os.Bundle
-import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -31,13 +29,8 @@ class QuizHomeFragment : BaseFragment<QuizHomeViewModel>(R.layout.fragment_quiz_
 
     private var adapter by AutoClearedValue<QuizCategoriesAdapter>()
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initUI()
-        initObservers()
-    }
-
-    private fun initObservers() {
+    override fun initObservers() {
+        super.initObservers()
         viewModel.quizCategories.observe(viewLifecycleOwner, Observer { result ->
             when (result.status) {
                 SUCCESS -> {
@@ -60,19 +53,22 @@ class QuizHomeFragment : BaseFragment<QuizHomeViewModel>(R.layout.fragment_quiz_
         })
     }
 
-    private fun initUI() {
-        binding.prgBar.gone()
+    override fun initUserActionObservers() {
+        super.initUserActionObservers()
+        binding.btnBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
+    }
 
+    override fun initUI() {
+        super.initUI()
+        binding.prgBar.gone()
         adapter = QuizCategoriesAdapter {
             val action =
                 QuizHomeFragmentDirections.actionQuizHomeFragmentToQuizListFragment(it.id, it.name)
             findNavController().navigate(action)
         }.also {
             binding.recycCategories.adapter = it
-        }
-
-        binding.btnBack.setOnClickListener {
-            findNavController().popBackStack()
         }
     }
 }

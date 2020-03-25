@@ -1,7 +1,6 @@
 package com.iucbk.cocuk_asistan.ui.quiz.questions.item
 
 import android.os.Bundle
-import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.iucbk.cocuk_asistan.R
@@ -35,12 +34,8 @@ class QuestionFragment : BaseFragment<QuestionViewModel>(R.layout.fragment_quest
         }
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initUI()
-    }
-
-    private fun initUI() {
+    override fun initUI() {
+        super.initUI()
         binding.txtQuestion.text = questionData.quiz_title
 
         adapter = QuestionAnswerAdapter(questionData.true_option) { position, result, itemBinding ->

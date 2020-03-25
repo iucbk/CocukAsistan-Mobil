@@ -44,25 +44,14 @@ class QuizQuestionsFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.setQuizId(quizId ?: 0)
-        initUI()
-        initObservers()
     }
 
-    private fun initUI() {
+    override fun initUI() {
+        super.initUI()
         binding.prgBar.gone()
         questionViewPagerAdapter = QuizQuestionsViewPager(this)
 
         binding.vpQuestions.adapter = questionViewPagerAdapter
-
-        binding.btnBack.setOnClickListener {
-            with(binding.vpQuestions) {
-                if (this.currentItem == 0) {
-                    showToast("Zaten İlk Sorudasın")
-                } else {
-                    this.setCurrentItem(this.currentItem - 1, true)
-                }
-            }
-        }
 
         binding.btnNext.setOnClickListener {
             with(binding.vpQuestions) {
@@ -96,7 +85,21 @@ class QuizQuestionsFragment :
         }
     }
 
-    private fun initObservers() {
+    override fun initUserActionObservers() {
+        super.initUserActionObservers()
+        binding.btnBack.setOnClickListener {
+            with(binding.vpQuestions) {
+                if (this.currentItem == 0) {
+                    showToast("Zaten İlk Sorudasın")
+                } else {
+                    this.setCurrentItem(this.currentItem - 1, true)
+                }
+            }
+        }
+    }
+
+    override fun initObservers() {
+        super.initObservers()
         viewModel.quizResult.observe(viewLifecycleOwner, Observer { result ->
             when (result.status) {
                 SUCCESS -> {

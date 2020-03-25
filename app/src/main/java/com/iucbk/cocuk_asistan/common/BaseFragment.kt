@@ -39,6 +39,12 @@ abstract class BaseFragment<VM : ViewModel>(@LayoutRes layoutRes: Int) :
 
     override fun androidInjector(): AndroidInjector<Any> = androidInjector
 
+    open fun initUserActionObservers() {}
+
+    open fun initObservers() {}
+
+    open fun initUI() {}
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         AndroidSupportInjection.inject(this)

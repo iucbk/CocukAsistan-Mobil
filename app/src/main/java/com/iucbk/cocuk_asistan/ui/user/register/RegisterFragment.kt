@@ -1,7 +1,5 @@
 package com.iucbk.cocuk_asistan.ui.user.register
 
-import android.os.Bundle
-import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -33,17 +31,15 @@ class RegisterFragment : BaseFragment<RegisterViewModel>(R.layout.fragment_regis
 
     private val binding by viewBinding(FragmentRegisterBinding::bind)
 
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun initUserActionObservers() {
+        super.initUserActionObservers()
         binding.btnRegister.setOnClickListener {
             onUserRegister()
         }
-        initObservers()
     }
 
-    private fun initObservers() {
+    override fun initObservers() {
+        super.initObservers()
         viewModel.registerResult.observe(viewLifecycleOwner, Observer { result ->
             when (result.status) {
                 SUCCESS -> {
@@ -67,6 +63,11 @@ class RegisterFragment : BaseFragment<RegisterViewModel>(R.layout.fragment_regis
                 }
             }
         })
+    }
+
+    override fun initUI() {
+        super.initUI()
+        initObservers()
     }
 
     private fun onUserRegister() {
