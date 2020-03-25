@@ -72,18 +72,21 @@ class QuizQuestionsFragment :
                             questionViewPagerAdapter.itemCount
                         )
                     ) {
-                        SweetAlertDialog(requireContext(), SweetAlertDialog.SUCCESS_TYPE)
-                            .setTitleText("Tebrikler")
-                            .setContentText("Bütün testleri bitirdin")
+                        val alert =
+                            SweetAlertDialog(requireContext(), SweetAlertDialog.SUCCESS_TYPE)
+                        alert.setCancelable(false)
+                        alert.setTitleText(context.getString(R.string.congrat))
+                            .setContentText(context.getString(R.string.solved_all_test))
                             .setConfirmClickListener {
                                 it.dismissWithAnimation()
                                 findNavController().popBackStack()
-                            }.show()
+                            }
+                            .show()
 
                     } else {
                         SweetAlertDialog(requireContext(), SweetAlertDialog.WARNING_TYPE)
-                            .setTitleText("Çözmedigin Sorular Var")
-                            .setContentText("Lütfen bütün soruları çözmeyi dene")
+                            .setTitleText(context.getString(R.string.not_solved_all_test))
+                            .setContentText(context.getString(R.string.please_solve))
                             .show()
                     }
                 } else {
