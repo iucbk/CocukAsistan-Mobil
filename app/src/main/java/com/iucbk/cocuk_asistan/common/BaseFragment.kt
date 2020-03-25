@@ -2,6 +2,7 @@ package com.iucbk.cocuk_asistan.common
 
 import android.content.Context
 import android.os.Bundle
+import android.view.View
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
@@ -55,4 +56,10 @@ abstract class BaseFragment<VM : ViewModel>(@LayoutRes layoutRes: Int) :
         viewModel = ViewModelProvider(this, viewModelFactory).get(model() as Class<VM>)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initUI()
+        initUserActionObservers()
+        initObservers()
+    }
 }
