@@ -90,17 +90,19 @@
         app:layout_constraintTop_toTopOf="@+id/txtPassword"
         tools:visibility="visible" />
 
-    <Button
+    <com.iucbk_cocukasistan.custom_views.buttons.SwipeUpLoginButton
         android:id="@+id/btnLogin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginBottom="96dp"
-        android:background="@drawable/button_login"
         android:backgroundTint="#e78fb3"
         android:elevation="12dp"
         android:fontFamily="@font/bubbleboddyneueregulartrial"
+        android:gravity="center"
         android:lineSpacingExtra="10sp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
         android:text="@string/login"
         android:textColor="#f8f8f8"
         android:textSize="30sp"

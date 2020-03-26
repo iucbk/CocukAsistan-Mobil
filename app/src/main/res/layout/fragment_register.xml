@@ -120,15 +120,17 @@
         app:layout_constraintTop_toBottomOf="@+id/errorEmail"
         tools:visibility="visible" />
 
-    <Button
+    <com.iucbk_cocukasistan.custom_views.buttons.SwipeUpLoginButton
         android:id="@+id/btnRegister"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/button_login"
         android:backgroundTint="#594a4e"
         android:elevation="12dp"
         android:fontFamily="@font/bubbleboddyneueregulartrial"
+        android:gravity="center"
         android:lineSpacingExtra="10sp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
         android:text="@string/register"
         android:textColor="#f8f8f8"
         android:textSize="30sp"

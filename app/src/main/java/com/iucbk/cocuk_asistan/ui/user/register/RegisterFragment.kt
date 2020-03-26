@@ -67,6 +67,7 @@ class RegisterFragment : BaseFragment<RegisterViewModel>(R.layout.fragment_regis
 
     override fun initUI() {
         super.initUI()
+        binding.prgBar.hide()
         initObservers()
     }
 

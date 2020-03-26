@@ -114,4 +114,8 @@ dependencies {
     testImplementation "junit:junit:$junit_junit_version"
     androidTestImplementation "androidx.test.ext:junit:$ext_junit_version"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_espresso_core_version"
+
+    //Own Modules
+    implementation project(':custom_views')
+
 }

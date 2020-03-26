@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="vertical"
     tools:background="@color/design_default_color_primary">
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnQuizQuestion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -13,17 +15,21 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/rounded_list_item_item"
-        android:drawableStart="@drawable/ic_edit"
+        android:backgroundTint="#f8f8f8"
         android:elevation="8dp"
         android:lineSpacingExtra="4sp"
         android:paddingStart="32dp"
+        android:paddingTop="12dp"
         android:paddingEnd="32dp"
+        android:paddingBottom="12dp"
         android:textColor="#594a4e"
         android:textSize="20sp"
+        app:cornerRadius="24dp"
+        app:icon="@drawable/ic_edit"
+        app:iconTintMode="multiply"
         tools:text="Sultan Papağanı" />
 
-    <com.iucbk.cocuk_asistan.util.custom_view.CircleButton
+    <com.iucbk_cocukasistan.custom_views.buttons.CircleButton
         android:id="@+id/viewQuizState"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -31,6 +37,6 @@
         android:layout_marginEnd="8dp"
         android:elevation="2dp"
         android:padding="16dp"
-        android:translationZ="5dp"
+        android:translationZ="20dp"
         tools:src="@drawable/ic_cross" />
 </FrameLayout>

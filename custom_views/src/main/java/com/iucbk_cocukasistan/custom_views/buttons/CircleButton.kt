@@ -1,4 +1,4 @@
-package com.iucbk.cocuk_asistan.util.custom_view
+package com.iucbk_cocukasistan.custom_views.buttons
 
 import android.animation.ObjectAnimator
 import android.content.Context
@@ -8,6 +8,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
 import android.util.TypedValue
+import com.iucbk_cocukasistan.custom_views.R
 import kotlin.math.min
 
 // Code with ❤
@@ -39,6 +40,11 @@ class CircleButton @JvmOverloads constructor(
     private var defaultColor: Int = Color.BLACK
     private var pressedColor = 0
     private var pressedAnimator: ObjectAnimator? = null
+
+    private val PRESSED_COLOR_LIGHTUP = 255 / 25
+    private val PRESSED_RING_ALPHA = 75
+    private val DEFAULT_PRESSED_RING_WIDTH_DIP = 4
+    private val ANIMATION_TIME_ID = android.R.integer.config_shortAnimTime
 
     init {
         init(context, attrs)
@@ -124,11 +130,11 @@ class CircleButton @JvmOverloads constructor(
         if (attrs != null) {
             val a: TypedArray = context.obtainStyledAttributes(
                 attrs,
-                com.iucbk.cocuk_asistan.R.styleable.CircleButton
+                R.styleable.CircleButton
             )
-            color = a.getColor(com.iucbk.cocuk_asistan.R.styleable.CircleButton_cb_color, color)
+            color = a.getColor(R.styleable.CircleButton_cb_color, color)
             pressedRingWidth = a.getDimension(
-                com.iucbk.cocuk_asistan.R.styleable.CircleButton_cb_pressedRingWidth,
+                R.styleable.CircleButton_cb_pressedRingWidth,
                 pressedRingWidth.toFloat()
             ).toInt()
             a.recycle()
@@ -149,12 +155,5 @@ class CircleButton @JvmOverloads constructor(
             min(255, Color.green(color) + PRESSED_COLOR_LIGHTUP),
             min(255, Color.blue(color) + PRESSED_COLOR_LIGHTUP)
         )
-    }
-
-    companion object {
-        private const val PRESSED_COLOR_LIGHTUP = 255 / 25
-        private const val PRESSED_RING_ALPHA = 75
-        private const val DEFAULT_PRESSED_RING_WIDTH_DIP = 4
-        private const val ANIMATION_TIME_ID = android.R.integer.config_shortAnimTime
     }
 }
