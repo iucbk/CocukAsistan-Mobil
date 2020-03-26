@@ -38,4 +38,6 @@
     <string name="solved_all_test">Bütün testleri bitirdin</string>
     <string name="not_solved_all_test">Çözmedigin Sorular Var</string>
     <string name="please_solve">Lütfen bütün soruları çözmeyi dene</string>
+    <string name="already_start">Zaten İlk Sorudasın</string>
+    <string name="answer_proccess">Cevaplarınız işleniyor</string>
 </resources>
