@@ -14,6 +14,7 @@ import com.iucbk.cocuk_asistan.ui.adapter.QuizQuestionsViewPager
 import com.iucbk.cocuk_asistan.util.Status.ERROR
 import com.iucbk.cocuk_asistan.util.Status.LOADING
 import com.iucbk.cocuk_asistan.util.Status.SUCCESS
+import com.iucbk.cocuk_asistan.util.constant.QUESTION_POINT
 import com.iucbk.cocuk_asistan.util.delegate.AutoClearedValue
 import com.iucbk.cocuk_asistan.util.extension.gone
 import com.iucbk.cocuk_asistan.util.extension.show
@@ -157,7 +158,7 @@ class QuizQuestionsFragment :
         var score = 0
         mapQuestionsWithAnswer.forEach {
             if (it.second) {
-                score += 5
+                score += QUESTION_POINT
             }
         }
         return QuizScoreDTO(
