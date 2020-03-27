@@ -1,5 +1,6 @@
 package com.iucbk.cocuk_asistan.data.net
 
+import com.iucbk.cocuk_asistan.data.model.QuizScoreDTO
 import com.iucbk.cocuk_asistan.data.model.UserLoginDTO
 import com.iucbk.cocuk_asistan.data.model.UserRegisterDTO
 import com.iucbk.cocuk_asistan.data.net.response.common.BaseResponse
@@ -51,4 +52,10 @@ interface ProjectService {
         @Query("quiz_id") quizId: Int,
         @Header("token") authHeader: String
     ): Response<BaseResponse<List<QuizQuestionsResponse>>>
+
+    @POST("quiz/solvedQuiz")
+    suspend fun sendQuizScore(
+        @Body quizScoreDTO: QuizScoreDTO,
+        @Header("token") authHeader: String
+    ): Response<BaseResponse<Nothing?>>
 }

@@ -1,4 +1,4 @@
-package com.iucbk.cocuk_asistan.util.constant
+package com.iucbk.cocuk_asistan.data.model
 
 
 // Code with ❤
@@ -7,12 +7,10 @@ package com.iucbk.cocuk_asistan.util.constant
 //│ ─────────────────────────── │
 //│ mirac.ozkan123@gmail.com    │
 //│ ─────────────────────────── │
-//│ 02.03.2020 - 12:11          │
+//│ 25.03.2020 - 18:56          │
 //└─────────────────────────────┘
 
-const val SHARED_PREF_NAME = "cocuk_asistan_sp"
-
-const val USER_TOKEN = "token"
-const val USER_EMAIL = "email"
-
-const val QUESTION_POINT = 5
+data class QuizScoreDTO(
+    val quiz_score: Int,
+    val quiz_id: Int
+)

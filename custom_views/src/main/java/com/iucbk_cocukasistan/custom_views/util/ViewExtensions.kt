@@ -1,4 +1,6 @@
-package com.iucbk.cocuk_asistan.util.constant
+package com.iucbk_cocukasistan.custom_views.util
+
+import android.content.res.Resources
 
 
 // Code with ❤
@@ -7,12 +9,11 @@ package com.iucbk.cocuk_asistan.util.constant
 //│ ─────────────────────────── │
 //│ mirac.ozkan123@gmail.com    │
 //│ ─────────────────────────── │
-//│ 02.03.2020 - 12:11          │
+//│ 26.03.2020 - 21:18          │
 //└─────────────────────────────┘
 
-const val SHARED_PREF_NAME = "cocuk_asistan_sp"
+val Int.dp: Float
+    get() = (this * Resources.getSystem().displayMetrics.density + 0.5f)
 
-const val USER_TOKEN = "token"
-const val USER_EMAIL = "email"
-
-const val QUESTION_POINT = 5
+val Float.dp: Float
+    get() = (this * Resources.getSystem().displayMetrics.density + 0.5f)

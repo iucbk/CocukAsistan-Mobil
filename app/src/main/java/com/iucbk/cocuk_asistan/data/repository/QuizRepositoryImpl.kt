@@ -2,6 +2,7 @@ package com.iucbk.cocuk_asistan.data.repository
 
 import android.content.SharedPreferences
 import com.iucbk.cocuk_asistan.common.BaseRepository
+import com.iucbk.cocuk_asistan.data.model.QuizScoreDTO
 import com.iucbk.cocuk_asistan.data.net.ProjectService
 import com.iucbk.cocuk_asistan.data.net.response.common.BaseResponse
 import com.iucbk.cocuk_asistan.data.net.response.quiz_categories.QuizCategoriesResponse
@@ -41,6 +42,12 @@ class QuizRepositoryImpl @Inject constructor(
     override suspend fun getQuizQuestions(quizId: Int): Result<BaseResponse<List<QuizQuestionsResponse>>> {
         return getResult {
             projectService.getQuizQuestions(quizId, getToken(sharedPreferences))
+        }
+    }
+
+    override suspend fun sendScoreOfQuiz(quizScoreDTO: QuizScoreDTO): Result<BaseResponse<Nothing?>> {
+        return getResult {
+            projectService.sendQuizScore(quizScoreDTO, getToken(sharedPreferences))
         }
     }
 

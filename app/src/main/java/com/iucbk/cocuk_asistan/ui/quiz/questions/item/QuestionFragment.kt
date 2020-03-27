@@ -1,7 +1,6 @@
 package com.iucbk.cocuk_asistan.ui.quiz.questions.item
 
 import android.os.Bundle
-import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.iucbk.cocuk_asistan.R
@@ -35,32 +34,29 @@ class QuestionFragment : BaseFragment<QuestionViewModel>(R.layout.fragment_quest
         }
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initUI()
-    }
-
-    private fun initUI() {
+    override fun initUI() {
+        super.initUI()
         binding.txtQuestion.text = questionData.quiz_title
 
         adapter = QuestionAnswerAdapter(questionData.true_option) { position, result, itemBinding ->
             if (isItemSelectable) {
                 if (result) {
-                    itemBinding.cntAnswer.setBackgroundColor(
+                    itemBinding.cntAnswer.setCardBackgroundColor(
                         ContextCompat.getColor(
                             requireContext(),
                             R.color.colorGreen
                         )
                     )
+                    setAnswerWithQuestion(position, true)
                 } else {
-                    itemBinding.cntAnswer.setBackgroundColor(
+                    itemBinding.cntAnswer.setCardBackgroundColor(
                         ContextCompat.getColor(
                             requireContext(),
                             R.color.colorRed
                         )
                     )
+                    setAnswerWithQuestion(position, false)
                 }
-                setAnswerWithQuestion(position)
                 isItemSelectable = false
             } else {
                 showToast(getString(R.string.you_already_select))
@@ -74,9 +70,9 @@ class QuestionFragment : BaseFragment<QuestionViewModel>(R.layout.fragment_quest
         )
     }
 
-    private fun setAnswerWithQuestion(givenAnswer: Int) {
+    private fun setAnswerWithQuestion(givenAnswer: Int, isTrue: Boolean) {
         (requireParentFragment() as QuizQuestionsFragment)
-            .mapQuestionsWithAnswer.add(givenAnswer to questionData.true_option)
+            .mapQuestionsWithAnswer.add(givenAnswer to isTrue)
     }
 
     companion object {

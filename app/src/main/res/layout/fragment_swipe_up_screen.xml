@@ -9,11 +9,12 @@
 
     <ImageView
         android:layout_width="256dp"
-        android:layout_height="384dp"
-        android:scaleType="fitXY"
+        android:layout_height="0dp"
+        android:foregroundGravity="bottom"
         android:src="@drawable/tilki2"
         app:layout_constraintBottom_toTopOf="@+id/bottomArea"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <FrameLayout
@@ -42,33 +43,39 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <Button
+            <com.iucbk_cocukasistan.custom_views.buttons.SwipeUpSignUpButton
                 android:id="@+id/btnRegister"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:background="@drawable/button_register"
+                android:layout_marginTop="30dp"
                 android:elevation="12dp"
                 android:fontFamily="@font/bubbleboddyneueboldtrial"
+                android:gravity="center"
                 android:lineSpacingExtra="10sp"
-                android:text="Üye Ol"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:text="@string/register"
                 android:textColor="#f8f8f8"
                 android:textSize="30sp"
+                app:backgroundTint="#594a4e"
                 app:layout_constraintEnd_toEndOf="@+id/imageView2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
-            <Button
+            <com.iucbk_cocukasistan.custom_views.buttons.SwipeUpLoginButton
                 android:id="@+id/btnLogin"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:layout_marginBottom="40dp"
-                android:background="@drawable/button_login"
+                android:layout_marginTop="36dp"
+                android:layout_marginBottom="36dp"
+                android:backgroundTint="#e78fb3"
                 android:elevation="12dp"
                 android:fontFamily="@font/bubbleboddyneueboldtrial"
+                android:gravity="center"
                 android:lineSpacingExtra="10sp"
-                android:text="Giriş Yap"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:text="@string/login"
                 android:textColor="#f8f8f8"
                 android:textSize="30sp"
                 app:layout_constraintBottom_toBottomOf="parent"

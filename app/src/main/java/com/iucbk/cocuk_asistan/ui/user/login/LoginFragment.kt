@@ -1,8 +1,6 @@
 package com.iucbk.cocuk_asistan.ui.user.login
 
 import android.content.SharedPreferences
-import android.os.Bundle
-import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.NavOptions
@@ -38,18 +36,15 @@ class LoginFragment : BaseFragment<LoginViewModel>(R.layout.fragment_login) {
 
     private val binding by viewBinding(FragmentLoginBinding::bind)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        initObserver()
-
-        binding.prgBar.hide()
+    override fun initUserActionObservers() {
+        super.initUserActionObservers()
         binding.btnLogin.setOnClickListener {
             onUserLogin()
         }
     }
 
-    private fun initObserver() {
+    override fun initObservers() {
+        super.initObservers()
         viewModel.loginResult.observe(viewLifecycleOwner, Observer { result ->
             when (result.status) {
                 Status.SUCCESS -> {
@@ -83,6 +78,11 @@ class LoginFragment : BaseFragment<LoginViewModel>(R.layout.fragment_login) {
                 }
             }
         })
+    }
+
+    override fun initUI() {
+        super.initUI()
+        binding.prgBar.hide()
     }
 
     private fun onUserLogin() {

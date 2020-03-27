@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:background="@color/design_default_color_primary">
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnQuizCategory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -13,23 +14,28 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/rounded_category_item"
-        android:drawableStart="@drawable/ic_books"
         android:elevation="8dp"
         android:lineSpacingExtra="4sp"
         android:paddingStart="32dp"
+        android:paddingTop="20dp"
         android:paddingEnd="32dp"
+        android:paddingBottom="20dp"
         android:textColor="#594a4e"
         android:textSize="25sp"
+        app:backgroundTint="#f8f8f8"
+        app:cornerRadius="24dp"
+        app:icon="@drawable/ic_books"
+        app:iconTintMode="multiply"
         tools:text="Hayvanlar" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <com.iucbk_cocukasistan.custom_views.buttons.CircleButton
         android:id="@+id/viewQuizState"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="top|end"
         android:layout_marginEnd="8dp"
-        android:backgroundTint="#6fc1a5"
-        android:src="@drawable/ic_check" />
-
+        android:elevation="2dp"
+        android:padding="16dp"
+        android:translationZ="20dp"
+        tools:src="@drawable/ic_cross" />
 </FrameLayout>

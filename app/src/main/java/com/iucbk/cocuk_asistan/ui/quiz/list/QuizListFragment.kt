@@ -13,7 +13,6 @@ import com.iucbk.cocuk_asistan.ui.adapter.QuizListAdapter
 import com.iucbk.cocuk_asistan.util.Status.ERROR
 import com.iucbk.cocuk_asistan.util.Status.LOADING
 import com.iucbk.cocuk_asistan.util.Status.SUCCESS
-import com.iucbk.cocuk_asistan.util.delegate.AutoClearedValue
 import com.iucbk.cocuk_asistan.util.extension.gone
 import com.iucbk.cocuk_asistan.util.extension.show
 import com.iucbk.cocuk_asistan.util.extension.showSnackBar
@@ -41,16 +40,15 @@ class QuizListFragment : BaseFragment<QuizListViewModel>(R.layout.fragment_quiz_
         }
     }
 
-    private var adapter by AutoClearedValue<QuizListAdapter>()
+    private lateinit var adapter: QuizListAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.setQuizCategoryId(categoryId ?: 0)
-        initUI()
-        initObservers()
     }
 
-    private fun initUI() {
+    override fun initUI() {
+        super.initUI()
         binding.prgBar.gone()
         binding.txtCategoryName.text = categoryName ?: "Error"
 
@@ -63,7 +61,8 @@ class QuizListFragment : BaseFragment<QuizListViewModel>(R.layout.fragment_quiz_
         }
     }
 
-    private fun initObservers() {
+    override fun initObservers() {
+        super.initObservers()
         viewModel.quizListById.observe(viewLifecycleOwner, Observer { result ->
             when (result.status) {
                 SUCCESS -> {
