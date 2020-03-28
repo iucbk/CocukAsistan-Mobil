@@ -59,9 +59,7 @@
             app:destination="@id/quizHomeFragment" />
         <action
             android:id="@+id/action_homeFragment_to_cameraFragment"
-            app:destination="@id/cameraFragment"
-            app:popUpTo="@id/homeFragment"
-            app:popUpToInclusive="true" />
+            app:destination="@id/cameraFragment" />
     </fragment>
     <fragment
         android:id="@+id/quizHomeFragment"
