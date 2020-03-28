@@ -116,8 +116,10 @@ dependencies {
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_espresso_core_version"
 
     //CameraX
-    implementation "androidx.camera:camera-core:${camerax_version}"
-    implementation "androidx.camera:camera-camera2:${camerax_version}"
+    implementation "androidx.camera:camera-core:$camerax_version"
+    implementation "androidx.camera:camera-lifecycle:$camerax_version"
+    implementation "androidx.camera:camera-view:$camera_view"
+    implementation "androidx.camera:camera-extensions:$camera_ext"
 
     //Own Modules
     implementation project(':custom_views')
