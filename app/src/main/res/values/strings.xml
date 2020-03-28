@@ -40,4 +40,5 @@
     <string name="please_solve">Lütfen bütün soruları çözmeyi dene</string>
     <string name="already_start">Zaten İlk Sorudasın</string>
     <string name="answer_proccess">Cevaplarınız işleniyor</string>
+    <string name="knowledge">Knowledge</string>
 </resources>

@@ -1,14 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.camera.ImageDetailFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/text"
+    <ImageView
+        android:id="@+id/imgShootedImage"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:contentDescription="Shooted Image" />
 
-</FrameLayout>
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottomAppBar"
+        style="@style/Widget.MaterialComponents.BottomAppBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottom_bar_height"
+        android:layout_gravity="bottom"
+        android:backgroundTint="@color/bottom_bar_color"
+        android:paddingStart="@dimen/bottom_bar_margin_start_end"
+        android:paddingTop="@dimen/bottom_bar_margin_Top"
+        android:paddingEnd="@dimen/bottom_bar_margin_start_end"
+        app:fabAlignmentMode="center"
+        app:fabCradleMargin="@dimen/bottom_bar_fab_margin"
+        app:hideOnScroll="true"
+        app:layout_scrollFlags="scroll|enterAlways"
+        app:menu="@menu/menu"
+        app:navigationIcon="@drawable/ic_back" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fltShootPhotoAgain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/bottom_bar_color"
+        android:src="@drawable/ic_camera"
+        app:fabCustomSize="@dimen/custom_fab_size"
+        app:layout_anchor="@id/bottomAppBar" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
