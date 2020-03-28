@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:layoutDirection="ltr">
 
-    <!-- Camera control and gallery buttons -->
+    <!--TODO icons will be change -->
+
     <ImageButton
         android:id="@+id/camera_switch_button"
         android:layout_width="64dp"
@@ -26,7 +27,7 @@
         android:layout_width="92dp"
         android:layout_height="92dp"
         android:layout_marginBottom="80dp"
-        android:background="@drawable/ic_edit"
+        android:background="@drawable/ic_camera"
         android:contentDescription="Capture Photo"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
