@@ -7,4 +7,6 @@
     <color name="colorRed">#FF0000</color>
     <color name="colorGreen">#55c35c</color>
     <color name="bottom_bar_color">#e78fb3</color>
+
+    <color name="general_text_color">#594a4e</color>
 </resources>

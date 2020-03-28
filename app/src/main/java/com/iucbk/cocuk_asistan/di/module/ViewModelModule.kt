@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.iucbk.cocuk_asistan.di.ViewModelFactory
 import com.iucbk.cocuk_asistan.di.key.ViewModelKey
-import com.iucbk.cocuk_asistan.ui.camera.ImageDetailViewModel
+import com.iucbk.cocuk_asistan.ui.`object`.ImageDetailViewModel
 import com.iucbk.cocuk_asistan.ui.quiz.home.QuizHomeViewModel
 import com.iucbk.cocuk_asistan.ui.quiz.list.QuizListViewModel
 import com.iucbk.cocuk_asistan.ui.quiz.questions.QuizQuestionsViewModel

@@ -1,4 +1,4 @@
-package com.iucbk.cocuk_asistan.ui.camera
+package com.iucbk.cocuk_asistan.ui.`object`
 
 import androidx.lifecycle.ViewModel
 import javax.inject.Inject

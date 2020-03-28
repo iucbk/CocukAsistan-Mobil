@@ -18,7 +18,7 @@
         android:layout_gravity="center"
         android:lineSpacingExtra="12sp"
         android:text="@string/gidak"
-        android:textColor="#594a4e"
+        android:textColor="@color/general_text_color"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView3"
         app:layout_constraintEnd_toEndOf="@+id/imageView3"

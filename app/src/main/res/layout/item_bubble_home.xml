@@ -24,7 +24,7 @@
         android:lineSpacingExtra="8sp"
         android:text="Selam Eda! \n Ne Yapmak \n İstersin? "
         android:textAlignment="center"
-        android:textColor="#594a4e"
+        android:textColor="@color/general_text_color"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

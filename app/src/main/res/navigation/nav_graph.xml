@@ -118,7 +118,7 @@
     </fragment>
     <fragment
         android:id="@+id/imageDetailFragment"
-        android:name="com.iucbk.cocuk_asistan.ui.camera.ImageDetailFragment"
+        android:name="com.iucbk.cocuk_asistan.ui.object.ImageDetailFragment"
         android:label="fragment_image_detail"
         tools:layout="@layout/fragment_image_detail">
         <action
