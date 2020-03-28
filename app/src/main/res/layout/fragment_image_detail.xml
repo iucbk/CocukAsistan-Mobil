@@ -36,6 +36,7 @@
         android:backgroundTint="@color/bottom_bar_color"
         android:src="@drawable/ic_camera"
         app:fabCustomSize="@dimen/custom_fab_size"
-        app:layout_anchor="@id/bottomAppBar" />
+        app:layout_anchor="@id/bottomAppBar"
+        app:maxImageSize="60dp" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
