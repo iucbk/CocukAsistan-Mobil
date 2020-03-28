@@ -1,5 +1,6 @@
 package com.iucbk.cocuk_asistan.di.module
 
+import com.iucbk.cocuk_asistan.ui.camera.ImageDetailFragment
 import com.iucbk.cocuk_asistan.ui.quiz.home.QuizHomeFragment
 import com.iucbk.cocuk_asistan.ui.quiz.list.QuizListFragment
 import com.iucbk.cocuk_asistan.ui.quiz.questions.QuizQuestionsFragment
@@ -43,5 +44,9 @@ abstract class FragmentModule {
 
     @ContributesAndroidInjector
     internal abstract fun contributeQuestionFragment(): QuestionFragment
+
+
+    @ContributesAndroidInjector
+    internal abstract fun contributeImageDetailFragment(): ImageDetailFragment
 
 }

@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.iucbk.cocuk_asistan.di.ViewModelFactory
 import com.iucbk.cocuk_asistan.di.key.ViewModelKey
+import com.iucbk.cocuk_asistan.ui.camera.ImageDetailViewModel
 import com.iucbk.cocuk_asistan.ui.quiz.home.QuizHomeViewModel
 import com.iucbk.cocuk_asistan.ui.quiz.list.QuizListViewModel
 import com.iucbk.cocuk_asistan.ui.quiz.questions.QuizQuestionsViewModel
@@ -59,4 +60,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(QuestionViewModel::class)
     internal abstract fun bindQuestionViewModel(questionViewModel: QuestionViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ImageDetailViewModel::class)
+    internal abstract fun bindImageDetailFragment(imageDetailViewModel: ImageDetailViewModel): ViewModel
 }
