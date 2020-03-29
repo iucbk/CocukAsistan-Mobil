@@ -45,4 +45,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="solve_quiz">Quiz Çöz</string>
+    <string name="are_u_sure_for_quit">Çıkmak istediğine emin misin ?</string>
+    <string name="exit_quiz">Quiz\'den Çık</string>
+    <string name="stay_here">Burada Kal</string>
 </resources>
