@@ -3,9 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    tools:background="@color/design_default_color_primary">
+    android:layout_height="wrap_content">
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnQuizQuestion"
@@ -14,9 +12,8 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="8dp"
-        android:backgroundTint="#f8f8f8"
-        android:elevation="8dp"
+        android:layout_marginBottom="12dp"
+        android:backgroundTint="@color/general_button_bg"
         android:lineSpacingExtra="4sp"
         android:paddingStart="32dp"
         android:paddingTop="12dp"
@@ -25,6 +22,7 @@
         android:textColor="@color/general_text_color"
         android:textSize="20sp"
         app:cornerRadius="24dp"
+        app:elevation="2dp"
         app:icon="@drawable/ic_edit"
         app:iconTintMode="multiply"
         tools:text="Sultan Papağanı" />

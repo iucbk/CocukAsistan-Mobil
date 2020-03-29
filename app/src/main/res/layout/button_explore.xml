@@ -13,7 +13,7 @@
         android:elevation="12dp"
         android:lineSpacingExtra="6sp"
         android:text="@string/etraf_kesfet"
-        android:textColor="#f8f8f8"
+        android:textColor="@color/general_button_bg"
         android:textSize="36sp" />
 
     <ImageView
