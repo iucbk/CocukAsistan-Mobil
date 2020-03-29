@@ -1,0 +1,58 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="360dp"
+    android:height="640dp"
+    android:autoMirrored="true"
+    android:viewportWidth="360"
+    android:viewportHeight="640">
+    <group>
+        <clip-path android:pathData="M0,0h360v640h-360z" />
+        <group>
+            <clip-path android:pathData="M-60.939,-43.994h450.879v672.988h-450.879z" />
+            <path
+                android:fillAlpha="0.87"
+                android:fillColor="#fff"
+                android:pathData="M-60.939,50.606l444.99,-94.64l5.824,27.384l-444.99,94.64z"
+                android:strokeAlpha="0.87" />
+            <path
+                android:fillAlpha="0.87"
+                android:fillColor="#fff"
+                android:pathData="M-60.939,125.606l444.99,-94.64l5.824,27.384l-444.99,94.64z"
+                android:strokeAlpha="0.87" />
+            <path
+                android:fillAlpha="0.87"
+                android:fillColor="#fff"
+                android:pathData="M-60.939,200.606l444.99,-94.64l5.824,27.384l-444.99,94.64z"
+                android:strokeAlpha="0.87" />
+            <path
+                android:fillAlpha="0.87"
+                android:fillColor="#fff"
+                android:pathData="M-60.939,275.606l444.99,-94.64l5.824,27.384l-444.99,94.64z"
+                android:strokeAlpha="0.87" />
+            <path
+                android:fillAlpha="0.87"
+                android:fillColor="#fff"
+                android:pathData="M-60.939,350.606l444.99,-94.64l5.824,27.384l-444.99,94.64z"
+                android:strokeAlpha="0.87" />
+            <path
+                android:fillAlpha="0.87"
+                android:fillColor="#fff"
+                android:pathData="M-60.939,425.606l444.99,-94.64l5.824,27.384l-444.99,94.64z"
+                android:strokeAlpha="0.87" />
+            <path
+                android:fillAlpha="0.87"
+                android:fillColor="#fff"
+                android:pathData="M-60.939,500.606l444.99,-94.64l5.824,27.384l-444.99,94.64z"
+                android:strokeAlpha="0.87" />
+            <path
+                android:fillAlpha="0.87"
+                android:fillColor="#fff"
+                android:pathData="M-60.939,575.606l444.99,-94.64l5.824,27.384l-444.99,94.64z"
+                android:strokeAlpha="0.87" />
+            <path
+                android:fillAlpha="0.87"
+                android:fillColor="#fff"
+                android:pathData="M-60.939,650.606l444.99,-94.64l5.824,27.384l-444.99,94.64z"
+                android:strokeAlpha="0.87" />
+        </group>
+    </group>
+</vector>
