@@ -15,9 +15,14 @@
         <item name="android:layout_marginEnd">8dp</item>
         <item name="android:lineSpacingExtra">8dp</item>
         <item name="android:padding">8dp</item>
-        <item name="android:textColor">#594a4e</item>
+        <item name="android:textColor">@color/general_text_color</item>
         <item name="android:textCursorDrawable">@android:color/black</item>
         <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="circleImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">45%</item>
     </style>
 
 </resources>

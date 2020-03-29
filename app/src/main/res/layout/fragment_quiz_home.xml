@@ -15,7 +15,7 @@
         android:layout_marginTop="36dp"
         android:lineSpacingExtra="7sp"
         android:text="@string/kategoriler"
-        android:textColor="#594a4e"
+        android:textColor="@color/general_text_color"
         android:textSize="35sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

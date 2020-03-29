@@ -124,7 +124,7 @@
         android:id="@+id/btnRegister"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:backgroundTint="#594a4e"
+        android:backgroundTint="@color/general_text_color"
         android:elevation="12dp"
         android:fontFamily="@font/bubbleboddyneueregulartrial"
         android:gravity="center"

@@ -57,6 +57,9 @@
         <action
             android:id="@+id/action_homeFragment_to_quizHomeFragment"
             app:destination="@id/quizHomeFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_cameraFragment"
+            app:destination="@id/cameraFragment" />
     </fragment>
     <fragment
         android:id="@+id/quizHomeFragment"
@@ -101,5 +104,32 @@
         <argument
             android:name="quizId"
             app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/cameraFragment"
+        android:name="com.iucbk.cocuk_asistan.ui.camera.CameraFragment"
+        android:label="fragment_camera"
+        tools:layout="@layout/fragment_camera">
+        <action
+            android:id="@+id/action_cameraFragment_to_imageDetailFragment"
+            app:destination="@id/imageDetailFragment"
+            app:popUpTo="@id/cameraFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/imageDetailFragment"
+        android:name="com.iucbk.cocuk_asistan.ui.object.ImageDetailFragment"
+        android:label="fragment_image_detail"
+        tools:layout="@layout/fragment_image_detail">
+        <action
+            android:id="@+id/action_imageDetailFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@layout/fragment_image_detail"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_imageDetailFragment_to_cameraFragment"
+            app:destination="@id/cameraFragment"
+            app:popUpTo="@layout/fragment_image_detail"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

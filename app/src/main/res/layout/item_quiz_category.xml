@@ -20,7 +20,7 @@
         android:paddingTop="20dp"
         android:paddingEnd="32dp"
         android:paddingBottom="20dp"
-        android:textColor="#594a4e"
+        android:textColor="@color/general_text_color"
         android:textSize="25sp"
         app:backgroundTint="#f8f8f8"
         app:cornerRadius="24dp"
