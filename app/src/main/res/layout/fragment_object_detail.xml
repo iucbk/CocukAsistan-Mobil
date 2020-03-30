@@ -189,7 +189,7 @@
         android:paddingEnd="32dp"
         android:paddingBottom="12dp"
         android:text="@string/solve_quiz"
-        android:textColor="#f8f8f8"
+        android:textColor="@color/general_button_bg"
         android:textSize="20sp"
         app:cornerRadius="24dp"
         app:layout_constraintBottom_toBottomOf="@+id/btnBack"

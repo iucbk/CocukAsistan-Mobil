@@ -16,8 +16,7 @@
             layout="@layout/item_bubble_home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
             app:layout_constraintEnd_toStartOf="@+id/imageView6"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,8 +24,8 @@
             android:id="@+id/imageView6"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:src="@drawable/ic_chicken"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_chicken_base"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,7 +33,7 @@
             android:id="@+id/incGoQuiz"
             layout="@layout/button_solve_quiz"
             android:layout_width="0dp"
-            android:layout_height="208dp"
+            android:layout_height="200dp"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -45,9 +44,8 @@
             android:id="@+id/incGoExplore"
             layout="@layout/button_explore"
             android:layout_width="0dp"
-            android:layout_height="208dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_height="200dp"
+            android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/incGoQuiz"
             app:layout_constraintStart_toStartOf="@+id/incGoQuiz"

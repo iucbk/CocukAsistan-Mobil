@@ -66,7 +66,20 @@ class QuizQuestionsFragment :
         binding.btnBack.setOnClickListener {
             with(binding.vpQuestions) {
                 if (this.currentItem == 0) {
-                    showToast(context.getString(R.string.already_start))
+                    SweetAlertDialog(requireContext(), SweetAlertDialog.WARNING_TYPE).apply {
+                        setCancelable(false)
+                        titleText = context.getString(R.string.are_u_sure_for_quit)
+                        contentText = getString(R.string.already_start)
+                        confirmText = context.getString(R.string.exit_quiz)
+                        setConfirmClickListener {
+                            it.dismissWithAnimation()
+                            findNavController().popBackStack()
+                        }
+                        setCancelButton(context.getString(R.string.stay_here)) {
+                            it.dismissWithAnimation()
+                        }
+                        show()
+                    }
                 } else {
                     this.setCurrentItem(this.currentItem - 1, true)
                 }
@@ -83,10 +96,12 @@ class QuizQuestionsFragment :
                     ) {
                         viewModel.setQuizScore(getScoreOfQuiz())
                     } else {
-                        SweetAlertDialog(requireContext(), SweetAlertDialog.WARNING_TYPE)
-                            .setTitleText(getString(R.string.not_solved_all_test))
-                            .setContentText(getString(R.string.solved_all_test))
-                            .show()
+                        SweetAlertDialog(requireContext(), SweetAlertDialog.WARNING_TYPE).apply {
+                            setCancelable(false)
+                            titleText = getString(R.string.not_solved_all_test)
+                            contentText = getString(R.string.solved_all_test)
+                            show()
+                        }
                     }
                 } else {
                     this.setCurrentItem(this.currentItem + 1, true)

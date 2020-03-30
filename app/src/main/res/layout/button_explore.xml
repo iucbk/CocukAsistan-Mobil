@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="216dp"
-    android:paddingBottom="8dp">
+    android:layout_height="200dp">
 
     <Button
         android:id="@+id/btnStartExplore"
@@ -13,7 +12,7 @@
         android:elevation="12dp"
         android:lineSpacingExtra="6sp"
         android:text="@string/etraf_kesfet"
-        android:textColor="#f8f8f8"
+        android:textColor="@color/general_button_bg"
         android:textSize="36sp" />
 
     <ImageView

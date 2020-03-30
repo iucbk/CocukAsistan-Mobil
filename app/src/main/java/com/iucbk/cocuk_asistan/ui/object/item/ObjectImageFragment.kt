@@ -9,11 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
 import com.iucbk.cocuk_asistan.R
 import com.iucbk.cocuk_asistan.databinding.FragmentObjectImageBinding
 import com.iucbk.cocuk_asistan.ui.`object`.ImageDetailFragment
-import com.iucbk.cocuk_asistan.ui.`object`.ImageDetailFragmentDirections
 import com.iucbk.cocuk_asistan.util.extension.viewBinding
 
 class ObjectImageFragment : Fragment(R.layout.fragment_object_image) {
@@ -32,9 +30,7 @@ class ObjectImageFragment : Fragment(R.layout.fragment_object_image) {
         activity.setSupportActionBar(binding.bottomAppBar)
 
         binding.fltShootPhotoAgain.setOnClickListener {
-            val action =
-                ImageDetailFragmentDirections.actionImageDetailFragmentToCameraFragment()
-            findNavController().navigate(action)
+            (requireParentFragment() as ImageDetailFragment).navigateScreenToCamera()
         }
 
         (requireParentFragment() as ImageDetailFragment).mainViewModel.imageFile.observe(
@@ -52,9 +48,7 @@ class ObjectImageFragment : Fragment(R.layout.fragment_object_image) {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
-                val action =
-                    ImageDetailFragmentDirections.actionImageDetailFragmentToHomeFragment()
-                findNavController().navigate(action)
+                (requireParentFragment() as ImageDetailFragment).navigateScreenToHome()
                 true
             }
             R.id.knowledge -> {

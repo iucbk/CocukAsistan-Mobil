@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="32dp"
-            android:background="@drawable/ic_stripe">
+            android:background="@drawable/ic_splash_bg">
 
             <ImageView
                 android:id="@+id/imageView2"
@@ -55,7 +55,7 @@
                 android:paddingTop="16dp"
                 android:paddingBottom="16dp"
                 android:text="@string/register"
-                android:textColor="#f8f8f8"
+                android:textColor="@color/general_button_bg"
                 android:textSize="30sp"
                 app:backgroundTint="@color/general_text_color"
                 app:layout_constraintEnd_toEndOf="@+id/imageView2"
@@ -76,7 +76,7 @@
                 android:paddingTop="16dp"
                 android:paddingBottom="16dp"
                 android:text="@string/login"
-                android:textColor="#f8f8f8"
+                android:textColor="@color/general_button_bg"
                 android:textSize="30sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

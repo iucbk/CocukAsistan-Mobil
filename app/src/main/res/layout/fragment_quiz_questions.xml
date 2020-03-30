@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="#fefefe"
     android:layout_height="match_parent"
+    android:background="#fefefe"
     tools:context=".ui.quiz.questions.QuizQuestionsFragment">
 
     <TextView
@@ -35,11 +35,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/btnBack"
-        app:layout_constraintTop_toBottomOf="@+id/txtQuestions"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="-95dp" />
+        app:layout_constraintTop_toBottomOf="@+id/txtQuestions" />
 
     <ImageButton
         android:id="@+id/btnBack"
@@ -53,6 +50,7 @@
         android:paddingEnd="32dp"
         android:paddingBottom="12dp"
         android:src="@drawable/ic_back"
+        android:tint="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -61,12 +59,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
-        android:background="@drawable/button_back_quiz_categories"
+        android:background="@drawable/button_next_quiz_categories"
         android:paddingStart="32dp"
         android:paddingTop="12dp"
         android:paddingEnd="32dp"
         android:paddingBottom="12dp"
-        android:src="@drawable/ic_back"
+        android:src="@drawable/ic_forward"
+        android:tint="@android:color/white"
         app:layout_constraintBottom_toBottomOf="@+id/btnBack"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/btnBack" />
