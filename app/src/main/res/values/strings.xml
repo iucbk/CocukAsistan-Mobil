@@ -48,4 +48,7 @@
     <string name="are_u_sure_for_quit">Çıkmak istediğine emin misin ?</string>
     <string name="exit_quiz">Quiz\'den Çık</string>
     <string name="stay_here">Burada Kal</string>
+    <string name="shooted_image">Shooted Image</string>
+    <string name="switch_camera">Switch Camera</string>
+    <string name="capture_photo">Capture Photo</string>
 </resources>
