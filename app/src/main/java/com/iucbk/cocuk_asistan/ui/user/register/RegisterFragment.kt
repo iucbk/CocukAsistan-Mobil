@@ -45,9 +45,7 @@ class RegisterFragment : BaseFragment<RegisterViewModel>(R.layout.fragment_regis
                 SUCCESS -> {
                     binding.prgBar.hide()
                     showSnackBar(getString(R.string.register_success))
-                    val action =
-                        RegisterFragmentDirections.actionRegisterFragmentToLoginFragment()
-                    findNavController().navigate(action)
+                    navigateScreenToLogin()
                 }
                 ERROR -> {
                     binding.prgBar.hide()
@@ -65,10 +63,15 @@ class RegisterFragment : BaseFragment<RegisterViewModel>(R.layout.fragment_regis
         })
     }
 
+    private fun navigateScreenToLogin() {
+        val action =
+            RegisterFragmentDirections.actionRegisterFragmentToLoginFragment()
+        findNavController().navigate(action)
+    }
+
     override fun initUI() {
         super.initUI()
         binding.prgBar.hide()
-        initObservers()
     }
 
     private fun onUserRegister() {
