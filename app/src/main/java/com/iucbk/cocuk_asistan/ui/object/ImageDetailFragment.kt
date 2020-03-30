@@ -2,6 +2,7 @@ package com.iucbk.cocuk_asistan.ui.`object`
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.iucbk.cocuk_asistan.R
 import com.iucbk.cocuk_asistan.common.BaseFragment
 import com.iucbk.cocuk_asistan.databinding.FragmentImageDetailBinding
@@ -31,4 +32,15 @@ class ImageDetailFragment : BaseFragment<ImageDetailViewModel>(R.layout.fragment
         binding.vpObjectDetail.adapter = vpAdapter
     }
 
+    internal fun navigateScreenToHome() {
+        val action =
+            ImageDetailFragmentDirections.actionImageDetailFragmentToHomeFragment()
+        findNavController().navigate(action)
+    }
+
+    internal fun navigateScreenToCamera() {
+        val action =
+            ImageDetailFragmentDirections.actionImageDetailFragmentToCameraFragment()
+        findNavController().navigate(action)
+    }
 }

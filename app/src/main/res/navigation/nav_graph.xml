@@ -124,7 +124,7 @@
         <action
             android:id="@+id/action_imageDetailFragment_to_homeFragment"
             app:destination="@id/homeFragment"
-            app:popUpTo="@layout/fragment_image_detail"
+            app:popUpTo="@id/imageDetailFragment"
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_imageDetailFragment_to_cameraFragment"
