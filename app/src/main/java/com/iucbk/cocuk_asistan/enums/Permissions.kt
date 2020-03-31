@@ -1,7 +1,6 @@
-package com.iucbk.cocuk_asistan.util.constant
+package com.iucbk.cocuk_asistan.enums
 
 import android.Manifest
-
 
 // Code with ❤
 //┌─────────────────────────────┐
@@ -9,14 +8,17 @@ import android.Manifest
 //│ ─────────────────────────── │
 //│ mirac.ozkan123@gmail.com    │
 //│ ─────────────────────────── │
-//│ 28.03.2020 - 18:44          │
+//│ 31.03.2020 - 15:56          │
 //└─────────────────────────────┘
 
+enum class Permissions(
+    val reqId: Int
+) {
+    CAMERA(1);
 
-const val TAKE_PHOTO_REQUEST_CODE = 1
-
-const val CAMERA_IMAGE_ID = 15
-
-val UPLOAD_IMAGE_PERMISSION_CAMERA = arrayOf(
-    Manifest.permission.CAMERA
-)
+    fun getPermissionArray(): Array<String> {
+        return when (this) {
+            CAMERA -> arrayOf(Manifest.permission.CAMERA)
+        }
+    }
+}

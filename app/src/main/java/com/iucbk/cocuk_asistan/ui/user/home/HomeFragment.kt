@@ -8,8 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.iucbk.cocuk_asistan.R
 import com.iucbk.cocuk_asistan.databinding.FragmentHomeBinding
-import com.iucbk.cocuk_asistan.util.constant.CAMERA_IMAGE_ID
-import com.iucbk.cocuk_asistan.util.constant.UPLOAD_IMAGE_PERMISSION_CAMERA
+import com.iucbk.cocuk_asistan.enums.Permissions
 import com.iucbk.cocuk_asistan.util.extension.checkPermissions
 import com.iucbk.cocuk_asistan.util.extension.requestPermission
 import com.iucbk.cocuk_asistan.util.extension.showToast
@@ -53,10 +52,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
 
         binding.incGoExplore.btnStartExplore.setOnClickListener {
-            if (checkPermissions(UPLOAD_IMAGE_PERMISSION_CAMERA, CAMERA_IMAGE_ID)) {
+            if (checkPermissions(Permissions.CAMERA)) {
                 navigateExploreScreen()
             } else {
-                requestPermission(UPLOAD_IMAGE_PERMISSION_CAMERA, CAMERA_IMAGE_ID)
+                requestPermission(Permissions.CAMERA)
             }
         }
     }
@@ -67,7 +66,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         grantResults: IntArray
     ) {
         when (requestCode) {
-            CAMERA_IMAGE_ID -> {
+            Permissions.CAMERA.reqId -> {
                 if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                     navigateExploreScreen()
                 }
