@@ -86,5 +86,4 @@ class QuestionFragment : BaseFragment<QuestionViewModel>(R.layout.fragment_quest
                 }
             }
     }
-
 }

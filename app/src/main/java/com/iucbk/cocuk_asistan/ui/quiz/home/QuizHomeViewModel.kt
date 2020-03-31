@@ -48,5 +48,4 @@ class QuizHomeViewModel @Inject constructor(
             quizCategories.postValue(quizRepository.getQuizCategories())
         }
     }
-
 }

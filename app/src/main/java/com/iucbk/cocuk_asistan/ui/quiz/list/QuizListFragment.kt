@@ -34,6 +34,7 @@ class QuizListFragment : BaseFragment<QuizListViewModel>(R.layout.fragment_quiz_
             QuizListFragmentArgs.fromBundle(it).categoryId
         }
     }
+
     private val categoryName by lazy {
         arguments?.let {
             QuizListFragmentArgs.fromBundle(it).quizCategory

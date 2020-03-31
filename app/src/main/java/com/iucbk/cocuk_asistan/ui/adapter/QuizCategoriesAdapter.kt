@@ -30,5 +30,4 @@ class QuizCategoriesAdapter(
     override fun onBindViewHolder(holder: QuizCategoriesViewHolder, position: Int) {
         holder.bind(getItem(position), setOnClickListener)
     }
-
 }

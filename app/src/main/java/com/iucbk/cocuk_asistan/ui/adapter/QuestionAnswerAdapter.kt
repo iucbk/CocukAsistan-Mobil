@@ -31,5 +31,4 @@ class QuestionAnswerAdapter(
     override fun onBindViewHolder(holder: QuestionAnswerViewHolder, position: Int) {
         holder.bind(getItem(position), position, setOnClickLister, realAnswer)
     }
-
 }

@@ -39,7 +39,6 @@ class LoginViewModel @Inject constructor(
         loginJob = launchLoginJob(loginDTO)
     }
 
-
     private fun launchLoginJob(loginDTO: UserLoginDTO): Job? {
         return viewModelScope.launch {
             loginResult.postValue(Result.loading())

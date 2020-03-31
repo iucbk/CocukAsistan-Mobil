@@ -3,6 +3,7 @@ package com.iucbk.cocuk_asistan.util
 import androidx.fragment.app.Fragment
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.iucbk.cocuk_asistan.R
 import com.iucbk.cocuk_asistan.data.net.response.common.ErrorBody
 import okhttp3.ResponseBody
 
@@ -32,10 +33,10 @@ fun Fragment.getErrorStringFromCode(code: Int?): String {
     code.let {
         return when (it) {
             422 -> {
-                "Şifre veya e-posta adresi yanlış"
+                this.getString(R.string.error_username_password)
             }
             else -> {
-                "Unknown Error"
+                this.getString(R.string.something_went_wrong)
             }
         }
     }
