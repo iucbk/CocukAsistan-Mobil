@@ -30,8 +30,10 @@
                 <action android:name="android.media.action.STILL_IMAGE_CAMERA" />
 
                 <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:host="u15210956.ct.sendgrid.net"
+                    android:scheme="https" />
             </intent-filter>
-
         </activity>
     </application>
 
