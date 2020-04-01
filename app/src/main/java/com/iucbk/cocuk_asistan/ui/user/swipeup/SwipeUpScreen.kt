@@ -30,5 +30,4 @@ class SwipeUpScreen : Fragment(R.layout.fragment_swipe_up_screen) {
             findNavController().navigate(action)
         }
     }
-
 }

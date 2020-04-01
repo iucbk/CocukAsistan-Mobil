@@ -1,10 +1,10 @@
 package com.iucbk.cocuk_asistan.ui.quiz.questions.item
 
 import android.os.Bundle
+import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.iucbk.cocuk_asistan.R
-import com.iucbk.cocuk_asistan.common.BaseFragment
 import com.iucbk.cocuk_asistan.data.net.response.quiz_questions.QuizQuestionsResponse
 import com.iucbk.cocuk_asistan.databinding.FragmentQuestionBinding
 import com.iucbk.cocuk_asistan.ui.adapter.QuestionAnswerAdapter
@@ -16,9 +16,7 @@ import com.iucbk.cocuk_asistan.util.extension.viewBinding
 /**
  * A simple [Fragment] subclass.
  */
-class QuestionFragment : BaseFragment<QuestionViewModel>(R.layout.fragment_question) {
-
-    override fun model(): Any = QuestionViewModel::class.java
+class QuestionFragment : Fragment(R.layout.fragment_question) {
 
     private var adapter by AutoClearedValue<QuestionAnswerAdapter>()
     private lateinit var questionData: QuizQuestionsResponse
@@ -34,8 +32,13 @@ class QuestionFragment : BaseFragment<QuestionViewModel>(R.layout.fragment_quest
         }
     }
 
-    override fun initUI() {
-        super.initUI()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initUI()
+    }
+
+    private fun initUI() {
+
         binding.txtQuestion.text = questionData.quiz_title
 
         adapter = QuestionAnswerAdapter(questionData.true_option) { position, result, itemBinding ->
@@ -86,5 +89,4 @@ class QuestionFragment : BaseFragment<QuestionViewModel>(R.layout.fragment_quest
                 }
             }
     }
-
 }

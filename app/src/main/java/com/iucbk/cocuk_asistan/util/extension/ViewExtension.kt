@@ -5,8 +5,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 import com.google.android.material.snackbar.Snackbar
+import com.iucbk.cocuk_asistan.enums.Permissions
 import com.iucbk.cocuk_asistan.util.PermissionUtil
-import com.iucbk.cocuk_asistan.util.constant.CAMERA_IMAGE_ID
 import com.iucbk.cocuk_asistan.util.delegate.FragmentViewBindingDelegate
 
 
@@ -49,38 +49,27 @@ fun <T : ViewBinding> Fragment.viewBinding(viewBindingFactory: (View) -> T) =
         viewBindingFactory
     )
 
-fun Fragment.requestPermission(permList: Array<String>, permID: Int) {
-    PermissionUtil.askPermissions(this, permList, permID)
+fun Fragment.requestPermission(perm: Permissions) {
+    PermissionUtil.askPermissions(this, perm.getPermissionArray(), perm.reqId)
 }
 
-fun Fragment.checkPermissions(permList: Array<String>, permID: Int): Boolean {
-    return when (permID) {
-        CAMERA_IMAGE_ID -> {
-            if (PermissionUtil.filterNotGrantedPermissions(permList, context!!).isEmpty()) {
+fun Fragment.checkPermissions(perm: Permissions): Boolean {
+    return when (perm) {
+        Permissions.CAMERA -> {
+            if (PermissionUtil.filterNotGrantedPermissions(
+                    perm.getPermissionArray(),
+                    requireContext()
+                )
+                    .isEmpty()
+            ) {
                 true
             } else {
-                requestPermission(permList, CAMERA_IMAGE_ID)
+                requestPermission(perm)
                 false
             }
         }
-        else -> false
     }
 }
 
-fun Fragment.hasPerm(permList: Array<String>): Boolean {
-    return PermissionUtil.hasPermissions(requireContext(), permList)
-}
-
-const val ANIMATION_FAST_MILLIS = 50L
-const val ANIMATION_SLOW_MILLIS = 100L
-
-fun View.simulateClick(delay: Long = ANIMATION_FAST_MILLIS) {
-    performClick()
-    isPressed = true
-    invalidate()
-    postDelayed({
-        invalidate()
-        isPressed = false
-    }, delay)
-}
-
+fun Fragment.hasPerm(perm: Permissions) =
+    PermissionUtil.hasPermissions(requireContext(), perm.getPermissionArray())

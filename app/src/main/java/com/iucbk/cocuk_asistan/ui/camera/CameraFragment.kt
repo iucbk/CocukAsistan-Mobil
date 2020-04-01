@@ -33,11 +33,9 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.navigation.fragment.findNavController
 import com.iucbk.cocuk_asistan.R
 import com.iucbk.cocuk_asistan.databinding.FragmentCameraBinding
+import com.iucbk.cocuk_asistan.enums.Permissions
 import com.iucbk.cocuk_asistan.ui.main.MainViewModel
-import com.iucbk.cocuk_asistan.util.constant.UPLOAD_IMAGE_PERMISSION_CAMERA
 import com.iucbk.cocuk_asistan.util.delegate.AutoClearedValue
-import com.iucbk.cocuk_asistan.util.extension.ANIMATION_FAST_MILLIS
-import com.iucbk.cocuk_asistan.util.extension.ANIMATION_SLOW_MILLIS
 import com.iucbk.cocuk_asistan.util.extension.hasPerm
 import com.iucbk.cocuk_asistan.util.extension.viewBinding
 import kotlinx.android.synthetic.main.container_camera.view.*
@@ -97,7 +95,7 @@ class CameraFragment : Fragment(R.layout.fragment_camera) {
     override fun onResume() {
         super.onResume()
 
-        if (!hasPerm(UPLOAD_IMAGE_PERMISSION_CAMERA)) {
+        if (!hasPerm(Permissions.CAMERA)) {
             findNavController().popBackStack()
         }
     }
@@ -447,5 +445,7 @@ class CameraFragment : Fragment(R.layout.fragment_camera) {
         private const val PHOTO_EXTENSION = ".jpg"
         private const val RATIO_4_3_VALUE = 4.0 / 3.0
         private const val RATIO_16_9_VALUE = 16.0 / 9.0
+        const val ANIMATION_FAST_MILLIS = 50L
+        const val ANIMATION_SLOW_MILLIS = 100L
     }
 }

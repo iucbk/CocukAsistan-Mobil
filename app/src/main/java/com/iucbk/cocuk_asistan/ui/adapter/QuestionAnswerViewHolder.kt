@@ -29,6 +29,5 @@ class QuestionAnswerViewHolder(
         binding.cntAnswer.setOnClickListener {
             onClickListener(position, result, binding)
         }
-
     }
 }

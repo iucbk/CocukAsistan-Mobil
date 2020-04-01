@@ -52,4 +52,6 @@
     <string name="switch_camera">Switch Camera</string>
     <string name="capture_photo">Capture Photo</string>
     <string name="tap_again">Çıkmak için tekrar basınız</string>
+    <string name="something_went_wrong">Bilinmeyen Bir Hata Oluştu</string>
+    <string name="error_username_password">Şifre veya e-posta adresi yanlış</string>
 </resources>
