@@ -3,6 +3,8 @@ package com.iucbk.cocuk_asistan.di.module
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.room.Room
+import com.iucbk.cocuk_asistan.data.db.ProjectDatabase
 import com.iucbk.cocuk_asistan.util.constant.SHARED_PREF_NAME
 import dagger.Module
 import dagger.Provides
@@ -33,4 +35,13 @@ class AppModule {
             SHARED_PREF_NAME,
             Context.MODE_PRIVATE
         )
+
+    @Singleton
+    @Provides
+    fun provideProjectDatabase(context: Context): ProjectDatabase =
+        Room.databaseBuilder(
+            context,
+            ProjectDatabase::class.java, "cocuk_asistan_database"
+        ).build()
+
 }

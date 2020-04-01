@@ -1,4 +1,9 @@
-package com.iucbk.cocuk_asistan.data.db
+package com.iucbk.cocuk_asistan.data.db.entity
+
+import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import kotlinx.android.parcel.Parcelize
 
 
 // Code with ❤
@@ -7,6 +12,13 @@ package com.iucbk.cocuk_asistan.data.db
 //│ ─────────────────────────── │
 //│ mirac.ozkan123@gmail.com    │
 //│ ─────────────────────────── │
-//│ 02.03.2020 - 12:12          │
+//│ 01.04.2020 - 23:39          │
 //└─────────────────────────────┘
 
+@Parcelize
+@Entity(tableName = "user_session_table")
+data class UserSession(
+    @PrimaryKey(autoGenerate = true)
+    val id: Int? = 0,
+    val email: String
+) : Parcelable
