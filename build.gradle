@@ -27,6 +27,7 @@ buildscript {
         camerax_version = '1.0.0-beta01'
         camera_view='1.0.0-alpha08'
         camera_ext='1.0.0-alpha08'
+        room_version = "2.2.5"
     }
     repositories {
         google()
