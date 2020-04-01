@@ -1,6 +1,5 @@
 package com.iucbk.cocuk_asistan.data.repository
 
-import android.content.SharedPreferences
 import com.iucbk.cocuk_asistan.common.BaseRepository
 import com.iucbk.cocuk_asistan.data.model.UserLoginDTO
 import com.iucbk.cocuk_asistan.data.model.UserRegisterDTO
@@ -21,8 +20,7 @@ import javax.inject.Inject
 //└─────────────────────────────┘
 
 class UserRepositoryImpl @Inject constructor(
-    private val projectService: ProjectService,
-    private val sharedPef: SharedPreferences
+    private val projectService: ProjectService
 ) : BaseRepository(), UserRepository {
 
     override suspend fun registerUser(userRegisterDTO: UserRegisterDTO): Result<BaseResponse<Nothing?>> {
