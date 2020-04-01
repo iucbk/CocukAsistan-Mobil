@@ -1,6 +1,9 @@
 package com.iucbk.cocuk_asistan.data.repository
 
+import androidx.lifecycle.LiveData
 import com.iucbk.cocuk_asistan.common.BaseRepository
+import com.iucbk.cocuk_asistan.data.db.dao.UserSessionDao
+import com.iucbk.cocuk_asistan.data.db.entity.UserSession
 import com.iucbk.cocuk_asistan.data.model.UserLoginDTO
 import com.iucbk.cocuk_asistan.data.model.UserRegisterDTO
 import com.iucbk.cocuk_asistan.data.net.ProjectService
@@ -20,7 +23,8 @@ import javax.inject.Inject
 //└─────────────────────────────┘
 
 class UserRepositoryImpl @Inject constructor(
-    private val projectService: ProjectService
+    private val projectService: ProjectService,
+    private val userSessionDao: UserSessionDao
 ) : BaseRepository(), UserRepository {
 
     override suspend fun registerUser(userRegisterDTO: UserRegisterDTO): Result<BaseResponse<Nothing?>> {
@@ -32,6 +36,15 @@ class UserRepositoryImpl @Inject constructor(
     override suspend fun loginUser(userLoginDTO: UserLoginDTO): Result<BaseResponse<LoginResponse?>> {
         return getResult {
             projectService.loginUser(userLoginDTO)
+        }.also {
+            val userSession = UserSession(
+                email = userLoginDTO.email
+            )
+            userSessionDao.addNewSession(userSession)
         }
+    }
+
+    override suspend fun getUsersSession(): LiveData<List<UserSession>> {
+        return userSessionDao.getAllUserSession()
     }
 }

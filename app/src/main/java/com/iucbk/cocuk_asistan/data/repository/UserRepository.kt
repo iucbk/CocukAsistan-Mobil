@@ -1,5 +1,7 @@
 package com.iucbk.cocuk_asistan.data.repository
 
+import androidx.lifecycle.LiveData
+import com.iucbk.cocuk_asistan.data.db.entity.UserSession
 import com.iucbk.cocuk_asistan.data.model.UserLoginDTO
 import com.iucbk.cocuk_asistan.data.model.UserRegisterDTO
 import com.iucbk.cocuk_asistan.data.net.response.common.BaseResponse
@@ -21,4 +23,7 @@ interface UserRepository {
     suspend fun registerUser(userRegisterDTO: UserRegisterDTO): Result<BaseResponse<Nothing?>>
 
     suspend fun loginUser(userLoginDTO: UserLoginDTO): Result<BaseResponse<LoginResponse?>>
+
+    suspend fun getUsersSession(): LiveData<List<UserSession>>
+
 }

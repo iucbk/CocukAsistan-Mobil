@@ -2,6 +2,7 @@ package com.iucbk.cocuk_asistan.ui.user.login
 
 import android.content.SharedPreferences
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
@@ -10,6 +11,7 @@ import com.iucbk.cocuk_asistan.common.BaseFragment
 import com.iucbk.cocuk_asistan.data.model.UserLoginDTO
 import com.iucbk.cocuk_asistan.databinding.FragmentLoginBinding
 import com.iucbk.cocuk_asistan.enums.RegisterInputs
+import com.iucbk.cocuk_asistan.ui.main.MainViewModel
 import com.iucbk.cocuk_asistan.util.Status
 import com.iucbk.cocuk_asistan.util.extension.getString
 import com.iucbk.cocuk_asistan.util.extension.hide
@@ -36,6 +38,14 @@ class LoginFragment : BaseFragment<LoginViewModel>(R.layout.fragment_login) {
 
     private val binding by viewBinding(FragmentLoginBinding::bind)
 
+    private val mainViewModel: MainViewModel by activityViewModels()
+
+    private val sessionUserEmail by lazy {
+        arguments?.let {
+            LoginFragmentArgs.fromBundle(it).userEmail
+        }
+    }
+
     override fun initUserActionObservers() {
         super.initUserActionObservers()
         binding.btnLogin.setOnClickListener {
@@ -48,18 +58,10 @@ class LoginFragment : BaseFragment<LoginViewModel>(R.layout.fragment_login) {
         viewModel.loginResult.observe(viewLifecycleOwner, Observer { result ->
             when (result.status) {
                 Status.SUCCESS -> {
-                    if (saveSession(sharedPreferences, result.data?.data)) {
+                    if (sharedPreferences.saveSession(result.data?.data)) {
                         binding.prgBar.hide()
                         showSnackBar(getString(R.string.login_success))
-                        findNavController().navigate(
-                            R.id.homeFragment,
-                            null,
-                            NavOptions.Builder()
-                                .setPopUpTo(R.id.registerFragment, true)
-                                .setPopUpTo(R.id.loginFragment, true)
-                                .setPopUpTo(R.id.swipeUpScreen, true)
-                                .build()
-                        )
+                        navigateScreenToHome()
                     } else {
                         showSnackBar(getString(R.string.went_wrong))
                     }
@@ -80,9 +82,27 @@ class LoginFragment : BaseFragment<LoginViewModel>(R.layout.fragment_login) {
         })
     }
 
+    private fun navigateScreenToHome() {
+        mainViewModel.authenticateUser()
+        findNavController().navigate(
+            R.id.homeFragment,
+            null,
+            NavOptions.Builder()
+                .setPopUpTo(R.id.sessionFragment, true)
+                .setPopUpTo(R.id.registerFragment, true)
+                .setPopUpTo(R.id.loginFragment, true)
+                .setPopUpTo(R.id.swipeUpScreen, true)
+                .build()
+        )
+    }
+
     override fun initUI() {
         super.initUI()
         binding.prgBar.hide()
+
+        sessionUserEmail?.let {
+            binding.txtEmail.setText(it)
+        }
     }
 
     private fun onUserLogin() {
