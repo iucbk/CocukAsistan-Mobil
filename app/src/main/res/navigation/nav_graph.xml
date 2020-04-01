@@ -45,17 +45,9 @@
         android:name="com.iucbk.cocuk_asistan.ui.user.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login">
-        <argument
-            android:name="data"
-            android:defaultValue="true"
-            app:argType="string"
-            app:nullable="true" />
         <action
             android:id="@+id/action_loginFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
-        <deepLink
-            android:id="@+id/deepLink"
-            app:uri="u15210956.ct.sendgrid.net/ls/click?upn={data}" />
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
@@ -68,6 +60,14 @@
         <action
             android:id="@+id/action_homeFragment_to_cameraFragment"
             app:destination="@id/cameraFragment" />
+        <argument
+            android:name="deepToken"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="u15210956.ct.sendgrid.net/ls/click?upn={deepToken}" />
     </fragment>
     <fragment
         android:id="@+id/quizHomeFragment"
