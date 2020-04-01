@@ -1,8 +1,7 @@
-package com.iucbk.cocuk_asistan.util
+package com.iucbk.cocuk_asistan.ui.user.home
 
-import android.content.SharedPreferences
-import com.iucbk.cocuk_asistan.data.net.response.login.LoginResponse
-import com.iucbk.cocuk_asistan.util.constant.USER_TOKEN
+import androidx.lifecycle.ViewModel
+import javax.inject.Inject
 
 
 // Code with ❤
@@ -11,12 +10,7 @@ import com.iucbk.cocuk_asistan.util.constant.USER_TOKEN
 //│ ─────────────────────────── │
 //│ mirac.ozkan123@gmail.com    │
 //│ ─────────────────────────── │
-//│ 17.03.2020 - 23:52          │
+//│ 01.04.2020 - 13:17          │
 //└─────────────────────────────┘
 
-fun getToken(sharedPref: SharedPreferences) =
-    sharedPref.getData(USER_TOKEN, "") as String
-
-
-fun SharedPreferences.saveSession(loginResponse: LoginResponse?) =
-    putData(USER_TOKEN, loginResponse?.token)
+class HomeViewModel @Inject constructor() : ViewModel()
