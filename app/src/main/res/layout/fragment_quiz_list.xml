@@ -34,11 +34,36 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:overScrollMode="never"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnBack"
         app:layout_constraintTop_toBottomOf="@+id/txtCategoryName"
         tools:itemCount="1"
         tools:listitem="@layout/item_quiz_list" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="@color/bottom_bar_color"
+        android:elevation="16dp"
+        android:lineSpacingExtra="8sp"
+        android:paddingStart="32dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="24dp"
+        android:paddingBottom="8dp"
+        android:text="@string/categories"
+        android:textColor="@color/general_white_text_color"
+        android:textSize="20sp"
+        android:tint="@android:color/white"
+        app:cornerRadius="24dp"
+        app:elevation="16dp"
+        app:icon="@drawable/ic_back"
+        app:iconPadding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -33,8 +33,13 @@ class RegisterFragment : BaseFragment<RegisterViewModel>(R.layout.fragment_regis
 
     override fun initUserActionObservers() {
         super.initUserActionObservers()
+
         binding.btnRegister.setOnClickListener {
             onUserRegister()
+        }
+
+        binding.btnBack.setOnClickListener {
+            findNavController().popBackStack()
         }
     }
 

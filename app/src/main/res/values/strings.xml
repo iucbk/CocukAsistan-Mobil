@@ -54,4 +54,5 @@
     <string name="tap_again">Çıkmak için tekrar basınız</string>
     <string name="something_went_wrong">Bilinmeyen Bir Hata Oluştu</string>
     <string name="error_username_password">Şifre veya e-posta adresi yanlış</string>
+    <string name="categories">Kategoriler</string>
 </resources>

@@ -48,8 +48,13 @@ class LoginFragment : BaseFragment<LoginViewModel>(R.layout.fragment_login) {
 
     override fun initUserActionObservers() {
         super.initUserActionObservers()
+
         binding.btnLogin.setOnClickListener {
             onUserLogin()
+        }
+
+        binding.btnBack.setOnClickListener {
+            findNavController().popBackStack()
         }
     }
 

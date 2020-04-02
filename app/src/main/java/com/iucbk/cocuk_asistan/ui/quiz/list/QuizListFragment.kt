@@ -13,6 +13,7 @@ import com.iucbk.cocuk_asistan.ui.adapter.QuizListAdapter
 import com.iucbk.cocuk_asistan.util.Status.ERROR
 import com.iucbk.cocuk_asistan.util.Status.LOADING
 import com.iucbk.cocuk_asistan.util.Status.SUCCESS
+import com.iucbk.cocuk_asistan.util.delegate.AutoClearedValue
 import com.iucbk.cocuk_asistan.util.extension.gone
 import com.iucbk.cocuk_asistan.util.extension.show
 import com.iucbk.cocuk_asistan.util.extension.showSnackBar
@@ -41,11 +42,19 @@ class QuizListFragment : BaseFragment<QuizListViewModel>(R.layout.fragment_quiz_
         }
     }
 
-    private lateinit var adapter: QuizListAdapter
+    private var adapter by AutoClearedValue<QuizListAdapter>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.setQuizCategoryId(categoryId ?: 0)
+    }
+
+    override fun initUserActionObservers() {
+        super.initUserActionObservers()
+
+        binding.btnBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
     override fun initUI() {

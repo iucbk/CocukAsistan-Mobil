@@ -9,6 +9,7 @@ import com.iucbk.cocuk_asistan.databinding.ActivityMainBinding
 import com.iucbk.cocuk_asistan.util.constant.SHARED_PREF_NAME
 import com.iucbk.cocuk_asistan.util.constant.USER_TOKEN
 import com.iucbk.cocuk_asistan.util.getData
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
