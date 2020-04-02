@@ -49,10 +49,6 @@ abstract class BaseFragment<VM : ViewModel>(@LayoutRes layoutRes: Int) :
     override fun onAttach(context: Context) {
         super.onAttach(context)
         AndroidSupportInjection.inject(this)
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(this, viewModelFactory).get(model() as Class<VM>)
     }
 

@@ -7,15 +7,6 @@
     android:background="#fefefe"
     tools:context=".ui.quiz.list.QuizListFragment">
 
-    <ProgressBar
-        android:id="@+id/prgBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/txtCategoryName"
         android:layout_width="wrap_content"
@@ -29,18 +20,24 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Hayvanlar" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycQuizList"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/srQuizList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
-        android:overScrollMode="never"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@+id/btnBack"
-        app:layout_constraintTop_toBottomOf="@+id/txtCategoryName"
-        tools:itemCount="1"
-        tools:listitem="@layout/item_quiz_list" />
+        app:layout_constraintTop_toBottomOf="@+id/txtCategoryName">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycQuizList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:itemCount="1"
+            tools:listitem="@layout/item_quiz_list" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnBack"
