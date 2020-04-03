@@ -15,6 +15,7 @@ import com.iucbk.cocuk_asistan.ui.main.MainViewModel
 import com.iucbk.cocuk_asistan.util.Status
 import com.iucbk.cocuk_asistan.util.extension.getString
 import com.iucbk.cocuk_asistan.util.extension.hide
+import com.iucbk.cocuk_asistan.util.extension.hideKeyboard
 import com.iucbk.cocuk_asistan.util.extension.isEmailValid
 import com.iucbk.cocuk_asistan.util.extension.isLengthValid
 import com.iucbk.cocuk_asistan.util.extension.show
@@ -103,6 +104,7 @@ class LoginFragment : BaseFragment<LoginViewModel>(R.layout.fragment_login) {
 
     override fun initUI() {
         super.initUI()
+        hideKeyboard()
         binding.prgBar.hide()
 
         sessionUserEmail?.let {

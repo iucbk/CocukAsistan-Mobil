@@ -11,6 +11,7 @@ import com.iucbk.cocuk_asistan.databinding.FragmentHomeBinding
 import com.iucbk.cocuk_asistan.enums.Permissions
 import com.iucbk.cocuk_asistan.util.constant.USER_FULL_NAME
 import com.iucbk.cocuk_asistan.util.extension.checkPermissions
+import com.iucbk.cocuk_asistan.util.extension.hideKeyboard
 import com.iucbk.cocuk_asistan.util.extension.requestPermission
 import com.iucbk.cocuk_asistan.util.extension.showToast
 import com.iucbk.cocuk_asistan.util.extension.viewBinding
@@ -36,6 +37,7 @@ class HomeFragment : BaseFragment<HomeViewModel>(R.layout.fragment_home) {
 
     override fun initUI() {
         super.initUI()
+        hideKeyboard()
         handleBackPress()
         binding.include2.txtGreeting.text = String.format(getString(R.string.greeting), userName)
     }

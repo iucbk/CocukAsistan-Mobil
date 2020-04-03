@@ -13,6 +13,7 @@ import com.iucbk.cocuk_asistan.util.Status.LOADING
 import com.iucbk.cocuk_asistan.util.Status.SUCCESS
 import com.iucbk.cocuk_asistan.util.extension.getString
 import com.iucbk.cocuk_asistan.util.extension.hide
+import com.iucbk.cocuk_asistan.util.extension.hideKeyboard
 import com.iucbk.cocuk_asistan.util.extension.isEmailValid
 import com.iucbk.cocuk_asistan.util.extension.isLengthValid
 import com.iucbk.cocuk_asistan.util.extension.show
@@ -76,6 +77,7 @@ class RegisterFragment : BaseFragment<RegisterViewModel>(R.layout.fragment_regis
 
     override fun initUI() {
         super.initUI()
+        hideKeyboard()
         binding.prgBar.hide()
     }
 

@@ -1,6 +1,10 @@
 package com.iucbk.cocuk_asistan.util.extension
 
+import android.app.Activity
+import android.content.Context
 import android.view.View
+import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
@@ -73,3 +77,17 @@ fun Fragment.checkPermissions(perm: Permissions): Boolean {
 
 fun Fragment.hasPerm(perm: Permissions) =
     PermissionUtil.hasPermissions(requireContext(), perm.getPermissionArray())
+
+
+fun Fragment.hideKeyboard() {
+    this.let { activity?.hideKeyboards() }
+}
+
+fun Activity.hideKeyboards() {
+    this.currentFocus?.let {
+        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(it.windowToken, 0)
+        return
+    }
+    window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
+}
