@@ -1,8 +1,6 @@
-package com.iucbk.cocuk_asistan.util
+package com.iucbk.cocuk_asistan.data.net.response.register
 
-import android.content.SharedPreferences
-import com.iucbk.cocuk_asistan.data.net.response.login.LoginResponse
-import com.iucbk.cocuk_asistan.util.constant.USER_TOKEN
+import com.google.gson.annotations.SerializedName
 
 
 // Code with ❤
@@ -11,12 +9,11 @@ import com.iucbk.cocuk_asistan.util.constant.USER_TOKEN
 //│ ─────────────────────────── │
 //│ mirac.ozkan123@gmail.com    │
 //│ ─────────────────────────── │
-//│ 17.03.2020 - 23:52          │
+//│ 03.04.2020 - 12:42          │
 //└─────────────────────────────┘
 
-fun SharedPreferences.getToken() =
-    this.getData(USER_TOKEN, "") as String
-
-
-fun SharedPreferences.saveSession(loginResponse: LoginResponse?) =
-    putData(USER_TOKEN, loginResponse?.token)
+data class GetInfoResponse(
+    @SerializedName("full_name")
+    val fullName: String,
+    val email: String
+)

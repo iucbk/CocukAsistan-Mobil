@@ -42,7 +42,7 @@ class LoginFragment : BaseFragment<LoginViewModel>(R.layout.fragment_login) {
 
     private val sessionUserEmail by lazy {
         arguments?.let {
-            LoginFragmentArgs.fromBundle(it).userEmail
+            LoginFragmentArgs.fromBundle(it).userSession
         }
     }
 
@@ -106,7 +106,7 @@ class LoginFragment : BaseFragment<LoginViewModel>(R.layout.fragment_login) {
         binding.prgBar.hide()
 
         sessionUserEmail?.let {
-            binding.txtEmail.setText(it)
+            binding.txtEmail.setText(it.email)
         }
     }
 

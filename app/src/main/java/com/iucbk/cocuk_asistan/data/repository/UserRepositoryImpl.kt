@@ -9,6 +9,7 @@ import com.iucbk.cocuk_asistan.data.model.UserRegisterDTO
 import com.iucbk.cocuk_asistan.data.net.ProjectService
 import com.iucbk.cocuk_asistan.data.net.response.common.BaseResponse
 import com.iucbk.cocuk_asistan.data.net.response.login.LoginResponse
+import com.iucbk.cocuk_asistan.data.net.response.register.GetInfoResponse
 import com.iucbk.cocuk_asistan.util.Result
 import javax.inject.Inject
 
@@ -46,5 +47,15 @@ class UserRepositoryImpl @Inject constructor(
 
     override suspend fun getUsersSession(): LiveData<List<UserSession>> {
         return userSessionDao.getAllUserSession()
+    }
+
+    override suspend fun getRegisteredUserInfo(token: String): Result<BaseResponse<GetInfoResponse?>> {
+        return getResult {
+            projectService.getRegisteredUserInfo(token)
+        }
+    }
+
+    override suspend fun addNewSessionToDB(getInfoResponse: GetInfoResponse?) {
+        getInfoResponse?.let { userSessionDao.addNewSession(UserSession(it.email)) }
     }
 }

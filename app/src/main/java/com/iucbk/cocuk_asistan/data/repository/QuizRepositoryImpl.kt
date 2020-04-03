@@ -29,26 +29,25 @@ class QuizRepositoryImpl @Inject constructor(
 
     override suspend fun getQuizCategories(): Result<BaseResponse<List<QuizCategoriesResponse>>> {
         return getResult {
-            projectService.getQuizCategories(getToken(sharedPreferences))
+            projectService.getQuizCategories(sharedPreferences.getToken())
         }
     }
 
     override suspend fun getQuizList(categoryId: Int): Result<BaseResponse<List<QuizListResponse>>> {
         return getResult {
-            projectService.getQuizzesByCategories(categoryId, getToken(sharedPreferences))
+            projectService.getQuizzesByCategories(categoryId, sharedPreferences.getToken())
         }
     }
 
     override suspend fun getQuizQuestions(quizId: Int): Result<BaseResponse<List<QuizQuestionsResponse>>> {
         return getResult {
-            projectService.getQuizQuestions(quizId, getToken(sharedPreferences))
+            projectService.getQuizQuestions(quizId, sharedPreferences.getToken())
         }
     }
 
     override suspend fun sendScoreOfQuiz(quizScoreDTO: QuizScoreDTO): Result<BaseResponse<Nothing?>> {
         return getResult {
-            projectService.sendQuizScore(quizScoreDTO, getToken(sharedPreferences))
+            projectService.sendQuizScore(quizScoreDTO, sharedPreferences.getToken())
         }
     }
-
 }

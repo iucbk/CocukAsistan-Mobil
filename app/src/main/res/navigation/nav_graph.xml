@@ -45,14 +45,14 @@
         android:name="com.iucbk.cocuk_asistan.ui.user.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login">
-        <argument
-            android:name="userEmail"
-            android:defaultValue="@null"
-            app:argType="string"
-            app:nullable="true" />
         <action
             android:id="@+id/action_loginFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <argument
+            android:name="userSession"
+            android:defaultValue="@null"
+            app:argType="com.iucbk.cocuk_asistan.data.db.entity.UserSession"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
@@ -149,7 +149,7 @@
             app:nullable="true" />
         <deepLink
             android:id="@+id/deepLink"
-            app:uri="u15210956.ct.sendgrid.net/ls/click?upn={deepToken}" />
+            app:uri="cocukasistan.herokuapp.com/user/verify?confirmation={deepToken}" />
         <action
             android:id="@+id/action_sessionFragment_to_loginFragment"
             app:destination="@id/loginFragment" />

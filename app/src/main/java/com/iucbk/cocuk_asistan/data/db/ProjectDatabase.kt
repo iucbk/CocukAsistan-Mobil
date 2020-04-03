@@ -18,7 +18,7 @@ import com.iucbk.cocuk_asistan.data.db.entity.UserSession
 
 @Database(
     entities = [UserSession::class],
-    version = 1
+    version = 2
 )
 @TypeConverters(RoomConverter::class)
 abstract class ProjectDatabase : RoomDatabase() {

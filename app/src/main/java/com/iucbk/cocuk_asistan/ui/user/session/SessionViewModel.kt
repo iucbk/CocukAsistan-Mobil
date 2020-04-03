@@ -5,6 +5,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.iucbk.cocuk_asistan.data.db.entity.UserSession
+import com.iucbk.cocuk_asistan.data.net.response.common.BaseResponse
+import com.iucbk.cocuk_asistan.data.net.response.register.GetInfoResponse
 import com.iucbk.cocuk_asistan.data.repository.UserRepository
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
@@ -25,10 +27,31 @@ class SessionViewModel @Inject constructor(
 ) : ViewModel() {
 
     private var userSessionJob: Job? = null
+    private var registeredUserJob: Job? = null
+
     lateinit var usersSession: MutableLiveData<List<UserSession>>
+    var registeredUser =
+        MutableLiveData<com.iucbk.cocuk_asistan.util.Result<BaseResponse<GetInfoResponse?>>>()
 
     init {
         getUsersSession()
+    }
+
+    fun getRegisteredUser(token: String) {
+        if (registeredUserJob?.isActive == true) {
+            return
+        }
+        registeredUserJob = launchRegisteredUserJob(token)
+    }
+
+    private fun launchRegisteredUserJob(token: String): Job? {
+        return viewModelScope.launch {
+            val result =
+                userRepository.getRegisteredUserInfo(token).also {
+                    userRepository.addNewSessionToDB(it.data?.data)
+                }
+            registeredUser.postValue(result)
+        }
     }
 
     private fun getUsersSession() {

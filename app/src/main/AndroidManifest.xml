@@ -35,8 +35,8 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="u15210956.ct.sendgrid.net"
-                    android:scheme="https" />
+                    android:host="cocukasistan.herokuapp.com"
+                    android:scheme="http" />
 
             </intent-filter>
 

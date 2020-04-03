@@ -8,6 +8,7 @@ import com.iucbk.cocuk_asistan.data.net.response.login.LoginResponse
 import com.iucbk.cocuk_asistan.data.net.response.quiz_categories.QuizCategoriesResponse
 import com.iucbk.cocuk_asistan.data.net.response.quiz_list.QuizListResponse
 import com.iucbk.cocuk_asistan.data.net.response.quiz_questions.QuizQuestionsResponse
+import com.iucbk.cocuk_asistan.data.net.response.register.GetInfoResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -58,4 +59,9 @@ interface ProjectService {
         @Body quizScoreDTO: QuizScoreDTO,
         @Header("token") authHeader: String
     ): Response<BaseResponse<Nothing?>>
+
+    @GET("user/getInfo")
+    suspend fun getRegisteredUserInfo(
+        @Header("token") token: String
+    ): Response<BaseResponse<GetInfoResponse?>>
 }
