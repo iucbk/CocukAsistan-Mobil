@@ -1,4 +1,4 @@
-package com.iucbk.cocuk_asistan.data.net.response.quiz_categories
+package com.iucbk.cocuk_asistan.ui.adapter.base
 
 
 // Code with ❤
@@ -7,10 +7,22 @@ package com.iucbk.cocuk_asistan.data.net.response.quiz_categories
 //│ ─────────────────────────── │
 //│ mirac.ozkan123@gmail.com    │
 //│ ─────────────────────────── │
-//│ 18.03.2020 - 16:14          │
+//│ 03.04.2020 - 23:52          │
 //└─────────────────────────────┘
 
-data class QuizCategoriesResponse(
-    val id: Int,
-    val name: String
-)
+sealed class BaseCategoryList {
+
+    data class ErrorState(
+        val stateMessage: String = ""
+    ) : BaseCategoryList()
+
+    data class EmptyState(
+        val stateMessage: String = ""
+    ) : BaseCategoryList()
+
+    data class QuizCategoriesResponse(
+        val id: Int,
+        val name: String
+    ) : BaseCategoryList()
+
+}

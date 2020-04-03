@@ -1,7 +1,6 @@
 package com.iucbk.cocuk_asistan.ui.adapter
 
 import androidx.recyclerview.widget.RecyclerView
-import com.iucbk.cocuk_asistan.data.model.ErrorState
 import com.iucbk.cocuk_asistan.databinding.ItemEmptyStateBinding
 
 
@@ -18,7 +17,6 @@ open class EmptyStateViewHolder(
     private val binding: ItemEmptyStateBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(errorMessage: ErrorState) {
-        binding.txtErrorMessage.text = errorMessage.errorMessage ?: "Something went wrong"
+    fun bind() {
     }
 }

@@ -55,4 +55,6 @@
     <string name="something_went_wrong">Bilinmeyen Bir Hata Oluştu</string>
     <string name="error_username_password">Şifre veya e-posta adresi yanlış</string>
     <string name="categories">Kategoriler</string>
+    <string name="no_quiz">Bu kategoride \n sınavımız \n kalmamış!</string>
+    <string name="error_text">Sanırım bir şeyler \n ters gitti...</string>
 </resources>

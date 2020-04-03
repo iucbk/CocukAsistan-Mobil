@@ -2,9 +2,9 @@ package com.iucbk.cocuk_asistan.data.repository
 
 import com.iucbk.cocuk_asistan.data.model.QuizScoreDTO
 import com.iucbk.cocuk_asistan.data.net.response.common.BaseResponse
-import com.iucbk.cocuk_asistan.data.net.response.quiz_categories.QuizCategoriesResponse
-import com.iucbk.cocuk_asistan.data.net.response.quiz_list.QuizListResponse
 import com.iucbk.cocuk_asistan.data.net.response.quiz_questions.QuizQuestionsResponse
+import com.iucbk.cocuk_asistan.ui.adapter.base.BaseCategoryList
+import com.iucbk.cocuk_asistan.ui.adapter.base.BaseQuizList
 import com.iucbk.cocuk_asistan.util.Result
 
 
@@ -19,9 +19,9 @@ import com.iucbk.cocuk_asistan.util.Result
 
 interface QuizRepository {
 
-    suspend fun getQuizCategories(): Result<BaseResponse<List<QuizCategoriesResponse>>>
+    suspend fun getQuizCategories(): Result<BaseResponse<List<BaseCategoryList.QuizCategoriesResponse>>>
 
-    suspend fun getQuizList(categoryId: Int): Result<BaseResponse<List<QuizListResponse>>>
+    suspend fun getQuizList(categoryId: Int): Result<BaseResponse<List<BaseQuizList.QuizListResponse>>>
 
     suspend fun getQuizQuestions(quizId: Int): Result<BaseResponse<List<QuizQuestionsResponse>>>
 

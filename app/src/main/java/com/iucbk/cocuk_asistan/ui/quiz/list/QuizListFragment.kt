@@ -6,9 +6,9 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.iucbk.cocuk_asistan.R
 import com.iucbk.cocuk_asistan.common.BaseFragment
-import com.iucbk.cocuk_asistan.data.model.ErrorState
 import com.iucbk.cocuk_asistan.databinding.FragmentQuizListBinding
 import com.iucbk.cocuk_asistan.ui.adapter.QuizListAdapter
+import com.iucbk.cocuk_asistan.ui.adapter.base.BaseQuizList
 import com.iucbk.cocuk_asistan.util.Status.ERROR
 import com.iucbk.cocuk_asistan.util.Status.LOADING
 import com.iucbk.cocuk_asistan.util.Status.SUCCESS
@@ -50,7 +50,7 @@ class QuizListFragment : BaseFragment<QuizListViewModel>(R.layout.fragment_quiz_
         super.initUserActionObservers()
 
         binding.btnBack.setOnClickListener {
-            findNavController().popBackStack()
+            navigateToBack()
         }
 
         binding.srQuizList.setOnRefreshListener {
@@ -71,19 +71,26 @@ class QuizListFragment : BaseFragment<QuizListViewModel>(R.layout.fragment_quiz_
         }
     }
 
+    private fun navigateToBack() {
+        findNavController().popBackStack()
+    }
+
     override fun initObservers() {
         super.initObservers()
         viewModel.quizListById.observe(viewLifecycleOwner, Observer { result ->
             when (result.status) {
                 SUCCESS -> {
-                    if (result.data?.data.isNullOrEmpty().not()) {
-                        adapter.submitList(result.data?.data.orEmpty())
-                    } else {
-                        adapter.submitList(listOf(ErrorState(result.message)))
+                    result?.data?.data?.let { quizList ->
+                        if (quizList.isNullOrEmpty().not()) {
+                            adapter.submitList(quizList)
+                        } else {
+                            adapter.submitList(listOf(BaseQuizList.EmptyState()))
+                        }
+                        binding.srQuizList.isRefreshing = false
                     }
-                    binding.srQuizList.isRefreshing = false
                 }
                 ERROR -> {
+                    adapter.submitList(listOf(BaseQuizList.ErrorState()))
                     showSnackBar(
                         getErrorStringFromCode(result.errorCode)
                     )

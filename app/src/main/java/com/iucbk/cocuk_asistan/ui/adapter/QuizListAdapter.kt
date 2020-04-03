@@ -4,11 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.iucbk.cocuk_asistan.data.model.ErrorState
-import com.iucbk.cocuk_asistan.data.model.base.QuizListBase
-import com.iucbk.cocuk_asistan.data.net.response.quiz_list.QuizListResponse
 import com.iucbk.cocuk_asistan.databinding.ItemEmptyStateBinding
+import com.iucbk.cocuk_asistan.databinding.ItemErrorStateBinding
 import com.iucbk.cocuk_asistan.databinding.ItemQuizListBinding
+import com.iucbk.cocuk_asistan.ui.adapter.base.BaseQuizList
 import com.iucbk.cocuk_asistan.util.GenericDiffUtil
 
 
@@ -22,8 +21,8 @@ import com.iucbk.cocuk_asistan.util.GenericDiffUtil
 //└─────────────────────────────┘
 
 class QuizListAdapter(
-    private val setOnClickListener: (QuizListResponse) -> Unit
-) : ListAdapter<QuizListBase, RecyclerView.ViewHolder>(GenericDiffUtil()) {
+    private val setOnClickListener: (BaseQuizList.QuizListResponse) -> Unit
+) : ListAdapter<BaseQuizList, RecyclerView.ViewHolder>(GenericDiffUtil()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
@@ -32,6 +31,12 @@ class QuizListAdapter(
                     LayoutInflater.from(parent.context), parent, false
                 )
                 EmptyStateViewHolder(binding)
+            }
+            ERROR_STATE -> {
+                val binding = ItemErrorStateBinding.inflate(
+                    LayoutInflater.from(parent.context), parent, false
+                )
+                ErrorStateViewHolder(binding)
             }
             ITEM_FULL_STATE -> {
                 val binding = ItemQuizListBinding.inflate(
@@ -50,14 +55,11 @@ class QuizListAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder.itemViewType) {
-            EMPTY_STATE -> {
-                (holder as EmptyStateViewHolder).bind(
-                    getItem(position) as ErrorState
-                )
-            }
+            EMPTY_STATE -> (holder as EmptyStateViewHolder).bind()
+            ERROR_STATE -> (holder as ErrorStateViewHolder).bind()
             ITEM_FULL_STATE -> {
                 (holder as QuizListViewHolder).bind(
-                    getItem(position) as QuizListResponse,
+                    getItem(position) as BaseQuizList.QuizListResponse,
                     setOnClickListener
                 )
             }
@@ -66,8 +68,9 @@ class QuizListAdapter(
 
     override fun getItemViewType(position: Int): Int {
         return when (getItem(position)) {
-            is QuizListResponse -> ITEM_FULL_STATE
-            is ErrorState -> EMPTY_STATE
+            is BaseQuizList.QuizListResponse -> ITEM_FULL_STATE
+            is BaseQuizList.ErrorState -> ERROR_STATE
+            is BaseQuizList.EmptyState -> EMPTY_STATE
             else -> ITEM_FULL_STATE
         }
     }
@@ -75,5 +78,6 @@ class QuizListAdapter(
     companion object {
         const val EMPTY_STATE = 0
         const val ITEM_FULL_STATE = 1
+        const val ERROR_STATE = 2
     }
 }
