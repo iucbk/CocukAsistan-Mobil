@@ -1,4 +1,4 @@
-package com.iucbk.cocuk_asistan.data.model.base
+package com.iucbk.cocuk_asistan.ui.adapter.base
 
 
 // Code with ❤
@@ -7,7 +7,22 @@ package com.iucbk.cocuk_asistan.data.model.base
 //│ ─────────────────────────── │
 //│ mirac.ozkan123@gmail.com    │
 //│ ─────────────────────────── │
-//│ 23.03.2020 - 17:30          │
+//│ 03.04.2020 - 23:52          │
 //└─────────────────────────────┘
 
-open class QuizListBase
+sealed class BaseCategoryList {
+
+    data class ErrorState(
+        val stateMessage: String = ""
+    ) : BaseCategoryList()
+
+    data class EmptyState(
+        val stateMessage: String = ""
+    ) : BaseCategoryList()
+
+    data class QuizCategoriesResponse(
+        val id: Int,
+        val name: String
+    ) : BaseCategoryList()
+
+}

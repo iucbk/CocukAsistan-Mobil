@@ -8,10 +8,16 @@
     <color name="colorGreen">#55c35c</color>
     <color name="bottom_bar_color">#e78fb3</color>
 
+    <color name="login_button_color">#e78fb3</color>
+    <color name="register_button_color">#594a4e</color>
+
     <color name="general_text_color">#594a4e</color>
     <color name="general_button_bg">#f8f8f8</color>
+
+    <color name="general_white_text_color">#f8f8f8</color>
 
     <color name="icActive">#FFFFFFFF</color>
     <color name="icFocused">#DDFFFFFF</color>
     <color name="icPressed">#AAFFFFFF</color>
+    <color name="general_bg_color">#ffc0ad</color>
 </resources>

@@ -7,6 +7,7 @@ import com.iucbk.cocuk_asistan.ui.quiz.questions.QuizQuestionsFragment
 import com.iucbk.cocuk_asistan.ui.user.home.HomeFragment
 import com.iucbk.cocuk_asistan.ui.user.login.LoginFragment
 import com.iucbk.cocuk_asistan.ui.user.register.RegisterFragment
+import com.iucbk.cocuk_asistan.ui.user.session.SessionFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -43,5 +44,8 @@ abstract class FragmentModule {
 
     @ContributesAndroidInjector
     internal abstract fun contributeImageDetailFragment(): ImageDetailFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun contributeSessionFragment(): SessionFragment
 
 }

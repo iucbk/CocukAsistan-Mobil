@@ -1,6 +1,6 @@
-package com.iucbk.cocuk_asistan.data.net.response.quiz_list
+package com.iucbk.cocuk_asistan.data.net.response.register
 
-import com.iucbk.cocuk_asistan.data.model.base.QuizListBase
+import com.google.gson.annotations.SerializedName
 
 
 // Code with ❤
@@ -9,11 +9,11 @@ import com.iucbk.cocuk_asistan.data.model.base.QuizListBase
 //│ ─────────────────────────── │
 //│ mirac.ozkan123@gmail.com    │
 //│ ─────────────────────────── │
-//│ 19.03.2020 - 17:47          │
+//│ 03.04.2020 - 12:42          │
 //└─────────────────────────────┘
 
-data class QuizListResponse(
-    val quiz_id: Int,
-    val quiz_title: String,
-    val isSolved: Int
-) : QuizListBase()
+data class GetInfoResponse(
+    @SerializedName("full_name")
+    val fullName: String,
+    val email: String
+)

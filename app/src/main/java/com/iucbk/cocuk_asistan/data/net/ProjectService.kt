@@ -5,9 +5,10 @@ import com.iucbk.cocuk_asistan.data.model.UserLoginDTO
 import com.iucbk.cocuk_asistan.data.model.UserRegisterDTO
 import com.iucbk.cocuk_asistan.data.net.response.common.BaseResponse
 import com.iucbk.cocuk_asistan.data.net.response.login.LoginResponse
-import com.iucbk.cocuk_asistan.data.net.response.quiz_categories.QuizCategoriesResponse
-import com.iucbk.cocuk_asistan.data.net.response.quiz_list.QuizListResponse
 import com.iucbk.cocuk_asistan.data.net.response.quiz_questions.QuizQuestionsResponse
+import com.iucbk.cocuk_asistan.data.net.response.register.GetInfoResponse
+import com.iucbk.cocuk_asistan.ui.adapter.base.BaseCategoryList
+import com.iucbk.cocuk_asistan.ui.adapter.base.BaseQuizList
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -39,13 +40,13 @@ interface ProjectService {
     @GET("quiz/getCategories")
     suspend fun getQuizCategories(
         @Header("token") authHeader: String
-    ): Response<BaseResponse<List<QuizCategoriesResponse>>>
+    ): Response<BaseResponse<List<BaseCategoryList.QuizCategoriesResponse>>>
 
     @GET("quiz/getByCategory")
     suspend fun getQuizzesByCategories(
         @Query("category_id") quizId: Int,
         @Header("token") authHeader: String
-    ): Response<BaseResponse<List<QuizListResponse>>>
+    ): Response<BaseResponse<List<BaseQuizList.QuizListResponse>>>
 
     @GET("quiz/getById")
     suspend fun getQuizQuestions(
@@ -58,4 +59,9 @@ interface ProjectService {
         @Body quizScoreDTO: QuizScoreDTO,
         @Header("token") authHeader: String
     ): Response<BaseResponse<Nothing?>>
+
+    @GET("user/getInfo")
+    suspend fun getRegisteredUserInfo(
+        @Header("token") token: String
+    ): Response<BaseResponse<GetInfoResponse?>>
 }

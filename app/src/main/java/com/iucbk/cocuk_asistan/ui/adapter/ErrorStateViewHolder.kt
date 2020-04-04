@@ -1,6 +1,7 @@
-package com.iucbk.cocuk_asistan.data.model
+package com.iucbk.cocuk_asistan.ui.adapter
 
-import com.iucbk.cocuk_asistan.data.model.base.QuizListBase
+import androidx.recyclerview.widget.RecyclerView
+import com.iucbk.cocuk_asistan.databinding.ItemErrorStateBinding
 
 
 // Code with ❤
@@ -9,9 +10,15 @@ import com.iucbk.cocuk_asistan.data.model.base.QuizListBase
 //│ ─────────────────────────── │
 //│ mirac.ozkan123@gmail.com    │
 //│ ─────────────────────────── │
-//│ 23.03.2020 - 17:32          │
+//│ 03.04.2020 - 23:20          │
 //└─────────────────────────────┘
 
-data class ErrorState(
-    val errorMessage: String? = "Something went wrong"
-) : QuizListBase()
+class ErrorStateViewHolder(
+    private val binding: ItemErrorStateBinding
+) : RecyclerView.ViewHolder(binding.root) {
+
+    fun bind() {
+
+    }
+
+}

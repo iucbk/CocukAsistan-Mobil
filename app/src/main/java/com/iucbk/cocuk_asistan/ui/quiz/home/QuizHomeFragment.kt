@@ -7,6 +7,7 @@ import com.iucbk.cocuk_asistan.R
 import com.iucbk.cocuk_asistan.common.BaseFragment
 import com.iucbk.cocuk_asistan.databinding.FragmentQuizHomeBinding
 import com.iucbk.cocuk_asistan.ui.adapter.QuizCategoriesAdapter
+import com.iucbk.cocuk_asistan.ui.adapter.base.BaseCategoryList
 import com.iucbk.cocuk_asistan.util.Status.ERROR
 import com.iucbk.cocuk_asistan.util.Status.LOADING
 import com.iucbk.cocuk_asistan.util.Status.SUCCESS
@@ -34,10 +35,17 @@ class QuizHomeFragment : BaseFragment<QuizHomeViewModel>(R.layout.fragment_quiz_
         viewModel.quizCategories.observe(viewLifecycleOwner, Observer { result ->
             when (result.status) {
                 SUCCESS -> {
-                    binding.prgBar.gone()
-                    adapter.submitList(result.data?.data.orEmpty())
+                    result.data?.data?.let { categories ->
+                        binding.prgBar.gone()
+                        if (categories.isNotEmpty()) {
+                            adapter.submitList(categories)
+                        } else {
+                            adapter.submitList(listOf(BaseCategoryList.EmptyState()))
+                        }
+                    }
                 }
                 ERROR -> {
+                    adapter.submitList(listOf(BaseCategoryList.ErrorState()))
                     binding.prgBar.gone()
                     showSnackBar(
                         getErrorStringFromCode(result.errorCode)

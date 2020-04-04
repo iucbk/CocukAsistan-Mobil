@@ -1,5 +1,7 @@
 package com.iucbk.cocuk_asistan.data.net.response.login
 
+import com.google.gson.annotations.SerializedName
+
 
 // Code with ❤
 //┌─────────────────────────────┐
@@ -11,5 +13,8 @@ package com.iucbk.cocuk_asistan.data.net.response.login
 //└─────────────────────────────┘
 
 data class LoginResponse(
+    val email: String,
+    @SerializedName("full_name")
+    val fullName: String,
     val token: String
 )

@@ -8,8 +8,10 @@ import com.iucbk.cocuk_asistan.ui.`object`.ImageDetailViewModel
 import com.iucbk.cocuk_asistan.ui.quiz.home.QuizHomeViewModel
 import com.iucbk.cocuk_asistan.ui.quiz.list.QuizListViewModel
 import com.iucbk.cocuk_asistan.ui.quiz.questions.QuizQuestionsViewModel
+import com.iucbk.cocuk_asistan.ui.user.home.HomeViewModel
 import com.iucbk.cocuk_asistan.ui.user.login.LoginViewModel
 import com.iucbk.cocuk_asistan.ui.user.register.RegisterViewModel
+import com.iucbk.cocuk_asistan.ui.user.session.SessionViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -59,4 +61,14 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(ImageDetailViewModel::class)
     internal abstract fun bindImageDetailFragment(imageDetailViewModel: ImageDetailViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(HomeViewModel::class)
+    internal abstract fun bindHomeViewModel(homeViewModel: HomeViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SessionViewModel::class)
+    internal abstract fun bindSessionViewModel(sessionViewModel: SessionViewModel): ViewModel
 }

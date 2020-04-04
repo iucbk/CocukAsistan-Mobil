@@ -4,8 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.iucbk.cocuk_asistan.data.net.response.common.BaseResponse
-import com.iucbk.cocuk_asistan.data.net.response.quiz_list.QuizListResponse
 import com.iucbk.cocuk_asistan.data.repository.QuizRepository
+import com.iucbk.cocuk_asistan.ui.adapter.base.BaseQuizList
 import com.iucbk.cocuk_asistan.util.Result
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
@@ -28,7 +28,7 @@ class QuizListViewModel @Inject constructor(
     private var categoryIdJob: Job? = null
 
     val quizListById by lazy {
-        MutableLiveData<Result<BaseResponse<List<QuizListResponse>>>>()
+        MutableLiveData<Result<BaseResponse<List<BaseQuizList.QuizListResponse>>>>()
     }
 
     fun setQuizCategoryId(categoryId: Int) {

@@ -1,18 +1,38 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
+    <string name="already_start">Zaten İlk Sorudasın</string>
+
+    <string name="answer_proccess">Cevaplarınız işleniyor</string>
+
     <string name="app_name">CocukAsistan</string>
+
+    <string name="are_u_sure_for_quit">Çıkmak istediğine emin misin ?</string>
+
+    <string name="capture_photo">Capture Photo</string>
+
+    <string name="categories">Kategoriler</string>
+
+    <string name="congrat">Tebrikler</string>
 
     <string name="email_address">E-Mail</string>
 
     <string name="error_image">Error Image</string>
+    <string name="error_text">Sanırım bir şeyler \n ters gitti..</string>
+    <string name="error_username_password">Şifre veya e-posta adresi yanlış</string>
 
     <string name="etraf_kesfet">Etrafı Keşfet</string>
+
+    <string name="exit_quiz">Quiz\'den Çık</string>
 
     <string name="fill_all_blank">Lütfen tüm alanları doldurunuz</string>
 
     <string name="gidak">Gıdak</string>
 
+    <string name="greeting">Selam %1$s! \nNe Yapmak \n İstersin ?</string>
+
     <string name="kategoriler">Kategoriler</string>
+
+    <string name="knowledge">Knowledge</string>
 
     <string name="login">Giriş Yap</string>
     <string name="login_success">Giriş Başarılı</string>
@@ -21,7 +41,13 @@
 
     <string name="name_surname">Ad Soyad</string>
 
+    <string name="no_quiz">Bu kategoride \n sınavımız \n kalmamış!</string>
+
+    <string name="not_solved_all_test">Çözmedigin Sorular Var</string>
+
     <string name="password">Parola</string>
+
+    <string name="please_solve">Lütfen bütün soruları çözmeyi dene</string>
 
     <string name="press_again_to_leave">Çıkmak için bir kere tıklayınız.</string>
 
@@ -30,28 +56,23 @@
     <string name="register">Üye Ol</string>
     <string name="register_success">Kayıt Başarılı, Lütfen posta kutunuzu ziyaret edip üyeliğinizi onaylayınız.</string>
 
+    <string name="shooted_image">Shooted Image</string>
+
+    <string name="solve_quiz">Quiz Çöz</string>
+
+    <string name="solved_all_test">Bütün testleri bitirdin</string>
+
+    <string name="something_went_wrong">Bilinmeyen Bir Hata Oluştu</string>
+
+    <string name="stay_here">Burada Kal</string>
+
+    <string name="switch_camera">Switch Camera</string>
+
+    <string name="tap_again">Çıkmak için tekrar basınız</string>
+
     <string name="welcome">Hoş \n Geldin!</string>
 
-    <string name="you_already_select">Zaten seçim yaptın.</string>
     <string name="went_wrong">Hata Oluştu</string>
-    <string name="congrat">Tebrikler</string>
-    <string name="solved_all_test">Bütün testleri bitirdin</string>
-    <string name="not_solved_all_test">Çözmedigin Sorular Var</string>
-    <string name="please_solve">Lütfen bütün soruları çözmeyi dene</string>
-    <string name="already_start">Zaten İlk Sorudasın</string>
-    <string name="answer_proccess">Cevaplarınız işleniyor</string>
-    <string name="knowledge">Knowledge</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="solve_quiz">Quiz Çöz</string>
-    <string name="are_u_sure_for_quit">Çıkmak istediğine emin misin ?</string>
-    <string name="exit_quiz">Quiz\'den Çık</string>
-    <string name="stay_here">Burada Kal</string>
-    <string name="shooted_image">Shooted Image</string>
-    <string name="switch_camera">Switch Camera</string>
-    <string name="capture_photo">Capture Photo</string>
-    <string name="tap_again">Çıkmak için tekrar basınız</string>
-    <string name="something_went_wrong">Bilinmeyen Bir Hata Oluştu</string>
-    <string name="error_username_password">Şifre veya e-posta adresi yanlış</string>
+    <string name="you_already_select">Zaten seçim yaptın.</string>
 </resources>

@@ -1,20 +1,18 @@
 package com.iucbk.cocuk_asistan.ui.quiz.list
 
-import android.os.Bundle
-import android.view.View
+import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.iucbk.cocuk_asistan.R
 import com.iucbk.cocuk_asistan.common.BaseFragment
-import com.iucbk.cocuk_asistan.data.model.ErrorState
 import com.iucbk.cocuk_asistan.databinding.FragmentQuizListBinding
 import com.iucbk.cocuk_asistan.ui.adapter.QuizListAdapter
+import com.iucbk.cocuk_asistan.ui.adapter.base.BaseQuizList
 import com.iucbk.cocuk_asistan.util.Status.ERROR
 import com.iucbk.cocuk_asistan.util.Status.LOADING
 import com.iucbk.cocuk_asistan.util.Status.SUCCESS
-import com.iucbk.cocuk_asistan.util.extension.gone
-import com.iucbk.cocuk_asistan.util.extension.show
+import com.iucbk.cocuk_asistan.util.delegate.AutoClearedValue
 import com.iucbk.cocuk_asistan.util.extension.showSnackBar
 import com.iucbk.cocuk_asistan.util.extension.showToast
 import com.iucbk.cocuk_asistan.util.extension.viewBinding
@@ -41,16 +39,27 @@ class QuizListFragment : BaseFragment<QuizListViewModel>(R.layout.fragment_quiz_
         }
     }
 
-    private lateinit var adapter: QuizListAdapter
+    private var adapter by AutoClearedValue<QuizListAdapter>()
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
         viewModel.setQuizCategoryId(categoryId ?: 0)
+    }
+
+    override fun initUserActionObservers() {
+        super.initUserActionObservers()
+
+        binding.btnBack.setOnClickListener {
+            navigateToBack()
+        }
+
+        binding.srQuizList.setOnRefreshListener {
+            viewModel.setQuizCategoryId(categoryId ?: 0)
+        }
     }
 
     override fun initUI() {
         super.initUI()
-        binding.prgBar.gone()
         binding.txtCategoryName.text = categoryName ?: "Error"
 
         adapter = QuizListAdapter {
@@ -62,29 +71,36 @@ class QuizListFragment : BaseFragment<QuizListViewModel>(R.layout.fragment_quiz_
         }
     }
 
+    private fun navigateToBack() {
+        findNavController().popBackStack()
+    }
+
     override fun initObservers() {
         super.initObservers()
         viewModel.quizListById.observe(viewLifecycleOwner, Observer { result ->
             when (result.status) {
                 SUCCESS -> {
-                    binding.prgBar.gone()
-                    if (result.data?.data.isNullOrEmpty().not()) {
-                        adapter.submitList(result.data?.data.orEmpty())
-                    } else {
-                        adapter.submitList(listOf(ErrorState(result.message)))
+                    result?.data?.data?.let { quizList ->
+                        if (quizList.isNullOrEmpty().not()) {
+                            adapter.submitList(quizList)
+                        } else {
+                            adapter.submitList(listOf(BaseQuizList.EmptyState()))
+                        }
+                        binding.srQuizList.isRefreshing = false
                     }
                 }
                 ERROR -> {
-                    binding.prgBar.gone()
+                    adapter.submitList(listOf(BaseQuizList.ErrorState()))
                     showSnackBar(
                         getErrorStringFromCode(result.errorCode)
                     )
                     showToast(
                         result.message
                     )
+                    binding.srQuizList.isRefreshing = false
                 }
                 LOADING -> {
-                    binding.prgBar.show()
+                    binding.srQuizList.isRefreshing = true
                 }
             }
         })

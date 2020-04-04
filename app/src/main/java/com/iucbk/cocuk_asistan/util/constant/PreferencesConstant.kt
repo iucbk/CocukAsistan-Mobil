@@ -14,5 +14,6 @@ const val SHARED_PREF_NAME = "cocuk_asistan_sp"
 
 const val USER_TOKEN = "token"
 const val USER_EMAIL = "email"
+const val USER_FULL_NAME = "fullName"
 
 const val QUESTION_POINT = 5

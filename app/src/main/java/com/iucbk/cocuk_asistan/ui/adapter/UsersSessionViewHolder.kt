@@ -1,7 +1,8 @@
 package com.iucbk.cocuk_asistan.ui.adapter
 
 import androidx.recyclerview.widget.RecyclerView
-import com.iucbk.cocuk_asistan.databinding.ItemEmptyStateBinding
+import com.iucbk.cocuk_asistan.data.db.entity.UserSession
+import com.iucbk.cocuk_asistan.databinding.ItemUserSessionBinding
 
 
 // Code with ❤
@@ -10,13 +11,21 @@ import com.iucbk.cocuk_asistan.databinding.ItemEmptyStateBinding
 //│ ─────────────────────────── │
 //│ mirac.ozkan123@gmail.com    │
 //│ ─────────────────────────── │
-//│ 23.03.2020 - 16:46          │
+//│ 03.04.2020 - 13:11          │
 //└─────────────────────────────┘
 
-open class EmptyStateViewHolder(
-    private val binding: ItemEmptyStateBinding
+class UsersSessionViewHolder(
+    private val binding: ItemUserSessionBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind() {
+    fun bind(
+        userSession: UserSession,
+        onClickListener: (UserSession) -> Unit
+    ) {
+        binding.txtEmail.text = userSession.email
+
+        itemView.setOnClickListener {
+            onClickListener(userSession)
+        }
     }
 }

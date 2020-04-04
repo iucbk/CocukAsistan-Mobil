@@ -1,7 +1,7 @@
-package com.iucbk.cocuk_asistan.ui.adapter
+package com.iucbk.cocuk_asistan.ui.user.home
 
-import androidx.recyclerview.widget.RecyclerView
-import com.iucbk.cocuk_asistan.databinding.ItemEmptyStateBinding
+import androidx.lifecycle.ViewModel
+import javax.inject.Inject
 
 
 // Code with ❤
@@ -10,13 +10,7 @@ import com.iucbk.cocuk_asistan.databinding.ItemEmptyStateBinding
 //│ ─────────────────────────── │
 //│ mirac.ozkan123@gmail.com    │
 //│ ─────────────────────────── │
-//│ 23.03.2020 - 16:46          │
+//│ 01.04.2020 - 13:17          │
 //└─────────────────────────────┘
 
-open class EmptyStateViewHolder(
-    private val binding: ItemEmptyStateBinding
-) : RecyclerView.ViewHolder(binding.root) {
-
-    fun bind() {
-    }
-}
+class HomeViewModel @Inject constructor() : ViewModel()
