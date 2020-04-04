@@ -23,7 +23,7 @@ interface QuizRepository {
 
     suspend fun getQuizList(categoryId: Int): Result<BaseResponse<List<BaseQuizList.QuizListResponse>>>
 
-    suspend fun getQuizQuestions(quizId: Int): Result<BaseResponse<List<QuizQuestionsResponse>>>
+    suspend fun getQuizQuestions(quizId: Int): Result<BaseResponse<QuizQuestionsResponse>>
 
     suspend fun sendScoreOfQuiz(quizScoreDTO: QuizScoreDTO): Result<BaseResponse<Nothing?>>
 }

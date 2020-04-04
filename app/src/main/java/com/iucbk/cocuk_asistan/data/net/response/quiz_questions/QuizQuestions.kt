@@ -11,15 +11,15 @@ import kotlinx.android.parcel.Parcelize
 //│ ─────────────────────────── │
 //│ mirac.ozkan123@gmail.com    │
 //│ ─────────────────────────── │
-//│ 19.03.2020 - 13:41          │
+//│ 04.04.2020 - 22:27          │
 //└─────────────────────────────┘
 
 @Parcelize
-data class QuizQuestionsResponse(
-    @SerializedName("quiz_id")
-    val quiId: Int,
-    @SerializedName("quiz_title")
-    val quiz_title: String,
-    @SerializedName("questions")
-    val questions: List<QuizQuestions>
+data class QuizQuestions(
+    @SerializedName("question_content")
+    val question_content: String,
+    @SerializedName("options")
+    val options: List<String>,
+    @SerializedName("true_option")
+    val true_option: Int
 ) : Parcelable

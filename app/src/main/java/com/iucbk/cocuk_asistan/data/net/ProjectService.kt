@@ -52,7 +52,7 @@ interface ProjectService {
     suspend fun getQuizQuestions(
         @Query("quiz_id") quizId: Int,
         @Header("token") authHeader: String
-    ): Response<BaseResponse<List<QuizQuestionsResponse>>>
+    ): Response<BaseResponse<QuizQuestionsResponse>>
 
     @POST("quiz/solvedQuiz")
     suspend fun sendQuizScore(

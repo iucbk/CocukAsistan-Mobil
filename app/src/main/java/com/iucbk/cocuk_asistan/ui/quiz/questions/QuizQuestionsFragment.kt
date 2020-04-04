@@ -116,7 +116,7 @@ class QuizQuestionsFragment :
             when (result.status) {
                 SUCCESS -> {
                     binding.prgBar.gone()
-                    questionViewPagerAdapter.setNewQuestionList(result.data?.data.orEmpty())
+                    questionViewPagerAdapter.setNewQuestionList(result.data?.data?.questions.orEmpty())
                 }
                 ERROR -> {
                     binding.prgBar.gone()
