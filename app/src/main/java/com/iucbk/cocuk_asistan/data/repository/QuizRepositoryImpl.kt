@@ -39,7 +39,7 @@ class QuizRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getQuizQuestions(quizId: Int): Result<BaseResponse<List<QuizQuestionsResponse>>> {
+    override suspend fun getQuizQuestions(quizId: Int): Result<BaseResponse<QuizQuestionsResponse>> {
         return getResult {
             projectService.getQuizQuestions(quizId, sharedPreferences.getToken())
         }

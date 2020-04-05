@@ -5,7 +5,7 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.iucbk.cocuk_asistan.R
-import com.iucbk.cocuk_asistan.data.net.response.quiz_questions.QuizQuestionsResponse
+import com.iucbk.cocuk_asistan.data.net.response.quiz_questions.QuizQuestions
 import com.iucbk.cocuk_asistan.databinding.FragmentQuestionBinding
 import com.iucbk.cocuk_asistan.ui.adapter.QuestionAnswerAdapter
 import com.iucbk.cocuk_asistan.ui.quiz.questions.QuizQuestionsFragment
@@ -19,7 +19,7 @@ import com.iucbk.cocuk_asistan.util.extension.viewBinding
 class QuestionFragment : Fragment(R.layout.fragment_question) {
 
     private var adapter by AutoClearedValue<QuestionAnswerAdapter>()
-    private lateinit var questionData: QuizQuestionsResponse
+    private lateinit var questionData: QuizQuestions
 
     private var isItemSelectable = true
 
@@ -39,7 +39,7 @@ class QuestionFragment : Fragment(R.layout.fragment_question) {
 
     private fun initUI() {
 
-        binding.txtQuestion.text = questionData.quiz_title
+        binding.txtQuestion.text = questionData.question_content
 
         adapter = QuestionAnswerAdapter(questionData.true_option) { position, result, itemBinding ->
             if (isItemSelectable) {
@@ -69,7 +69,7 @@ class QuestionFragment : Fragment(R.layout.fragment_question) {
         }
 
         adapter.submitList(
-            questionData.options.split("\\n")
+            questionData.options
         )
     }
 
@@ -82,7 +82,7 @@ class QuestionFragment : Fragment(R.layout.fragment_question) {
         const val QUESTION_DATA = "questionData"
 
         @JvmStatic
-        fun newInstance(questionsResponse: QuizQuestionsResponse) =
+        fun newInstance(questionsResponse: QuizQuestions) =
             QuestionFragment().apply {
                 arguments = Bundle().apply {
                     putParcelable(QUESTION_DATA, questionsResponse)

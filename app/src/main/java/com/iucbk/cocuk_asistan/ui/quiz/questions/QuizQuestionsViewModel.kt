@@ -29,7 +29,7 @@ class QuizQuestionsViewModel @Inject constructor(
     private var sendQuizScoreJob: Job? = null
 
     val quizResult by lazy {
-        MutableLiveData<Result<BaseResponse<List<QuizQuestionsResponse>>>>()
+        MutableLiveData<Result<BaseResponse<QuizQuestionsResponse>>>()
     }
 
     val sendingScoreResult by lazy {
