@@ -10,9 +10,8 @@ import com.iucbk.cocuk_asistan.common.BaseFragment
 import com.iucbk.cocuk_asistan.databinding.FragmentHomeBinding
 import com.iucbk.cocuk_asistan.enums.Permissions
 import com.iucbk.cocuk_asistan.util.constant.USER_FULL_NAME
-import com.iucbk.cocuk_asistan.util.extension.checkPermissions
 import com.iucbk.cocuk_asistan.util.extension.getData
-import com.iucbk.cocuk_asistan.util.extension.requestPermission
+import com.iucbk.cocuk_asistan.util.extension.showSnackBar
 import com.iucbk.cocuk_asistan.util.extension.showToast
 import com.iucbk.cocuk_asistan.util.extension.viewBinding
 import javax.inject.Inject
@@ -78,11 +77,12 @@ class HomeFragment : BaseFragment<HomeViewModel>(R.layout.fragment_home) {
     }
 
     private fun navigateToCameraFragment() {
-        if (checkPermissions(Permissions.CAMERA)) {
-            navigateExploreScreen()
-        } else {
-            requestPermission(Permissions.CAMERA)
-        }
+        showSnackBar("Çok Yakında Ekşeenecektir.")
+//        if (checkPermissions(Permissions.CAMERA)) {
+//            navigateExploreScreen()
+//        } else {
+//            requestPermission(Permissions.CAMERA)
+//        }
     }
 
     override fun onRequestPermissionsResult(
