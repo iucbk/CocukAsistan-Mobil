@@ -6,6 +6,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.iucbk.cocuk_asistan.R
 import com.iucbk.cocuk_asistan.common.BaseFragment
 import com.iucbk.cocuk_asistan.data.model.UserLoginDTO
@@ -41,16 +42,13 @@ class LoginFragment : BaseFragment<LoginViewModel>(R.layout.fragment_login) {
 
     private val mainViewModel: MainViewModel by activityViewModels()
 
-    private val sessionUserEmail by lazy {
-        arguments?.let {
-            LoginFragmentArgs.fromBundle(it).userSession
-        }
-    }
+    private val navArgs by navArgs<LoginFragmentArgs>()
 
     override fun initUserActionObservers() {
         super.initUserActionObservers()
 
         binding.btnLogin.setOnClickListener {
+            hideKeyboard()
             onUserLogin()
         }
 
@@ -104,10 +102,9 @@ class LoginFragment : BaseFragment<LoginViewModel>(R.layout.fragment_login) {
 
     override fun initUI() {
         super.initUI()
-        hideKeyboard()
         binding.prgBar.hide()
 
-        sessionUserEmail?.let {
+        navArgs.userSession?.let {
             binding.txtEmail.setText(it.email)
         }
     }
@@ -132,7 +129,7 @@ class LoginFragment : BaseFragment<LoginViewModel>(R.layout.fragment_login) {
             password
         )
 
-        return if (userFilledAllEntries(allFields)) {
+        return if (allFields.userFilledAllEntries()) {
             if (isEmailValid(email)) {
                 hideError(RegisterInputs.EMAIL)
                 if (isLengthValid(password, 6)) {

@@ -3,12 +3,13 @@ package com.iucbk.cocuk_asistan.ui.main
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.iucbk.cocuk_asistan.databinding.ActivityMainBinding
 import com.iucbk.cocuk_asistan.util.constant.SHARED_PREF_NAME
 import com.iucbk.cocuk_asistan.util.constant.USER_TOKEN
-import com.iucbk.cocuk_asistan.util.getData
+import com.iucbk.cocuk_asistan.util.extension.getData
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,6 +33,7 @@ class MainActivity : AppCompatActivity() {
             viewModel.unAuthenticateUser()
         } else {
             viewModel.authenticateUser()
+            Log.e("User Token : ", "$userToken")
         }
     }
 }

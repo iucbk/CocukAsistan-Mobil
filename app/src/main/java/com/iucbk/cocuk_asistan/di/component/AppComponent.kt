@@ -6,6 +6,7 @@ import com.iucbk.cocuk_asistan.di.module.AppModule
 import com.iucbk.cocuk_asistan.di.module.DatabaseModule
 import com.iucbk.cocuk_asistan.di.module.FragmentModule
 import com.iucbk.cocuk_asistan.di.module.NetworkModule
+import com.iucbk.cocuk_asistan.di.module.ReceiverModule
 import com.iucbk.cocuk_asistan.di.module.RepositoryModule
 import com.iucbk.cocuk_asistan.di.module.ViewModelModule
 import dagger.BindsInstance
@@ -33,7 +34,8 @@ import javax.inject.Singleton
         DatabaseModule::class,
         ViewModelModule::class,
         RepositoryModule::class,
-        FragmentModule::class
+        FragmentModule::class,
+        ReceiverModule::class
     ]
 )
 

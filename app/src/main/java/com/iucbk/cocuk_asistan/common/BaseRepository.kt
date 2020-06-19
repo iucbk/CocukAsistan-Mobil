@@ -23,8 +23,7 @@ abstract class BaseRepository {
         try {
             val response = call()
             if (response.isSuccessful) {
-                val body = response.body()
-                if (body != null) {
+                response.body()?.let { body ->
                     return Result.success(body)!!
                 }
             }

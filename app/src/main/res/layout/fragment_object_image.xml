@@ -30,6 +30,15 @@
         app:menu="@menu/menu"
         app:navigationIcon="@drawable/ic_back_white" />
 
+    <com.iucbk_cocukasistan.custom_views.GraphicOverlay
+        android:id="@+id/graphic_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fltShootPhotoAgain"
         android:layout_width="wrap_content"

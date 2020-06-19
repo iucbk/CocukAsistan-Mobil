@@ -2,8 +2,10 @@ package com.iucbk.cocuk_asistan.data.repository
 
 import androidx.lifecycle.LiveData
 import com.iucbk.cocuk_asistan.data.db.entity.UserSession
+import com.iucbk.cocuk_asistan.data.model.PasswordResetDTO
 import com.iucbk.cocuk_asistan.data.model.UserLoginDTO
 import com.iucbk.cocuk_asistan.data.model.UserRegisterDTO
+import com.iucbk.cocuk_asistan.data.model.notif.AlarmModel
 import com.iucbk.cocuk_asistan.data.net.response.common.BaseResponse
 import com.iucbk.cocuk_asistan.data.net.response.login.LoginResponse
 import com.iucbk.cocuk_asistan.data.net.response.register.GetInfoResponse
@@ -31,4 +33,9 @@ interface UserRepository {
 
     suspend fun addNewSessionToDB(getInfoResponse: GetInfoResponse?)
 
+    suspend fun setNewPassword(passwordResetDTO: PasswordResetDTO): Result<BaseResponse<Nothing?>>
+
+    suspend fun setAlarmModelToDB(alarmModel: AlarmModel)
+
+    suspend fun getAlarmModelFromDB(): LiveData<List<AlarmModel>>
 }

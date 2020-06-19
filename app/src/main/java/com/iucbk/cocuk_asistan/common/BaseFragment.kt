@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.iucbk.cocuk_asistan.di.ViewModelFactory
+import com.iucbk.cocuk_asistan.util.extension.hideKeyboard
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
@@ -44,7 +45,9 @@ abstract class BaseFragment<VM : ViewModel>(@LayoutRes layoutRes: Int) :
 
     open fun initObservers() {}
 
-    open fun initUI() {}
+    open fun initUI() {
+        hideKeyboard()
+    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

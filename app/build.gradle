@@ -3,6 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: "androidx.navigation.safeargs"
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 29
@@ -14,7 +15,6 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -35,8 +35,8 @@ android {
         }
     }
 
-    viewBinding {
-        enabled = true
+    buildFeatures{
+        viewBinding = true
     }
 
     compileOptions {
@@ -50,6 +50,10 @@ android {
 
     packagingOptions {
         exclude 'META-INF/atomicfu.kotlin_module'
+    }
+
+    aaptOptions {
+        noCompress "tflite"
     }
 
 }
@@ -108,7 +112,7 @@ dependencies {
     implementation "com.github.f0ris.sweetalert:library:$sweetalert_library"
 
     //Leak Canary
-    debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakcanary_leakcanary_android"
+//    debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakcanary_leakcanary_android"
 
     //Test Dependency
     testImplementation "junit:junit:$junit_junit_version"
@@ -130,4 +134,12 @@ dependencies {
     implementation "androidx.room:room-ktx:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
 
+    //Firebase Dependency
+    implementation 'com.google.firebase:firebase-ml-model-interpreter:22.0.1'
+    implementation 'com.google.firebase:firebase-ml-vision:24.0.1'
+    implementation 'com.google.firebase:firebase-ml-vision-object-detection-model:19.0.3'
+
+    //Tenserflow
+    implementation 'org.tensorflow:tensorflow-lite:1.13.1'
+    implementation 'org.tensorflow:tensorflow-lite-gpu:0.0.0-nightly'
 }

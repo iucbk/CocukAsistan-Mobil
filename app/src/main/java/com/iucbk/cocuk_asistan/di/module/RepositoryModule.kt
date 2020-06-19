@@ -1,5 +1,7 @@
 package com.iucbk.cocuk_asistan.di.module
 
+import com.iucbk.cocuk_asistan.data.repository.NotificationRepository
+import com.iucbk.cocuk_asistan.data.repository.NotificationRepositoryImpl
 import com.iucbk.cocuk_asistan.data.repository.QuizRepository
 import com.iucbk.cocuk_asistan.data.repository.QuizRepositoryImpl
 import com.iucbk.cocuk_asistan.data.repository.UserRepository
@@ -30,4 +32,8 @@ abstract class RepositoryModule {
         quizRepositoryImpl: QuizRepositoryImpl
     ): QuizRepository
 
+    @Binds
+    internal abstract fun bindNotificationRepository(
+        notificationRepositoryImpl: NotificationRepositoryImpl
+    ): NotificationRepository
 }

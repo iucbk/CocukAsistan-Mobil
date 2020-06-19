@@ -71,18 +71,18 @@ class RegisterFragment : BaseFragment<RegisterViewModel>(R.layout.fragment_regis
 
     private fun navigateScreenToLogin() {
         val action =
-            RegisterFragmentDirections.actionRegisterFragmentToLoginFragment()
+            RegisterFragmentDirections.actionRegisterFragmentToLoginFragment(null)
         findNavController().navigate(action)
     }
 
     override fun initUI() {
         super.initUI()
-        hideKeyboard()
         binding.prgBar.hide()
     }
 
     private fun onUserRegister() {
         if (isInputsValid()) {
+            hideKeyboard()
             viewModel.setRegisterData(
                 UserRegisterDTO(
                     full_name = binding.txtUserName.getString(),
@@ -103,7 +103,7 @@ class RegisterFragment : BaseFragment<RegisterViewModel>(R.layout.fragment_regis
             userEmail,
             userPassword
         )
-        return if (userFilledAllEntries(allFields)) {
+        return if (allFields.userFilledAllEntries()) {
             if (isEmailValid(userEmail)) {
                 hideError(RegisterInputs.EMAIL)
                 if (isLengthValid(userPassword, 6)) {

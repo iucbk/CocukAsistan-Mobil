@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.iucbk.cocuk_asistan.R
 import com.iucbk.cocuk_asistan.common.BaseFragment
 import com.iucbk.cocuk_asistan.databinding.FragmentQuizListBinding
@@ -27,23 +28,13 @@ class QuizListFragment : BaseFragment<QuizListViewModel>(R.layout.fragment_quiz_
 
     private val binding by viewBinding(FragmentQuizListBinding::bind)
 
-    private val categoryId by lazy {
-        arguments?.let {
-            QuizListFragmentArgs.fromBundle(it).categoryId
-        }
-    }
-
-    private val categoryName by lazy {
-        arguments?.let {
-            QuizListFragmentArgs.fromBundle(it).quizCategory
-        }
-    }
+    private val navArgs by navArgs<QuizListFragmentArgs>()
 
     private var adapter by AutoClearedValue<QuizListAdapter>()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        viewModel.setQuizCategoryId(categoryId ?: 0)
+        viewModel.setQuizCategoryId(navArgs.categoryId)
     }
 
     override fun initUserActionObservers() {
@@ -54,13 +45,13 @@ class QuizListFragment : BaseFragment<QuizListViewModel>(R.layout.fragment_quiz_
         }
 
         binding.srQuizList.setOnRefreshListener {
-            viewModel.setQuizCategoryId(categoryId ?: 0)
+            viewModel.setQuizCategoryId(navArgs.categoryId)
         }
     }
 
     override fun initUI() {
         super.initUI()
-        binding.txtCategoryName.text = categoryName ?: "Error"
+        binding.txtCategoryName.text = navArgs.quizCategory
 
         adapter = QuizListAdapter {
             val action =

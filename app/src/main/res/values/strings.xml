@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
+    <string-array name="days">
+        <item>Pazartesi</item>
+        <item>Salı</item>
+        <item>Çarşamba</item>
+        <item>Perşembe</item>
+        <item>Cuma</item>
+        <item>Cumartesi</item>
+        <item>Pazar</item>
+    </string-array>
+
     <string name="already_start">Zaten İlk Sorudasın</string>
 
     <string name="answer_proccess">Cevaplarınız işleniyor</string>
@@ -8,9 +18,17 @@
 
     <string name="are_u_sure_for_quit">Çıkmak istediğine emin misin ?</string>
 
+    <plurals name="bottom_sheet_title">
+        <item quantity="one">%d match found</item>
+        <item quantity="other">%d matches found</item>
+    </plurals>
+
     <string name="capture_photo">Capture Photo</string>
 
     <string name="categories">Kategoriler</string>
+
+    <string name="cd_close_button">Back</string>
+    <string name="cd_settings_button">Settings</string>
 
     <string name="congrat">Tebrikler</string>
 
@@ -49,7 +67,15 @@
 
     <string name="please_solve">Lütfen bütün soruları çözmeyi dene</string>
 
+    <string name="pref_key_rear_camera_picture_size" translatable="false">rcpts</string>
+
+    <string name="pref_key_rear_camera_preview_size" translatable="false">rcpvs</string>
+
     <string name="press_again_to_leave">Çıkmak için bir kere tıklayınız.</string>
+
+    <string name="prompt_hold_camera_steady">Keep camera still for a moment</string>
+    <string name="prompt_point_at_an_object">Point your camera at an object</string>
+    <string name="prompt_searching">Searching…</string>
 
     <string name="quiz_coz">Quiz Çöz</string>
 
@@ -64,6 +90,10 @@
 
     <string name="something_went_wrong">Bilinmeyen Bir Hata Oluştu</string>
 
+    <string name="static_image_card_no_result_subtitle">Support text place holder</string>
+    <string name="static_image_card_no_result_title">No result found</string>
+    <string name="static_image_preview_card_subtitle">+%d more results</string>
+
     <string name="stay_here">Burada Kal</string>
 
     <string name="switch_camera">Switch Camera</string>
@@ -75,4 +105,28 @@
     <string name="went_wrong">Hata Oluştu</string>
 
     <string name="you_already_select">Zaten seçim yaptın.</string>
+    <string name="notificatin_channel_name">Cocuk Asistan Bildirim Kanalı</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="settings">Ayarlar</string>
+    <string name="notifications">Bildirimler</string>
+    <string name="change_passowrd">Parola Değiştir</string>
+    <string name="go_back">Geri Dön</string>
+    <string name="log_out">Çıkış Yap</string>
+    <string name="new_password">Yeni Parola</string>
+    <string name="old_password">Eski Parola</string>
+    <string name="save">Kaydet</string>
+    <string name="passwords_does_not_match">Parolalar Uyuşmuyor</string>
+    <string name="short_password">Parolanız Daha Uzun Olmalı</string>
+    <string name="change_password_succes">Parola Değiştirme Başarılı</string>
+    <string name="notification_setting">Bildirim Ayarları</string>
+    <string name="short_pazartesi">Pzt</string>
+    <string name="short_sali">Salı</string>
+    <string name="short_carsamba">Çrş</string>
+    <string name="shor_persembe">Prş</string>
+    <string name="shor_cuma">Cuma</string>
+    <string name="short_cumartesi">Cmt</string>
+    <string name="short_pazar">Pzr</string>
+    <string name="select_account">Bir Hesap Seçin</string>
+    <string name="use_another_account">Başka Bir Hesap Kullan</string>
 </resources>

@@ -5,6 +5,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.iucbk.cocuk_asistan.R
 import com.iucbk.cocuk_asistan.common.BaseFragment
@@ -33,11 +34,7 @@ class QuizQuestionsFragment :
 
     private val binding by viewBinding(FragmentQuizQuestionsBinding::bind)
 
-    private val quizId by lazy {
-        arguments?.let {
-            QuizQuestionsFragmentArgs.fromBundle(it).quizId
-        }
-    }
+    private val navArgs by navArgs<QuizQuestionsFragmentArgs>()
 
     private var questionViewPagerAdapter by AutoClearedValue<QuizQuestionsViewPager>()
 
@@ -49,7 +46,7 @@ class QuizQuestionsFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.setQuizId(quizId ?: 0)
+        viewModel.setQuizId(navArgs.quizId)
     }
 
     override fun initUI() {
@@ -178,7 +175,7 @@ class QuizQuestionsFragment :
         }
         return QuizScoreDTO(
             score,
-            quizId ?: 0
+            navArgs.quizId
         )
     }
 

@@ -1,16 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp"
+    android:padding="8dp">
 
-    <TextView
-        android:id="@+id/txtEmail"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnUseAnotherAccount"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:padding="16dp"
-        android:textAlignment="center"
-        tools:text="Email Address" />
+        android:layout_height="wrap_content"
+        android:elevation="16dp"
+        android:gravity="center"
+        android:textAllCaps="false"
+        android:textColor="@color/general_text_color"
+        android:textSize="16sp"
+        app:backgroundTint="@android:color/white"
+        app:cornerRadius="16dp"
+        app:icon="@drawable/ic_cat"
+        app:iconSize="64dp"
+        app:iconTintMode="multiply"
+        tools:text="miracozkan@outlook.com" />
 
 </FrameLayout>

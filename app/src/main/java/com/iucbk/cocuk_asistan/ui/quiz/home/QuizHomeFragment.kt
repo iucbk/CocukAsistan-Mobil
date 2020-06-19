@@ -13,6 +13,7 @@ import com.iucbk.cocuk_asistan.util.Status.LOADING
 import com.iucbk.cocuk_asistan.util.Status.SUCCESS
 import com.iucbk.cocuk_asistan.util.delegate.AutoClearedValue
 import com.iucbk.cocuk_asistan.util.extension.gone
+import com.iucbk.cocuk_asistan.util.extension.hide
 import com.iucbk.cocuk_asistan.util.extension.show
 import com.iucbk.cocuk_asistan.util.extension.showSnackBar
 import com.iucbk.cocuk_asistan.util.extension.showToast
@@ -47,12 +48,9 @@ class QuizHomeFragment : BaseFragment<QuizHomeViewModel>(R.layout.fragment_quiz_
                 ERROR -> {
                     adapter.submitList(listOf(BaseCategoryList.ErrorState()))
                     binding.prgBar.gone()
-                    showSnackBar(
-                        getErrorStringFromCode(result.errorCode)
-                    )
-                    showToast(
-                        result.message
-                    )
+                    showSnackBar(getErrorStringFromCode(result.errorCode))
+                    showToast(result.message)
+                    binding.imageView7.hide()
                 }
                 LOADING -> {
                     binding.prgBar.show()
