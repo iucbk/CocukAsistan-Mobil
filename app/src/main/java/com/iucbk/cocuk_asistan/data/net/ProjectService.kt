@@ -73,6 +73,7 @@ interface ProjectService {
 
     @POST("user/updatePassword")
     suspend fun setNewPassword(
+        @Header("token") token: String,
         @Body passwordResetDTO: PasswordResetDTO
     ): Response<BaseResponse<Nothing?>>
 }

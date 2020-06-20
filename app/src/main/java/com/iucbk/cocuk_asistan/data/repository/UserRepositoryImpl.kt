@@ -1,5 +1,6 @@
 package com.iucbk.cocuk_asistan.data.repository
 
+import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 import com.iucbk.cocuk_asistan.common.BaseRepository
 import com.iucbk.cocuk_asistan.data.db.dao.UserSessionDao
@@ -13,6 +14,7 @@ import com.iucbk.cocuk_asistan.data.net.response.common.BaseResponse
 import com.iucbk.cocuk_asistan.data.net.response.login.LoginResponse
 import com.iucbk.cocuk_asistan.data.net.response.register.GetInfoResponse
 import com.iucbk.cocuk_asistan.util.Result
+import com.iucbk.cocuk_asistan.util.getToken
 import javax.inject.Inject
 
 
@@ -27,7 +29,8 @@ import javax.inject.Inject
 
 class UserRepositoryImpl @Inject constructor(
     private val projectService: ProjectService,
-    private val userSessionDao: UserSessionDao
+    private val userSessionDao: UserSessionDao,
+    private val sharedPreferences: SharedPreferences
 ) : BaseRepository(), UserRepository {
 
     override suspend fun registerUser(userRegisterDTO: UserRegisterDTO): Result<BaseResponse<Nothing?>> {
@@ -63,7 +66,7 @@ class UserRepositoryImpl @Inject constructor(
 
     override suspend fun setNewPassword(passwordResetDTO: PasswordResetDTO): Result<BaseResponse<Nothing?>> {
         return getResult {
-            projectService.setNewPassword(passwordResetDTO)
+            projectService.setNewPassword(sharedPreferences.getToken(), passwordResetDTO)
         }
     }
 

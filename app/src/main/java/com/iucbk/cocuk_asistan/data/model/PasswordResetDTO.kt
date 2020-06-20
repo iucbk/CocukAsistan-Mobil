@@ -11,6 +11,5 @@ package com.iucbk.cocuk_asistan.data.model
 //└─────────────────────────────┘
 
 data class PasswordResetDTO(
-    val token: String,
-    val newPassword: String
+    val new_password: String
 )

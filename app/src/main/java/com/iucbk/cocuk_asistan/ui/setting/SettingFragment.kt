@@ -179,7 +179,6 @@ class SettingFragment : BaseFragment<SettingViewModel>(R.layout.fragment_setting
             onCreateEvent = { bottomSheet, isAvailable ->
                 if (isAvailable) {
                     val passwordResetDTO = PasswordResetDTO(
-                        sharedPreferences.getData(USER_TOKEN, "") as String,
                         bottomSheet.binding.txtNewPassword.getString()
                     )
                     viewModel.setNewPasswordDate(passwordResetDTO)
