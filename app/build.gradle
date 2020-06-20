@@ -6,16 +6,14 @@ apply plugin: "androidx.navigation.safeargs"
 apply plugin: 'com.google.gms.google-services'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.3"
-
+    compileSdkVersion Configs.compileSdkVersion
     defaultConfig {
-        applicationId "com.iucbk.cocuk_asistan"
-        minSdkVersion 21
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        applicationId Configs.applicationId
+        minSdkVersion Configs.minSdkVersion
+        targetSdkVersion Configs.targetSdkVersion
+        versionCode Configs.versionCode
+        versionName Configs.versionName
+        testInstrumentationRunner Configs.testInstrumentationRunner
     }
 
     buildTypes {
@@ -35,7 +33,7 @@ android {
         }
     }
 
-    buildFeatures{
+    buildFeatures {
         viewBinding = true
     }
 
@@ -52,94 +50,55 @@ android {
         exclude 'META-INF/atomicfu.kotlin_module'
     }
 
-    aaptOptions {
-        noCompress "tflite"
-    }
-
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    // Kotlin JDK Dependency
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+    implementation Dependencies.appCompat
+    implementation Dependencies.constraintLayout
+    implementation Dependencies.materialDesign
+    implementation Dependencies.swipeToRefresh
 
-    // App Compat & Material Design Dependency
-    implementation "androidx.appcompat:appcompat:$appcompat_appcompat_version"
-    implementation "androidx.constraintlayout:constraintlayout:$constraintlayout_constraintlayout_version"
+    implementation Dependencies.cameraExtension
+    implementation Dependencies.cameraLifecycle
+    implementation Dependencies.cameraView
+    implementation Dependencies.cameraX
 
-    // Navigation Component Dependencies
-    implementation "androidx.navigation:navigation-fragment-ktx:$navigation_navigation_fragment_ktx_version"
-    implementation "androidx.navigation:navigation-ui-ktx:$navigation_navigation_fragment_ktx_version"
+    implementation Dependencies.dagger
+    implementation Dependencies.daggerAndroid
+    implementation Dependencies.daggerAndroidSupport
+    annotationProcessor Dependencies.daggerAnnotationProcessor
+    kapt Dependencies.daggerCompiler
+    kapt Dependencies.daggerProcessor
 
-    // Lifecycle Dependency
-    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_lifecycle_extensions_version"
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    kapt "androidx.lifecycle:lifecycle-common-java8:$lifecycle_lifecycle_common_java8_version"
-    implementation "androidx.lifecycle:lifecycle-runtime:$lifecycle_lifecycle_common_java8_version"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_lifecycle_viewmodel_ktx_version"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_lifecycle_livedata_ktx_version"
-    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_lifecycle_common_java8_version"
+    implementation Dependencies.retrofit
+    implementation Dependencies.gson
+    implementation Dependencies.okhttp
+    implementation Dependencies.interceptor
 
-    // Picasso Dependency
-    implementation "com.squareup.picasso:picasso:$picasso_picasso_version"
+    implementation Dependencies.room
+    annotationProcessor Dependencies.roomAnnotationProcessor
+    kapt Dependencies.roomCompiler
+    implementation Dependencies.roomKtx
 
-    // Annotation Dependency
-    implementation "androidx.annotation:annotation:$annotation_annotation_version"
+    debugImplementation Dependencies.leakCanary
 
-    //KTX Dependency
-    implementation "androidx.core:core-ktx:$core_core_ktx_version"
+    implementation Dependencies.sweetAlert
 
-    //Retrofit
-    implementation "com.squareup.retrofit2:retrofit:$retrofit2_retrofit_version"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofit2_retrofit_version"
-    implementation "com.squareup.okhttp3:okhttp:$okhttp3_okhttp_version"
-    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp3_okhttp_version"
+    implementation Dependencies.navigationFragment
+    implementation Dependencies.navigationUI
 
-    //Dagger
-    implementation "com.google.dagger:dagger:$dagger_dagger_version"
-    implementation "com.google.dagger:dagger-android:$dagger_dagger_android_version"
-    implementation "com.google.dagger:dagger-android-support:$dagger_dagger_android_version"
-    annotationProcessor "com.google.dagger:dagger-android-processor:$dagger_dagger_android_version"
-    kapt "com.google.dagger:dagger-android-processor:$dagger_dagger_android_version"
-    kapt "com.google.dagger:dagger-compiler:$dagger_dagger_android_version"
+    implementation Dependencies.coreKtx
+    implementation Dependencies.kotlin
+    implementation Dependencies.kotlinReflect
 
-    //ViewPager 2
-    implementation "androidx.viewpager2:viewpager2:$viewpager2_viewpager2"
+    implementation Dependencies.lifecycleExt
+    implementation Dependencies.lifecycleLiveData
+    implementation Dependencies.lifecycleRuntime
+    implementation Dependencies.lifecycleCommon
+    implementation Dependencies.lifecycleViewModel
 
-    // Custom View
-    implementation "com.github.f0ris.sweetalert:library:$sweetalert_library"
-
-    //Leak Canary
-//    debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakcanary_leakcanary_android"
-
-    //Test Dependency
-    testImplementation "junit:junit:$junit_junit_version"
-    androidTestImplementation "androidx.test.ext:junit:$ext_junit_version"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_espresso_core_version"
-
-    //CameraX
-    implementation "androidx.camera:camera-core:$camerax_version"
-    implementation "androidx.camera:camera-lifecycle:$camerax_version"
-    implementation "androidx.camera:camera-view:$camera_view"
-    implementation "androidx.camera:camera-extensions:$camera_ext"
-
-    //Own Modules
-    implementation project(':custom_views')
-
-    //Room
-    implementation "androidx.room:room-runtime:$room_version"
-    annotationProcessor "androidx.room:room-compiler:$room_version"
-    implementation "androidx.room:room-ktx:$room_version"
-    kapt "androidx.room:room-compiler:$room_version"
-
-    //Firebase Dependency
-    implementation 'com.google.firebase:firebase-ml-model-interpreter:22.0.1'
-    implementation 'com.google.firebase:firebase-ml-vision:24.0.1'
-    implementation 'com.google.firebase:firebase-ml-vision-object-detection-model:19.0.3'
-
-    //Tenserflow
-    implementation 'org.tensorflow:tensorflow-lite:1.13.1'
-    implementation 'org.tensorflow:tensorflow-lite-gpu:0.0.0-nightly'
+    implementation Dependencies.picasso
+    implementation Dependencies.viewPager2
 }

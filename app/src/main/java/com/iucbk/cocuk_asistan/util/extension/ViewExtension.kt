@@ -1,5 +1,6 @@
 package com.iucbk.cocuk_asistan.util.extension
 
+import android.content.res.Resources
 import android.view.View
 import android.view.ViewGroup
 
@@ -34,3 +35,9 @@ fun ViewGroup.disableEnableControls(enable: Boolean) {
         }
     }
 }
+
+val Int.dp: Float
+    get() = (this * Resources.getSystem().displayMetrics.density + 0.5f)
+
+val Float.dp: Float
+    get() = (this * Resources.getSystem().displayMetrics.density + 0.5f)

@@ -42,7 +42,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.iucbk_cocukasistan.custom_views.buttons.SwipeUpSignUpButton
+            <com.iucbk.cocuk_asistan.customviews.SwipeUpSignUpButton
                 android:id="@+id/btnRegister"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -61,7 +61,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
-            <com.iucbk_cocukasistan.custom_views.buttons.SwipeUpLoginButton
+            <com.iucbk.cocuk_asistan.customviews.SwipeUpLoginButton
                 android:id="@+id/btnLogin"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

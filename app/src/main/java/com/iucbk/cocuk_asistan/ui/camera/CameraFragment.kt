@@ -29,7 +29,6 @@ import androidx.core.net.toFile
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.navigation.fragment.findNavController
 import com.iucbk.cocuk_asistan.R
 import com.iucbk.cocuk_asistan.databinding.FragmentCameraBinding
@@ -58,7 +57,6 @@ class CameraFragment : Fragment(R.layout.fragment_camera) {
     private val mainViewModel: MainViewModel by activityViewModels()
 
     private lateinit var outputDirectory: File
-    private lateinit var broadcastManager: LocalBroadcastManager
 
     private var preview by AutoClearedValue<Preview>()
 
@@ -129,7 +127,6 @@ class CameraFragment : Fragment(R.layout.fragment_camera) {
         super.onViewCreated(view, savedInstanceState)
 
         cameraExecutor = Executors.newSingleThreadExecutor()
-        broadcastManager = LocalBroadcastManager.getInstance(requireContext())
         outputDirectory = getOutputDirectory()
 
         binding.viewFinder.post {

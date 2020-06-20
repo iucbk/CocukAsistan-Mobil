@@ -92,7 +92,7 @@
         app:layout_constraintTop_toTopOf="@+id/txtPassword"
         tools:visibility="visible" />
 
-    <com.iucbk_cocukasistan.custom_views.buttons.SwipeUpLoginButton
+    <com.iucbk.cocuk_asistan.customviews.SwipeUpLoginButton
         android:id="@+id/btnLogin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

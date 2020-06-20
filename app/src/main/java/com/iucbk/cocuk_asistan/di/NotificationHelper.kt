@@ -41,7 +41,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.iucbk.cocuk_asistan.R
 import com.iucbk.cocuk_asistan.data.model.notif.NotificationModel
-import com.iucbk.cocuk_asistan.ui.setting.SettingFragment
+import com.iucbk.cocuk_asistan.ui.main.MainActivity
 import com.iucbk.cocuk_asistan.util.constant.ALARM_ITEM
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -117,7 +117,7 @@ class NotificationHelper @Inject constructor(
             setContentText("Test Açıklaması")
             setGroup(context.getString(R.string.app_name))
 
-            val intent = Intent(context, SettingFragment::class.java).apply {
+            val intent = Intent(context, MainActivity::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 putExtra(ALARM_ITEM, notificationModel)
             }

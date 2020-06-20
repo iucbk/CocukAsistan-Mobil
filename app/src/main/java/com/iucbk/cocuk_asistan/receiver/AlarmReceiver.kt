@@ -35,7 +35,6 @@ class AlarmReceiver : DaggerBroadcastReceiver(), CoroutineScope {
 
     override fun onReceive(context: Context, intent: Intent?) {
         super.onReceive(context, intent)
-        Log.e("Receiver : ", "Alarm Received")
         intent?.action?.let {
             launch {
                 getNotificationData()
