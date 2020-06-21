@@ -77,7 +77,7 @@ class HomeFragment : BaseFragment<HomeViewModel>(R.layout.fragment_home) {
     }
 
     private fun navigateToCameraFragment() {
-        showSnackBar("Çok Yakında Ekşeenecektir.")
+        showSnackBar(getString(R.string.will_be_add))
 //        if (checkPermissions(Permissions.CAMERA)) {
 //            navigateExploreScreen()
 //        } else {
