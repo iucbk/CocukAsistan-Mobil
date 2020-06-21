@@ -60,10 +60,10 @@ dependencies {
     implementation Dependencies.materialDesign
     implementation Dependencies.swipeToRefresh
 
-    implementation Dependencies.cameraExtension
-    implementation Dependencies.cameraLifecycle
-    implementation Dependencies.cameraView
-    implementation Dependencies.cameraX
+//    implementation Dependencies.cameraExtension
+//    implementation Dependencies.cameraLifecycle
+//    implementation Dependencies.cameraView
+//    implementation Dependencies.cameraX
 
     implementation Dependencies.dagger
     implementation Dependencies.daggerAndroid

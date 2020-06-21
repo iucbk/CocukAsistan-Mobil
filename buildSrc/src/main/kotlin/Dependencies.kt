@@ -29,7 +29,6 @@ object Dependencies {
     const val lifecycleCommon =
         "androidx.lifecycle:lifecycle-common-java8:${Versions.lifecycleExtensionsVersion}"
 
-
     // Picasso Dependency
     const val picasso = "com.squareup.picasso:picasso:${Versions.picassoVersion}"
 
@@ -65,10 +64,10 @@ object Dependencies {
         "com.squareup.leakcanary:leakcanary-android:${Versions.leakCanaryAndroidVersion}"
 
     //CameraX
-    const val cameraX = "androidx.camera:camera-core:${Versions.cameraVersion}"
-    const val cameraLifecycle = "androidx.camera:camera-lifecycle:${Versions.cameraVersion}"
-    const val cameraView = "androidx.camera:camera-view:${Versions.cameraViewVersion}"
-    const val cameraExtension = "androidx.camera:camera-extensions:${Versions.cameraEXTVersion}"
+//    const val cameraX = "androidx.camera:camera-core:${Versions.cameraVersion}"
+//    const val cameraLifecycle = "androidx.camera:camera-lifecycle:${Versions.cameraVersion}"
+//    const val cameraView = "androidx.camera:camera-view:${Versions.cameraViewVersion}"
+//    const val cameraExtension = "androidx.camera:camera-extensions:${Versions.cameraEXTVersion}"
 
     //Room
     const val room = "androidx.room:room-runtime:${Versions.roomVersion}"
