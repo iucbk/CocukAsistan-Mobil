@@ -20,4 +20,13 @@
         <item name="android:textSize">24sp</item>
     </style>
 
+    <style name="DaysChipBar" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@color/bg_day_chip</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:elevation">8dp</item>
+        <item name="android:textColor">@color/bg_text_day_chip</item>
+        <item name="android:layout_width">64dp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:layout_height">64dp</item>
+    </style>
 </resources>

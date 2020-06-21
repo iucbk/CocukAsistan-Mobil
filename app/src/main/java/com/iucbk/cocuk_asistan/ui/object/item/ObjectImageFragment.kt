@@ -6,9 +6,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import com.iucbk.cocuk_asistan.R
 import com.iucbk.cocuk_asistan.databinding.FragmentObjectImageBinding
 import com.iucbk.cocuk_asistan.ui.`object`.ImageDetailFragment
@@ -32,12 +30,6 @@ class ObjectImageFragment : Fragment(R.layout.fragment_object_image) {
         binding.fltShootPhotoAgain.setOnClickListener {
             (requireParentFragment() as ImageDetailFragment).navigateScreenToCamera()
         }
-
-        (requireParentFragment() as ImageDetailFragment).mainViewModel.imageFile.observe(
-            viewLifecycleOwner,
-            Observer {
-                binding.imgShootedImage.setImageURI(it.toUri())
-            })
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -65,8 +57,8 @@ class ObjectImageFragment : Fragment(R.layout.fragment_object_image) {
         }
     }
 
-    companion object {
 
+    companion object {
         @JvmStatic
         fun newInstance() =
             ObjectImageFragment()

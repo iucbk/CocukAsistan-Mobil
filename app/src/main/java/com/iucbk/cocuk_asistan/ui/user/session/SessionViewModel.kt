@@ -8,10 +8,10 @@ import com.iucbk.cocuk_asistan.data.db.entity.UserSession
 import com.iucbk.cocuk_asistan.data.net.response.common.BaseResponse
 import com.iucbk.cocuk_asistan.data.net.response.register.GetInfoResponse
 import com.iucbk.cocuk_asistan.data.repository.UserRepository
+import com.iucbk.cocuk_asistan.util.Result
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-
 
 // Code with ❤
 //┌─────────────────────────────┐
@@ -21,7 +21,6 @@ import javax.inject.Inject
 //│ ─────────────────────────── │
 //│ 01.04.2020 - 23:29          │
 //└─────────────────────────────┘
-
 class SessionViewModel @Inject constructor(
     private val userRepository: UserRepository
 ) : ViewModel() {
@@ -30,8 +29,10 @@ class SessionViewModel @Inject constructor(
     private var registeredUserJob: Job? = null
 
     lateinit var usersSession: MutableLiveData<List<UserSession>>
-    var registeredUser =
-        MutableLiveData<com.iucbk.cocuk_asistan.util.Result<BaseResponse<GetInfoResponse?>>>()
+
+    val registeredUser by lazy {
+        MutableLiveData<Result<BaseResponse<GetInfoResponse?>>>()
+    }
 
     init {
         getUsersSession()
@@ -70,3 +71,6 @@ class SessionViewModel @Inject constructor(
         }
     }
 }
+
+
+

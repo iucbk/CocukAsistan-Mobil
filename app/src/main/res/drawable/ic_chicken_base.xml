@@ -10,7 +10,7 @@
             android:fillColor="#000000"
             android:pathData="M88,115.401a45,33 0,1 0,90 0a45,33 0,1 0,-90 0z" />
         <path
-            android:fillColor="#6fc1a5"
+            android:fillColor="@color/green_button_bg"
             android:pathData="M9,182.901a159,24.5 0,1 0,318 0a159,24.5 0,1 0,-318 0z" />
         <path
             android:fillColor="#ffa812"

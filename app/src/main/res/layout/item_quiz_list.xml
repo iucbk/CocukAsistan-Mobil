@@ -27,7 +27,7 @@
         app:iconTintMode="multiply"
         tools:text="Sultan Papağanı" />
 
-    <com.iucbk_cocukasistan.custom_views.buttons.CircleButton
+    <com.iucbk.cocuk_asistan.customviews.CircleButton
         android:id="@+id/viewQuizState"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -1,5 +1,6 @@
 package com.iucbk.cocuk_asistan.data.net
 
+import com.iucbk.cocuk_asistan.data.model.PasswordResetDTO
 import com.iucbk.cocuk_asistan.data.model.QuizScoreDTO
 import com.iucbk.cocuk_asistan.data.model.UserLoginDTO
 import com.iucbk.cocuk_asistan.data.model.UserRegisterDTO
@@ -64,4 +65,15 @@ interface ProjectService {
     suspend fun getRegisteredUserInfo(
         @Header("token") token: String
     ): Response<BaseResponse<GetInfoResponse?>>
+
+    @POST("notification/getTip")
+    suspend fun getNotificationType(
+        @Header("token") token: String
+    ): Response<BaseResponse<String?>>
+
+    @POST("user/updatePassword")
+    suspend fun setNewPassword(
+        @Header("token") token: String,
+        @Body passwordResetDTO: PasswordResetDTO
+    ): Response<BaseResponse<Nothing?>>
 }

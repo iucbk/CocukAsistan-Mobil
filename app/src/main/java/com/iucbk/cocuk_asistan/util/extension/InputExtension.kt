@@ -13,12 +13,10 @@ import android.widget.TextView
 //│ 16.03.2020 - 13:58          │
 //└─────────────────────────────┘
 
-fun TextView.getString(): String {
-    return this.text.toString()
-}
+fun TextView.getString() = this.text.toString()
 
-fun userFilledAllEntries(allFields: List<String?>): Boolean =
-    !allFields.any {
+fun List<String?>.userFilledAllEntries(): Boolean =
+    !this.any {
         it.isNullOrEmpty()
     }
 

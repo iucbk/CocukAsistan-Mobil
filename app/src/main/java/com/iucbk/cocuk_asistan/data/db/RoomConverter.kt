@@ -31,4 +31,21 @@ object RoomConverter {
         val listType = object : TypeToken<List<UserSession>>() {}.type
         return Gson().fromJson(value, listType)
     }
+
+    @androidx.room.TypeConverter
+    @JvmStatic
+    fun listOfStringToString(array: List<String>): String {
+        return if (array.isEmpty()) {
+            ""
+        } else {
+            Gson().toJson(array)
+        }
+    }
+
+    @androidx.room.TypeConverter
+    @JvmStatic
+    fun stringToListOfString(value: String): List<String> {
+        val listType = object : TypeToken<List<String>>() {}.type
+        return Gson().fromJson(value, listType)
+    }
 }

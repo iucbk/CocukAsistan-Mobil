@@ -1,8 +1,12 @@
 package com.iucbk.cocuk_asistan.di.module
 
+import android.app.AlarmManager
 import android.app.Application
+import android.app.NotificationManager
 import android.content.Context
 import android.content.SharedPreferences
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.iucbk.cocuk_asistan.util.constant.SHARED_PREF_NAME
 import dagger.Module
 import dagger.Provides
@@ -33,4 +37,16 @@ class AppModule {
             SHARED_PREF_NAME,
             Context.MODE_PRIVATE
         )
+
+    @Singleton
+    @Provides
+    fun provideAlarmManager(context: Context) =
+        context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    @Singleton
+    @Provides
+    fun provideNotificationManager(context: Context) =
+        context.getSystemService(NotificationManager::class.java) as NotificationManager
+
 }

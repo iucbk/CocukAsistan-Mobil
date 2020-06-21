@@ -5,6 +5,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.iucbk.cocuk_asistan.data.db.dao.UserSessionDao
 import com.iucbk.cocuk_asistan.data.db.entity.UserSession
+import com.iucbk.cocuk_asistan.data.model.notif.AlarmModel
 
 
 // Code with ❤
@@ -17,8 +18,8 @@ import com.iucbk.cocuk_asistan.data.db.entity.UserSession
 //└─────────────────────────────┘
 
 @Database(
-    entities = [UserSession::class],
-    version = 2
+    entities = [UserSession::class, AlarmModel::class],
+    version = 1
 )
 @TypeConverters(RoomConverter::class)
 abstract class ProjectDatabase : RoomDatabase() {

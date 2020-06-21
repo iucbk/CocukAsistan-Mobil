@@ -26,7 +26,7 @@ class SwipeUpScreen : Fragment(R.layout.fragment_swipe_up_screen) {
 
         binding.btnLogin.setOnClickListener {
             val action =
-                SwipeUpScreenDirections.actionSwipeUpScreenToLoginFragment()
+                SwipeUpScreenDirections.actionSwipeUpScreenToLoginFragment(null)
             findNavController().navigate(action)
         }
     }

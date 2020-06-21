@@ -10,12 +10,10 @@ import com.iucbk.cocuk_asistan.common.BaseFragment
 import com.iucbk.cocuk_asistan.databinding.FragmentHomeBinding
 import com.iucbk.cocuk_asistan.enums.Permissions
 import com.iucbk.cocuk_asistan.util.constant.USER_FULL_NAME
-import com.iucbk.cocuk_asistan.util.extension.checkPermissions
-import com.iucbk.cocuk_asistan.util.extension.hideKeyboard
-import com.iucbk.cocuk_asistan.util.extension.requestPermission
+import com.iucbk.cocuk_asistan.util.extension.getData
+import com.iucbk.cocuk_asistan.util.extension.showSnackBar
 import com.iucbk.cocuk_asistan.util.extension.showToast
 import com.iucbk.cocuk_asistan.util.extension.viewBinding
-import com.iucbk.cocuk_asistan.util.getData
 import javax.inject.Inject
 
 /**
@@ -23,9 +21,7 @@ import javax.inject.Inject
  */
 class HomeFragment : BaseFragment<HomeViewModel>(R.layout.fragment_home) {
 
-    override fun model(): Any {
-        return HomeViewModel::class.java
-    }
+    override fun model() = HomeViewModel::class.java
 
     @Inject
     lateinit var sharedPreferences: SharedPreferences
@@ -37,7 +33,6 @@ class HomeFragment : BaseFragment<HomeViewModel>(R.layout.fragment_home) {
 
     override fun initUI() {
         super.initUI()
-        hideKeyboard()
         handleBackPress()
         binding.include2.txtGreeting.text = String.format(getString(R.string.greeting), userName)
     }
@@ -61,6 +56,10 @@ class HomeFragment : BaseFragment<HomeViewModel>(R.layout.fragment_home) {
     override fun initUserActionObservers() {
         super.initUserActionObservers()
 
+        binding.imgSetting.setOnClickListener {
+            navigateToSettingFragment()
+        }
+
         binding.incGoQuiz.btnSolveQuiz.setOnClickListener {
             val action =
                 HomeFragmentDirections.actionHomeFragmentToQuizHomeFragment()
@@ -68,12 +67,22 @@ class HomeFragment : BaseFragment<HomeViewModel>(R.layout.fragment_home) {
         }
 
         binding.incGoExplore.btnStartExplore.setOnClickListener {
-            if (checkPermissions(Permissions.CAMERA)) {
-                navigateExploreScreen()
-            } else {
-                requestPermission(Permissions.CAMERA)
-            }
+            navigateToCameraFragment()
         }
+    }
+
+    private fun navigateToSettingFragment() {
+        val action = HomeFragmentDirections.actionHomeFragmentToSettingFragment()
+        findNavController().navigate(action)
+    }
+
+    private fun navigateToCameraFragment() {
+        showSnackBar("Çok Yakında Ekşeenecektir.")
+//        if (checkPermissions(Permissions.CAMERA)) {
+//            navigateExploreScreen()
+//        } else {
+//            requestPermission(Permissions.CAMERA)
+//        }
     }
 
     override fun onRequestPermissionsResult(

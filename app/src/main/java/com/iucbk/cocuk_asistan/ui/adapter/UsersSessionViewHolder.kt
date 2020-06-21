@@ -18,13 +18,10 @@ class UsersSessionViewHolder(
     private val binding: ItemUserSessionBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(
-        userSession: UserSession,
-        onClickListener: (UserSession) -> Unit
-    ) {
-        binding.txtEmail.text = userSession.email
+    fun bind(userSession: UserSession, onClickListener: (UserSession) -> Unit) {
+        binding.btnUseAnotherAccount.text = userSession.email
 
-        itemView.setOnClickListener {
+        binding.btnUseAnotherAccount.setOnClickListener {
             onClickListener(userSession)
         }
     }

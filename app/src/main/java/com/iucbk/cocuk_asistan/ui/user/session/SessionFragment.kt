@@ -3,6 +3,7 @@ package com.iucbk.cocuk_asistan.ui.user.session
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.iucbk.cocuk_asistan.R
 import com.iucbk.cocuk_asistan.common.BaseFragment
 import com.iucbk.cocuk_asistan.data.db.entity.UserSession
@@ -24,13 +25,9 @@ import com.iucbk.cocuk_asistan.util.getErrorStringFromCode
  */
 class SessionFragment : BaseFragment<SessionViewModel>(R.layout.fragment_session) {
 
-    override fun model(): Any {
-        return SessionViewModel::class.java
-    }
+    override fun model() = SessionViewModel::class.java
 
-    private val deepToken by lazy {
-        SessionFragmentArgs.fromBundle(arguments!!).deepToken
-    }
+    private val navArgs by navArgs<SessionFragmentArgs>()
 
     private val binding by viewBinding(FragmentSessionBinding::bind)
 
@@ -38,9 +35,7 @@ class SessionFragment : BaseFragment<SessionViewModel>(R.layout.fragment_session
 
     override fun initUI() {
         super.initUI()
-
-        viewModel.getRegisteredUser("$deepToken")
-
+        viewModel.getRegisteredUser("${navArgs.deepToken}")
         adapter = UsersSessionAdapter {
             navigateScreenToLogin(it)
         }.also {
@@ -48,10 +43,14 @@ class SessionFragment : BaseFragment<SessionViewModel>(R.layout.fragment_session
         }
     }
 
-    private fun navigateScreenToLogin(userSession: UserSession) {
+    private fun navigateToSplash() {
+        val action = SessionFragmentDirections.actionSessionFragmentToSplashFragment()
+        findNavController().navigate(action)
+    }
+
+    private fun navigateScreenToLogin(userSession: UserSession?) {
         val action =
-            SessionFragmentDirections.actionSessionFragmentToLoginFragment()
-                .setUserSession(userSession)
+            SessionFragmentDirections.actionSessionFragmentToLoginFragment(userSession)
         findNavController().navigate(action)
     }
 
@@ -68,12 +67,8 @@ class SessionFragment : BaseFragment<SessionViewModel>(R.layout.fragment_session
                     binding.prgBar.gone()
                 }
                 ERROR -> {
-                    showSnackBar(
-                        getErrorStringFromCode(result.errorCode)
-                    )
-                    showToast(
-                        result.message
-                    )
+                    showSnackBar(getErrorStringFromCode(result.errorCode))
+                    showToast(result.message)
                     binding.prgBar.gone()
                 }
                 LOADING -> {
@@ -81,5 +76,17 @@ class SessionFragment : BaseFragment<SessionViewModel>(R.layout.fragment_session
                 }
             }
         })
+    }
+
+    override fun initUserActionObservers() {
+        super.initUserActionObservers()
+
+        binding.btnBack.setOnClickListener {
+            navigateToSplash()
+        }
+
+        binding.btnUseAnotherAccount.setOnClickListener {
+            navigateScreenToLogin(null)
+        }
     }
 }
