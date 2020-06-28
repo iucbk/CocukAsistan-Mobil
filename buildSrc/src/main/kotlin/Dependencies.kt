@@ -64,10 +64,10 @@ object Dependencies {
         "com.squareup.leakcanary:leakcanary-android:${Versions.leakCanaryAndroidVersion}"
 
     //CameraX
-//    const val cameraX = "androidx.camera:camera-core:${Versions.cameraVersion}"
-//    const val cameraLifecycle = "androidx.camera:camera-lifecycle:${Versions.cameraVersion}"
-//    const val cameraView = "androidx.camera:camera-view:${Versions.cameraViewVersion}"
-//    const val cameraExtension = "androidx.camera:camera-extensions:${Versions.cameraEXTVersion}"
+    const val cameraX = "androidx.camera:camera-core:${Versions.cameraVersion}"
+    const val cameraLifecycle = "androidx.camera:camera-lifecycle:${Versions.cameraVersion}"
+    const val cameraView = "androidx.camera:camera-view:${Versions.cameraViewVersion}"
+    const val cameraExtension = "androidx.camera:camera-extensions:${Versions.cameraEXTVersion}"
 
     //Room
     const val room = "androidx.room:room-runtime:${Versions.roomVersion}"
@@ -75,4 +75,9 @@ object Dependencies {
     const val roomKtx = "androidx.room:room-ktx:${Versions.roomVersion}"
     const val roomCompiler = "androidx.room:room-compiler:${Versions.roomVersion}"
 
+    //Firebase
+    const val googleAnalytics =
+        "com.google.firebase:firebase-analytics:${Versions.analyticsVersion}"
+    const val googleCrashlitycs =
+        "com.google.firebase:firebase-crashlytics:${Versions.crashlyticsVersion}"
 }

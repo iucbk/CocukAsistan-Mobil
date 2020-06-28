@@ -4,4 +4,7 @@ object ClassPath {
     const val navigationSafeArgs =
         "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navigationSafeArgsVersion}"
     const val googleServices = "com.google.gms:google-services:${Versions.googleServicesVersion}"
+    const val gradleCrashlytics =
+        "com.google.firebase:firebase-crashlytics-gradle:${Versions.crashlitycsPathVersion}"
+
 }
