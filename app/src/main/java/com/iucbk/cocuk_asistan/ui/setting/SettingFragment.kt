@@ -93,18 +93,17 @@ class SettingFragment : BaseFragment<SettingViewModel>(R.layout.fragment_setting
 
     private fun logOut() {
         if (sharedPreferences.deleteSession()) {
+            findNavController()
+                .navigate(
+                    R.id.swipeUpScreen, null, NavOptions.Builder()
+                        .setPopUpTo(R.id.settingFragment, true)
+                        .setPopUpTo(R.id.homeFragment, true)
+                        .build()
+                )
             firebaseAnalytics.setUserId("unknown")
             mainViewModel.unAuthenticateUser()
             binding.prgBar.hide()
-            findNavController()
-                .navigate(
-                    R.id.swipeUpScreen,
-                    null,
-                    NavOptions.Builder()
-                        .setPopUpTo(R.id.homeFragment, true)
-                        .setPopUpTo(R.id.settingFragment, true)
-                        .build()
-                )
+
         } else {
             binding.prgBar.hide()
             showSnackBar(getString(R.string.went_wrong))
