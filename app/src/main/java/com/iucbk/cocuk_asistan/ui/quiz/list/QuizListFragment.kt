@@ -1,6 +1,7 @@
 package com.iucbk.cocuk_asistan.ui.quiz.list
 
 import android.content.Context
+import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -35,6 +36,11 @@ class QuizListFragment : BaseFragment<QuizListViewModel>(R.layout.fragment_quiz_
     override fun onAttach(context: Context) {
         super.onAttach(context)
         viewModel.setQuizCategoryId(navArgs.categoryId)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        firebaseAnalytics.setCurrentScreen(requireActivity(), this.javaClass.name, null)
     }
 
     override fun initUserActionObservers() {

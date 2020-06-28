@@ -7,6 +7,7 @@ import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.iucbk.cocuk_asistan.di.ViewModelFactory
 import com.iucbk.cocuk_asistan.util.extension.hideKeyboard
 import dagger.android.AndroidInjector
@@ -38,6 +39,8 @@ abstract class BaseFragment<VM : ViewModel>(@LayoutRes layoutRes: Int) :
 
     @Inject
     lateinit var androidInjector: DispatchingAndroidInjector<Any>
+
+    internal val firebaseAnalytics by lazy { FirebaseAnalytics.getInstance(requireContext()) }
 
     override fun androidInjector(): AndroidInjector<Any> = androidInjector
 

@@ -53,6 +53,7 @@ class SettingFragment : BaseFragment<SettingViewModel>(R.layout.fragment_setting
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        firebaseAnalytics.setCurrentScreen(requireActivity(), this.javaClass.name, null)
         requireActivity().onBackPressedDispatcher.addCallback(this,
             object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
@@ -92,6 +93,7 @@ class SettingFragment : BaseFragment<SettingViewModel>(R.layout.fragment_setting
 
     private fun logOut() {
         if (sharedPreferences.deleteSession()) {
+            firebaseAnalytics.setUserId("unknown")
             mainViewModel.unAuthenticateUser()
             binding.prgBar.hide()
             findNavController()

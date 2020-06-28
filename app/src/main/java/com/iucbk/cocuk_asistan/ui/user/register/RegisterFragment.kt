@@ -1,8 +1,10 @@
 package com.iucbk.cocuk_asistan.ui.user.register
 
+import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.iucbk.cocuk_asistan.R
 import com.iucbk.cocuk_asistan.common.BaseFragment
 import com.iucbk.cocuk_asistan.data.model.UserRegisterDTO
@@ -32,6 +34,11 @@ class RegisterFragment : BaseFragment<RegisterViewModel>(R.layout.fragment_regis
 
     private val binding by viewBinding(FragmentRegisterBinding::bind)
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        firebaseAnalytics.setCurrentScreen(requireActivity(), this.javaClass.name, null)
+    }
+
     override fun initUserActionObservers() {
         super.initUserActionObservers()
 
@@ -49,6 +56,11 @@ class RegisterFragment : BaseFragment<RegisterViewModel>(R.layout.fragment_regis
         viewModel.registerResult.observe(viewLifecycleOwner, Observer { result ->
             when (result.status) {
                 SUCCESS -> {
+                    Bundle().apply {
+                        putString(FirebaseAnalytics.Param.METHOD, "User Register")
+                    }.also {
+                        firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SIGN_UP, it)
+                    }
                     binding.prgBar.hide()
                     showSnackBar(getString(R.string.register_success))
                     navigateScreenToLogin()

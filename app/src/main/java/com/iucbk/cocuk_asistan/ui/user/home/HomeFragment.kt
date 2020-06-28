@@ -2,6 +2,7 @@ package com.iucbk.cocuk_asistan.ui.user.home
 
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
+import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -29,6 +30,11 @@ class HomeFragment : BaseFragment<HomeViewModel>(R.layout.fragment_home) {
     private val binding by viewBinding(FragmentHomeBinding::bind)
     private val userName by lazy {
         (sharedPreferences.getData(USER_FULL_NAME, "") as String).substringBefore(" ")
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        firebaseAnalytics.setCurrentScreen(requireActivity(), this.javaClass.name, null)
     }
 
     override fun initUI() {

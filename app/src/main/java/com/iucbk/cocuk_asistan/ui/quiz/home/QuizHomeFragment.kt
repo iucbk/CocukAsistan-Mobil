@@ -1,5 +1,6 @@
 package com.iucbk.cocuk_asistan.ui.quiz.home
 
+import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -30,6 +31,11 @@ class QuizHomeFragment : BaseFragment<QuizHomeViewModel>(R.layout.fragment_quiz_
     private val binding by viewBinding(FragmentQuizHomeBinding::bind)
 
     private var adapter by AutoClearedValue<QuizCategoriesAdapter>()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        firebaseAnalytics.setCurrentScreen(requireActivity(), "QuizHome Screen", null)
+    }
 
     override fun initObservers() {
         super.initObservers()
