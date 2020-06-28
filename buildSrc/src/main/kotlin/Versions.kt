@@ -2,6 +2,7 @@ object Versions {
     const val buildGradleVersion = "4.0.0"
     const val googleServicesVersion = "4.3.3"
     const val navigationSafeArgsVersion = "2.3.0-alpha06"
+    const val crashlitycsPathVersion = "2.2.0"
 
     const val kotlinVersion = "1.3.72"
     const val appcompatVersion = "1.1.0"
@@ -26,4 +27,6 @@ object Versions {
     const val cameraEXTVersion = "1.0.0-alpha08"
     const val roomVersion = "2.2.5"
     const val swipeRefreshLayoutVersion = "1.0.0"
+    const val analyticsVersion = "17.4.3"
+    const val crashlyticsVersion = "17.1.0"
 }

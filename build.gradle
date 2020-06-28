@@ -8,6 +8,7 @@ buildscript {
         classpath ClassPath.kotlin
         classpath ClassPath.navigationSafeArgs
         classpath ClassPath.googleServices
+        classpath ClassPath.gradleCrashlytics
     }
 }
 

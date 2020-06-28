@@ -29,7 +29,6 @@ object Dependencies {
     const val lifecycleCommon =
         "androidx.lifecycle:lifecycle-common-java8:${Versions.lifecycleExtensionsVersion}"
 
-
     // Picasso Dependency
     const val picasso = "com.squareup.picasso:picasso:${Versions.picassoVersion}"
 
@@ -76,4 +75,9 @@ object Dependencies {
     const val roomKtx = "androidx.room:room-ktx:${Versions.roomVersion}"
     const val roomCompiler = "androidx.room:room-compiler:${Versions.roomVersion}"
 
+    //Firebase
+    const val googleAnalytics =
+        "com.google.firebase:firebase-analytics:${Versions.analyticsVersion}"
+    const val googleCrashlitycs =
+        "com.google.firebase:firebase-crashlytics:${Versions.crashlyticsVersion}"
 }

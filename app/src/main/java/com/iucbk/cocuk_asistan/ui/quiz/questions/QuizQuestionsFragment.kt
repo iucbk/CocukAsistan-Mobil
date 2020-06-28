@@ -44,6 +44,11 @@ class QuizQuestionsFragment :
         SweetAlertDialog(requireContext(), SweetAlertDialog.PROGRESS_TYPE)
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        firebaseAnalytics.setCurrentScreen(requireActivity(), this.javaClass.name, null)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.setQuizId(navArgs.quizId)

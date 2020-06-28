@@ -1,12 +1,14 @@
 package com.iucbk.cocuk_asistan.ui.user.login
 
 import android.content.SharedPreferences
+import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.iucbk.cocuk_asistan.R
 import com.iucbk.cocuk_asistan.common.BaseFragment
 import com.iucbk.cocuk_asistan.data.model.UserLoginDTO
@@ -44,6 +46,11 @@ class LoginFragment : BaseFragment<LoginViewModel>(R.layout.fragment_login) {
 
     private val navArgs by navArgs<LoginFragmentArgs>()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        firebaseAnalytics.setCurrentScreen(requireActivity(), this.javaClass.name, null)
+    }
+
     override fun initUserActionObservers() {
         super.initUserActionObservers()
 
@@ -63,6 +70,11 @@ class LoginFragment : BaseFragment<LoginViewModel>(R.layout.fragment_login) {
             when (result.status) {
                 Status.SUCCESS -> {
                     if (sharedPreferences.saveSession(result.data?.data)) {
+                        Bundle().apply {
+                            putString(FirebaseAnalytics.Param.METHOD, "User Login")
+                        }.also {
+                            firebaseAnalytics.logEvent(FirebaseAnalytics.Event.LOGIN, it)
+                        }
                         binding.prgBar.hide()
                         showSnackBar(getString(R.string.login_success))
                         navigateScreenToHome()
@@ -87,6 +99,7 @@ class LoginFragment : BaseFragment<LoginViewModel>(R.layout.fragment_login) {
     }
 
     private fun navigateScreenToHome() {
+        firebaseAnalytics.setUserId(binding.txtEmail.getString())
         mainViewModel.authenticateUser()
         findNavController().navigate(
             R.id.homeFragment,
